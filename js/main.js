@@ -29,8 +29,8 @@ let leiding = [],
     leidingTegoed = TAFFY().store('leiding-tegoed'),
     records = TAFFY().store('records');
 
-    console.log('records' + records().stringify());
-    console.log('leidingTegoed' + leidingTegoed().stringify());
+    console.log('records' + records().stringify() +  ' ' + records().count());
+    console.log('leidingTegoed' + leidingTegoed().stringify() + ' ' + leidingTegoed().count());
 
 btnSave.addEventListener('click', () => {
     if (inpSaveLeidingNaam.value == '' || inpSaveLeidingBedrag.value == '' ) {
@@ -38,7 +38,7 @@ btnSave.addEventListener('click', () => {
         errorNewLeiding.classList.remove('d-none');
     } else {
         errorNewLeiding.classList.remove('d-none');
-        errorNewLeiding.classList.remove('d-none');
+        errorNewLeiding.classList.add('d-none');
         leidingTegoed.insert({name: inpSaveLeidingNaam.value, amount: inpSaveLeidingBedrag.value});
         generateUI();
     }
@@ -46,6 +46,18 @@ btnSave.addEventListener('click', () => {
     // localStorage.setItem('leiding', leiding);
     // console.log(localStorage.getItem('leiding'));
 });
+
+function testLeidingExists() {
+    if (leidingTegoed().count() == 0) {
+        document.querySelector('#home > div > div:nth-child(2)').classList.add('d-none');
+        document.querySelector('#notifNoLeiding').classList.remove('d-none');
+    } else {
+        document.querySelector('#notifNoLeiding').classList.add('d-none');
+        document.querySelector('#home > div > div:nth-child(2)').classList.add('d-none');
+        document.querySelector('#home > div > div:nth-child(2)').classList.remove('d-none');
+    };
+}
+testLeidingExists()
 
 function generateUI() {
     let tempStr = '', tableTempStr = '';
@@ -71,8 +83,8 @@ function generateUI() {
     buttons.innerHTML = tempStr;
     tableLeiding.innerHTML = tableTempStr;
     // console.log(buttons);
+    testLeidingExists()
 }
-
 generateUI();
 
 function selectPerson(n, e) {
@@ -158,5 +170,4 @@ function generateRecords() {
 
     document.querySelector('#tableRecords').innerHTML = tempStr;
 }
-
 generateRecords();

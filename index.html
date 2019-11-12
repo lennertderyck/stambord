@@ -12,9 +12,7 @@
     <script src="./manup.js"></script>
 </head>
 <body class="pt-5">
-        <button onclick="install()">
-                Install
-              </button>
+    <button class="d-none" onclick="install()">Install</button>
     <div class="container">
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item">
@@ -31,7 +29,14 @@
     <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active py-4" id="home" role="tabpanel" aria-labelledby="home-tab">
             <div class="container">
-                <div class="row mb-4">
+                <div id="notifNoLeiding" class="card text-white bg-info mb-4">
+                    <div class="card-body">
+                        <h4>Er werd geen leiding gevonden</h4>
+                        <p class="mb-0">Maak leiding aan onder het tabblad 'Leiding beheer'</p>
+                    </div>
+                </div>
+
+                <div class="row mb-4 d-none">
                     <div class="col">
                         <h3>Naam</h3>
                         <p>Kies je naam</p>
@@ -61,6 +66,7 @@
                         <button class="btn btn-primary" onclick="selectAmount(3)">Halve</button>
                     </div>
                 </div>
+
                 <div id="selectDrank" class="row mb-4 d-none">
                     <div class="col">
                         <h3>Dranken</h3>
@@ -74,6 +80,16 @@
         </div>
         <div class="tab-pane fade py-4" id="profile" role="tabpanel" aria-labelledby="profile-tab">
             <div class="container">
+                <div class="row mb-4">
+                    <div class="col-auto mr-4">
+                        <img src="https://qrcode.tec-it.com/API/QRCode?data=BCD%0a001%0a1%0aSCT%0aKREDBEBB%0aSTAM+HP%0aBE05734047216575%0aEUR5%0a%0a%0a%0aStamkaart&backcolor=%23ffffff" height="120px"/>
+                    </div>
+                    <div class="col d-flex flex-column justify-content-center">
+                        <h2>Stamkaart</h2>
+                        <h4>Scan de code met je bankapp</h4>
+                        <h6>BE58 7360 3139 0779</h6>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col">
                         <div id="errorNewLeiding" class="card text-white bg-danger mb-4 d-none">
@@ -93,7 +109,7 @@
                                 <tr>
                                     <th>
                                         <div class="input-group">
-                                            <input type="text" class="form-control" name="leiding naam" id="leidingNaam" placeholder="Naam leiding"><br>
+                                            <input type="text" class="form-control" name="leiding naam" id="leidingNaam" autocomplete="off" placeholder="Naam leiding"><br>
                                         </div>
                                     </th>
                                     <th>
