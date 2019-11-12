@@ -89,7 +89,8 @@ function generateUI() {
     buttons.innerHTML = tempStr;
     tableLeiding.innerHTML = tableTempStr;
     // console.log(buttons);
-    testLeidingExists()
+    testLeidingExists();
+    feather.replace();
 }
 
 function selectPerson(n, e) {
