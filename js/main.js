@@ -10,42 +10,49 @@
     .find()
 */
 const
-    btnSave = document.querySelector('#createLeiding'),
-    btnRmv = document.querySelector('#removeLeiding'),
-    inpSaveLeidingNaam = document.querySelector('#leidingNaam'),
-    inpSaveLeidingBedrag = document.querySelector('#leidingBedrag');
-    buttons = document.querySelector('.buttons'),
-    tableLeiding = document.querySelector('#tableLeiding'),
-    bordContent = document.querySelector("#home > div > div:nth-child(2)"),
-    inpTopUp = document.querySelector('#topUpAmount'),
-    errorNewLeiding = document.querySelector('#errorNewLeiding');
+btnSave = document.querySelector('#createLeiding'),
+btnRmv = document.querySelector('#removeLeiding'),
+inpSaveLeidingNaam = document.querySelector('#leidingNaam'),
+inpSaveLeidingBedrag = document.querySelector('#leidingBedrag');
+buttons = document.querySelector('.buttons'),
+tableLeiding = document.querySelector('#tableLeiding'),
+bordContent = document.querySelector("#home > div > div:nth-child(2)"),
+inpTopUp = document.querySelector('#topUpAmount'),
+errorNewLeiding = document.querySelector('#errorNewLeiding');
 
 let leiding = [],
-    hasToPay = '',
-    personIndex,
-    leidingCurrentAmount,
-    newAmount,
-    content = 2,
-    leidingTegoed = TAFFY().store('leiding-tegoed'),
-    records = TAFFY().store('records');
+hasToPay = '',
+personIndex,
+leidingCurrentAmount,
+newAmount,
+content = 2,
+leidingTegoed = TAFFY().store('leiding-tegoed'),
+records = TAFFY().store('records');
 
-    console.log('records' + records().stringify() +  ' ' + records().count());
-    console.log('leidingTegoed' + leidingTegoed().stringify() + ' ' + leidingTegoed().count());
+// console.log('records' + records().stringify() +  ' ' + records().count());
+// console.log('leidingTegoed' + leidingTegoed().stringify() + ' ' + leidingTegoed().count());
 
-btnSave.addEventListener('click', () => {
-    if (inpSaveLeidingNaam.value == '' || inpSaveLeidingBedrag.value == '' ) {
-        console.log('lol')
-        errorNewLeiding.classList.remove('d-none');
-    } else {
-        errorNewLeiding.classList.remove('d-none');
-        errorNewLeiding.classList.add('d-none');
-        leidingTegoed.insert({name: inpSaveLeidingNaam.value, amount: inpSaveLeidingBedrag.value});
-        generateUI();
-    }
-    // leiding.push([inpSaveLeidingNaam.value + '+' + inpSaveLeidingBedrag.value]);
-    // localStorage.setItem('leiding', leiding);
-    // console.log(localStorage.getItem('leiding'));
-});
+
+function initiate() {
+    btnSave.addEventListener('click', () => {
+        if (inpSaveLeidingNaam.value == '' || inpSaveLeidingBedrag.value == '' ) {
+            console.log('lol')
+            errorNewLeiding.classList.remove('d-none');
+        } else {
+            errorNewLeiding.classList.remove('d-none');
+            errorNewLeiding.classList.add('d-none');
+            leidingTegoed.insert({name: inpSaveLeidingNaam.value, amount: inpSaveLeidingBedrag.value});
+            generateUI();
+        }
+        // leiding.push([inpSaveLeidingNaam.value + '+' + inpSaveLeidingBedrag.value]);
+        // localStorage.setItem('leiding', leiding);
+        // console.log(localStorage.getItem('leiding'));
+    });
+
+    testLeidingExists();
+    generateUI();
+    generateRecords();
+}
 
 function testLeidingExists() {
     if (leidingTegoed().count() == 0) {
@@ -57,7 +64,6 @@ function testLeidingExists() {
         document.querySelector('#home > div > div:nth-child(2)').classList.remove('d-none');
     };
 }
-testLeidingExists()
 
 function generateUI() {
     let tempStr = '', tableTempStr = '';
@@ -71,10 +77,10 @@ function generateUI() {
         tableTempStr += `
         <tr>
             <td>${el.name}</td>
-            <td>€${el.amount}</td>
+            <td>€${el.amount.toString().replace('.',',')}</td>
             <td>
                 <button class="btn btn-info" onclick="topUp()">Topup</button>
-                <button class="btn btn-danger" onclick="removePerson('${el.name}')">x</button>
+                <button class="btn btn-danger no-txt" onclick="removePerson('${el.name}')"><i data-feather="trash-2"></i></button>
             </td>
         </tr>
         `;
@@ -85,7 +91,6 @@ function generateUI() {
     // console.log(buttons);
     testLeidingExists()
 }
-generateUI();
 
 function selectPerson(n, e) {
     hasToPay = n;
@@ -163,11 +168,104 @@ function generateRecords() {
             <td>${r.date}</td>
             <td>${r.name}</td>
             <td>${r.drank.replace('.',',')}</td>
-            <td>€${r.amount}</td>
+            <td>€${r.amount.toString().replace('.',',')}</td>
         </tr>
         `
     });
 
     document.querySelector('#tableRecords').innerHTML = tempStr;
 }
-generateRecords();
+
+const now = new Date();
+const dd = now.getDate();
+const mm = now.getMonth();
+const yyyy = now.getFullYear();
+const hh = now.getHours();
+const nn = now.getMinutes();
+
+initiate();
+
+function save() {
+    let tempStr1 = '';
+    records().each(function (r) {
+        tempStr1 += `
+        <tr>
+            <td>${r.date}</td>
+            <td>${r.name}</td>
+            <td>${r.drank.replace('.',',')}</td>
+            <td>€${r.amount.toString().replace('.',',')}</td>
+        </tr>
+        `
+    });
+    const file1 = `
+        <table>
+        <tr>
+            <th>Datum</th>
+            <th>Naam</th>
+            <th>Drank</th>
+            <th>Bedrag</th>
+        </tr>
+        ${tempStr1}
+        </table>
+        <style>
+            table {
+                font-family: arial, sans-serif;
+                border-collapse: collapse;
+                width: 100%;
+            }
+
+            td, th {
+                border: 1px solid #dddddd;
+                text-align: left;
+                padding: 8px;
+            }
+
+            tr:nth-child(even) {
+                background-color: #dddddd;
+            }
+        </style>
+    `;
+
+    let tempStr2 = '';
+    leidingTegoed().each(function (r) {
+        tempStr2 += `
+        <tr>
+            <td>${r.name}</td>
+            <td>€${r.amount.toString().replace('.',',')}</td>
+        </tr>
+        `
+    });
+    const file2 = `
+        <table>
+        <tr>
+            <th>Naam</th>
+            <th>Tegoed</th>
+        </tr>
+        ${tempStr2}
+        </table>
+        <style>
+            table {
+                font-family: arial, sans-serif;
+                border-collapse: collapse;
+                width: 100%;
+            }
+
+            td, th {
+                border: 1px solid #dddddd;
+                text-align: left;
+                padding: 8px;
+            }
+
+            tr:nth-child(even) {
+                background-color: #dddddd;
+            }
+        </style>
+    `;
+
+    const blob1 = new Blob([file1], {type: "text/html;charset=utf-8"});
+    saveAs(blob1, `extract_records_${dd}${mm}${yyyy}_${hh}${nn}.html`)
+
+    const blob2 = new Blob([file2], {type: "text/html;charset=utf-8"});
+    saveAs(blob2, `extract_leidingtegoed_${dd}${mm}${yyyy}_${hh}${nn}.html`)
+}
+ 

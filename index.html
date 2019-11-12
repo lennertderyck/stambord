@@ -7,12 +7,12 @@
     <title>Bar Board</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="./js/taffy.js"></script>
-    <link rel='manifest' href='./manifest.webmanifest'>
-    <link rel="manifest" href="./manifest.json"></link>
-    <script src="./manup.js"></script>
+    <script src="./js/filesaver.js"></script>
+    <!-- <script src="./js/feather.min.js"></script> -->
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link rel="stylesheet" href="./css/main.css">
 </head>
 <body class="pt-5">
-    <button class="d-none" onclick="install()">Install</button>
     <div class="container">
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item">
@@ -23,6 +23,9 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Registratie</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="settings-tab" data-toggle="tab" href="#settings" role="tab" aria-controls="settings" aria-selected="false">Instellingen</a>
             </li>
         </ul>
     </div>
@@ -94,7 +97,7 @@
                     <div class="col">
                         <div id="errorNewLeiding" class="card text-white bg-danger mb-4 d-none">
                             <div class="card-body">
-                                <h5 class="card-title mb-0">Geef een naam en bedrag op</h5>
+                                <h5 class="card-title mb-0 ">Geef een naam en bedrag op</h5>
                             </div>
                         </div>
                         <table class="table">
@@ -116,7 +119,7 @@
                                         <div class="input-group">
                                             <input type="number" class="form-control" id="leidingBedrag" placeholder="Startbedrag" min="1">
                                             <div class="input-group-append">
-                                                <button id="createLeiding" class="btn btn-primary">Leiding toevoegen</button>
+                                                <button id="createLeiding" class="btn btn-primary"><i data-feather="user-plus"></i>Leiding toevoegen</button>
                                             </div>
                                          </div>
                                     </th>
@@ -151,63 +154,49 @@
                 </table>
             </div>
         </div>
+        <div class="tab-pane fade py-4" id="settings" role="tabpanel" aria-labelledby="settings-tab">
+            <div class="container">
+                <h3 class="mb-4">Instellingen</h3>
+                <div class="row mb-4">
+                    <div class="col-4">
+                        <h5>Aanmelden</h5>
+                        <p>Login als stamleiding om het Bar Board te beheren</p>
+
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text icon-sm"><i data-feather="lock"></i></div>
+                            </div>
+                            <input type="password" class="form-control" id="inpAdminPassword" placeholder="Wachtwoord">
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="row mb-4">
+                    <div class="col">
+                        <h5>Gegevens verwijderen</h5>
+                        <p>Verwijder alle leiding en/of de registraties</p>
+                        <button class="btn btn-danger d-inline mr-3"><i data-feather="trash-2"></i>Leiding verwijderen</button>
+                        <button class="btn btn-warning d-inline"><i data-feather="trash-2"></i>Registraties verwijderen</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <h5>Gegevens downloaden</h5>
+                        <p>Download alle opgeslagen gegevens zodat er een backup bestaat.<br>Doe dit zo vaak mogelijk.</p>
+                        <button class="btn btn-success" onclick="save()"><i data-feather="download"></i>Gegevens exporteren</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- SCRIPTS BOTTOM -->
-    <script>       
-        let deferredPrompt = null;
-
-        window.addEventListener('beforeinstallprompt', (e) => {
-        // Prevent Chrome 67 and earlier from automatically showing the prompt
-        e.preventDefault();
-        // Stash the event so it can be triggered later.
-        deferredPrompt = e;
-        });
-
-        async function install() {
-        if (deferredPrompt) {
-            deferredPrompt.prompt();
-            console.log(deferredPrompt)
-            deferredPrompt.userChoice.then(function(choiceResult){
-
-            if (choiceResult.outcome === 'accepted') {
-            console.log('Your PWA has been installed');
-            } else {
-            console.log('User chose to not install your PWA');
-            }
-
-            deferredPrompt = null;
-
-            });
-
-        
-        }
-        }
-    </script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="./js/main.js"></script>
     <script>
-        // This is the "Offline page" service worker
-
-        // Add this below content to your HTML page, or add the js file to your page at the very top to register service worker
-
-        // Check compatibility for the browser we're running this in
-        if ("serviceWorker" in navigator) {
-        if (navigator.serviceWorker.controller) {
-            console.log("[PWA Builder] active service worker found, no need to register");
-        } else {
-            // Register the service worker
-            navigator.serviceWorker
-            .register("pwabuilder-sw.js", {
-                scope: "./"
-            })
-            .then(function (reg) {
-                console.log("[PWA Builder] Service worker has been registered for scope: " + reg.scope);
-            });
-        }
-        }
+        feather.replace()
     </script>
 </body>
 </html>

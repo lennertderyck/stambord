@@ -1,0 +1,28 @@
+* {
+  padding: 0px;
+  margin: 0px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.btn svg {
+  --d: 17px;
+  margin-right: 10px;
+  width: var(--d);
+  height: var(--d);
+  -webkit-transform: translateY(-1px);
+          transform: translateY(-1px);
+}
+
+.btn.no-txt svg {
+  margin-right: 0px;
+}
+
+.icon-sm svg {
+  --d: 17px;
+  width: var(--d);
+  height: var(--d);
+  -webkit-transform: translateY(-1px);
+          transform: translateY(-1px);
+}
+/*# sourceMappingURL=main.css.map */
