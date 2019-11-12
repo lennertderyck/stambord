@@ -68,7 +68,7 @@ function testLeidingExists() {
 function generateUI() {
     let tempStr = '', tableTempStr = '';
 
-    leidingTegoed().each(function (el) {
+    leidingTegoed().each((el) => {
         leidingCurrentAmount = el.amount;
         tempStr += `
             <button class="btn btn-primary" onclick="selectPerson('${el.name}', '${el.amount}')">${el.name}</button>
@@ -77,7 +77,7 @@ function generateUI() {
         tableTempStr += `
         <tr>
             <td>${el.name}</td>
-            <td>€${el.amount.toString().replace('.',',')}</td>
+            <td>€${parseFloat(el.amount.toString()).toFixed(2).toString().replace('.',',')}</td>
             <td>
                 <button class="btn btn-info mr-2" onclick="topUp()"><i data-feather="dollar-sign"></i>Topup</button>
                 <button class="btn btn-danger no-txt" onclick="removePerson('${el.name}')"><i data-feather="trash-2"></i></button>
@@ -147,7 +147,7 @@ function payDrink(amount, n) {
 }
 
 function showCurrentAmount(e) {
-    document.querySelector('.showCurrentAmount').innerHTML = e;
+    document.querySelector('.showCurrentAmount').innerHTML = e.toFixed(2);
     document.querySelector("#showCurrentAmount").classList.remove('d-none');
 }
 
@@ -163,13 +163,13 @@ function topUp(n) {
 
 function generateRecords() {
     tempStr = ''
-    records().each(function (r) {
+    records().order("date desc").each((r) => {
         tempStr += `
         <tr>
             <td>${r.date}</td>
             <td>${r.name}</td>
             <td>${r.drank.replace('.',',')}</td>
-            <td>€${r.amount.toString().replace('.',',')}</td>
+            <td>€${r.amount.toFixed(2).toString().replace('.',',')}</td>
         </tr>
         `
     });
