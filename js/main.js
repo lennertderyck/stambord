@@ -79,7 +79,7 @@ function generateUI() {
             <td>${el.name}</td>
             <td>€${el.amount.toString().replace('.',',')}</td>
             <td>
-                <button class="btn btn-info" onclick="topUp()">Topup</button>
+                <button class="btn btn-info mr-2" onclick="topUp()"><i data-feather="dollar-sign"></i>Topup</button>
                 <button class="btn btn-danger no-txt" onclick="removePerson('${el.name}')"><i data-feather="trash-2"></i></button>
             </td>
         </tr>
