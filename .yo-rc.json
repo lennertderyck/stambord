@@ -1,0 +1,8 @@
+{
+  "generator-electron": {
+    "promptValues": {
+      "githubUsername": "lennertderyck",
+      "website": "https://haegepoorters.be"
+    }
+  }
+}
