@@ -1,3 +1,7 @@
+body {
+    scroll-behavior: smooth;
+}
+
 * {
     padding: 0px;
     margin: 0px;
@@ -42,4 +46,31 @@
         font-size: 1rem;
         font-weight: normal;
     }
+}
+
+body[data-admin-login='false'] {
+    .show-admin {
+        display: none;
+    }
+}
+
+body[data-admin-login='true'] {
+    .hide-admin {
+        display: none;
+    }
+}
+
+#showCurrents {
+    position: fixed;
+    // left: 0px;
+    right: 0px;
+    bottom: -24px;
+    background: white;
+    max-width: 270px;
+    z-index: 100;
+}
+
+.flex-grid-item {
+    background-color: var(--primary) !important;
+    height: 100px !important;
 }

@@ -5,14 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Bar Board</title>
+    <script src="https://ce.lennertderyck.be/library/elements.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="./js/taffy.js"></script>
     <script src="./js/filesaver.js"></script>
     <!-- <script src="./js/feather.min.js"></script> -->
     <script src="https://unpkg.com/feather-icons"></script>
     <link rel="stylesheet" href="./css/main.css">
+    <script src="./js/sha256.min.js"></script>
 </head>
-<body class="pt-5">
+<body class="pt-5" data-admin-login="false">
     <div class="container">
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item">
@@ -21,10 +23,10 @@
             <li class="nav-item">
                 <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Registratie</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item show-admin ">
                 <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Leiding beheer</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item show-admin">
                 <a class="nav-link" id="dranken-tab" data-toggle="tab" href="#dranken" role="tab" aria-controls="dranken" aria-selected="false">Drank beheer</a>
             </li>
             <li class="nav-item">
@@ -34,7 +36,7 @@
     </div>
     <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active py-4" id="home" role="tabpanel" aria-labelledby="home-tab">
-            <div class="container">
+            <div class="container" style="padding-right: 237px;">
                 <div id="notifNoLeiding" class="card text-white bg-info mb-4">
                     <div class="card-body">
                         <h4>Er werd geen leiding gevonden</h4>
@@ -46,19 +48,24 @@
                     <div class="col">
                         <h3>Naam</h3>
                         <p>Kies je naam</p>
-                        <div id="showCurrentAmount" class="card text-white bg-info mb-4 d-none">
-                            <div class="card-body">
-                                <h5 class="card-title mb-0">Je hebt momenteel <span class="showCurrentAmount">lol</span> tegoed staan</h5>
-                                <p class="card-text d-none">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <div id="showCurrents" class="p-4">
+                            <div>
+                                <div id="showCurrentAmount" class="card text-white bg-info mb-4 d-none">
+                                    <div class="card-body">
+                                        <h5 class="card-title mb-0">Je hebt momenteel <span class="showCurrentAmount">lol</span> tegoed</h5>
+                                    </div>
+                                </div>
+                                <div id="notifCurrentAmount" class="card text-white bg-danger mb-4 d-none">
+                                    <div class="card-body">
+                                        <h4>Je tegoed bedraagt €1,00 of minder</h4>
+                                        <p class="mb-0">Als je nu drank koopt zal je een negatief bedrag hebben en dus 3% meer betalen.</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div id="notifCurrentAmount" class="card text-white bg-danger mb-4 d-none">
-                            <div class="card-body">
-                                <h4>Je tegoed bedraagt €1,00 of minder</h4>
-                                <p class="mb-0">Als je nu drank koopt zal je een negatief bedrag hebben en dus 3% meer betalen.</p>
-                            </div>
+                        <div class="flex-grid-wrapper">
+                            <div class="buttons" class="flex-grid"></div>
                         </div>
-                        <div class="buttons"></div>
                     </div>
                 </div>
                 
@@ -75,8 +82,10 @@
 
                 <div id="selectDrank" class="row mb-4 d-none">
                     <div class="col">
-                        <h3 class="mb-3">Dranken</h3>
-                        <div id="listDranken"></div>
+                        <h3 class="mb-3">Dranken</h3> 
+                        <div class="flex-grid-wrapper">
+                            <div id="listDranken" class="flex-grid"></div>
+                        </div>
                         <!-- <button class="btn btn-primary txt-item" onclick="payDrink(0.80,'Fanta')">Fanta</button>
                         <button class="btn btn-primary txt-item" onclick="payDrink(0.80,'Cola')">Cola</button>
                         <button class="btn btn-primary txt-item" onclick="payDrink(1.40,'Captain')">Captain</button>
@@ -163,12 +172,16 @@
                         <h5>Aanmelden</h5>
                         <p>Login als stamleiding om het Bar Board te beheren</p>
 
-                        <div class="input-group">
+                        <div class="input-group hide-admin">
                             <div class="input-group-prepend">
                                 <div class="input-group-text icon-sm"><i data-feather="lock"></i></div>
                             </div>
                             <input type="password" class="form-control" id="inpAdminPassword" placeholder="Wachtwoord">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" onclick="logInAdmin()">Aanmelden</button>
+                            </div>
                         </div>
+                        <button class="btn btn-primary show-admin" onclick="logOffAdmin()">Afmelden</button>
                     </div>
                     <div class="col">
                         <h5>Gegevens downloaden</h5>
@@ -177,7 +190,7 @@
                     </div>
                 </div>
                 <hr class="my-4">
-                <div class="row mb-4">
+                <div class="row mb-4 show-admin">
                     <div class="col">
                         <h5>Gegevens verwijderen</h5>
                         <p>Verwijder alle leiding en/of de registraties</p>

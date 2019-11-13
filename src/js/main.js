@@ -10,6 +10,7 @@
     .find()
 */
 const
+    body = document.querySelector("body");
     btnSave = document.querySelector('#createLeiding'),
     btnRmv = document.querySelector('#removeLeiding'),
     inpSaveLeidingNaam = document.querySelector('#leidingNaam'),
@@ -21,7 +22,8 @@ const
     errorNewLeiding = document.querySelector('#errorNewLeiding'),
     inpDrankNaam = document.querySelector("#drankNaam"),
     inpDrankMix = document.querySelector("#inputDrankMix"),
-    inpDrankAmount = document.querySelector("#inpDrankAmount");
+    inpDrankAmount = document.querySelector("#inpDrankAmount"),
+    inpAdminPassw = document.querySelector("#inpAdminPassword");
 
 const
     now = new Date(),
@@ -39,7 +41,9 @@ let leiding = [],
     content = 2,
     leidingTegoed = TAFFY().store('leiding-tegoed'),
     records = TAFFY().store('records'),
-    dranken = TAFFY().store('dranken');
+    dranken = TAFFY().store('dranken'),
+    adminPassw = '110a6e0aecf707012331d14f13d4a251b9d392c5317fa39332567ee57a140cc6',
+    adminLoggedIn = false;
 
 function initiate() {
     btnSave.addEventListener('click', () => {
@@ -78,7 +82,7 @@ function generateUI() {
     leidingTegoed().each((el) => {
         leidingCurrentAmount = el.amount;
         tempStr += `
-            <button class="btn btn-primary txt-item" onclick="selectPerson('${el.name}', '${el.amount}')">${el.name}</button>
+            <button class="btn btn-primary txt-item flex-grid-item" onclick="selectPerson('${el.name}', '${el.amount}')">${el.name}</button>
         `;
     
         tableTempStr += `
@@ -118,6 +122,7 @@ function selectPerson(n, e) {
     document.querySelector("#selectContent").classList.remove('d-none');
 
     showCurrentAmount(currentAmount);
+    document.querySelector("#selectContent").scrollIntoView();
 }
 
 function removePerson(n) {
@@ -135,6 +140,7 @@ function selectAmount(n) {
 
     document.querySelector("#selectDrank").classList.remove('d-none');
     console.log(`amount selected: ${n}`)
+    document.querySelector("#selectDrank").scrollIntoView()
 }
 
 function payDrink(amount, n) {
@@ -192,7 +198,7 @@ function generateListDranken() {
     tempStr = ''
     dranken().order("name asec").each((r) => {
         tempStr += `
-        <button class="btn btn-primary txt-item" onclick="payDrink(${r.amount},'${r.name} ${r.mix}')"><span class="d-block">${r.name}</span><span class="d-block">${r.mix}</span></button>
+        <button class="btn btn-primary txt-item flex-grid-item" onclick="payDrink(${r.amount},'${r.name} ${r.mix}')"><span class="d-block">${r.name}</span><span class="d-block">${r.mix}</span></button>
         `
     });
 
@@ -314,4 +320,34 @@ function save() {
 function amount2Eur(n) {
     return `€ ${parseFloat(n.toString()).toFixed(2).toString().replace('.',',')}`
 }
+
+console.log(localStorage.getItem('admin-logged-in'))
+
+function logInAdmin() {
+    if (a(inpAdminPassword.value) == adminPassw ) {
+        console.log('admin logged in');
+        body.setAttribute('data-admin-login', true)
+        // localStorage.setItem('admin-logged-in', true);
+    } else {
+        console.log('password false');
+    }
+}
+
+function logOffAdmin() {
+    console.log('admin logged off');
+    body.setAttribute('data-admin-login', false)
+    // localStorage.setItem('admin-logged-in', false);
+    // console.log(localStorage.removeItem('admin-logged-in'));
+}
+
+// console.log(localStorage.getItem('admin-logged-in'))
+// adminLoggedIn = localStorage.getItem('admin-logged-in');
+
+// if (adminLoggedIn == true) {
+//     body.setAttribute('data-admin-login', true)
+//     console.log('admin logged in');
+// }
+
+// console.log(`logged in: ${body.dataset.adminLogin}`)
+// console.log(`sha: ${a('baarmoeder')}`)
  
