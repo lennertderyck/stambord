@@ -63,8 +63,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="flex-grid-wrapper">
-                            <div class="buttons" class="flex-grid"></div>
+                        <div class="flex-grid-wrapper row-item-4">
+                            <div class="buttons flex-grid"></div>
                         </div>
                     </div>
                 </div>
@@ -74,16 +74,20 @@
                 <div id="selectContent" class="row mb-4 d-none">
                     <div class="col">
                         <h3 class="mb-3">Hoeveelheid</h3>
-                        <button class="btn btn-primary txt-item" onclick="selectAmount(1)">Enkel</button>
-                        <button class="btn btn-primary txt-item" onclick="selectAmount(2)">Dubbel</button>
-                        <button class="btn btn-primary txt-item" onclick="selectAmount(3)">Halve</button>
+                        <div class="flex-grid-wrapper">
+                            <div class="flex-grid">
+                                <button class="btn btn-primary txt-item flex-grid-item" onclick="selectAmount(1)">Enkel</button>
+                                <button class="btn btn-primary txt-item flex-grid-item" onclick="selectAmount(2)">Dubbel</button>
+                                <button class="btn btn-primary txt-item flex-grid-item" onclick="selectAmount(3)">Halve</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <div id="selectDrank" class="row mb-4 d-none">
                     <div class="col">
                         <h3 class="mb-3">Dranken</h3> 
-                        <div class="flex-grid-wrapper">
+                        <div class="flex-grid-wrapper row-item-4">
                             <div id="listDranken" class="flex-grid"></div>
                         </div>
                         <!-- <button class="btn btn-primary txt-item" onclick="payDrink(0.80,'Fanta')">Fanta</button>
