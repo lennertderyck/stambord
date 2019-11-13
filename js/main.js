@@ -10,28 +10,36 @@
     .find()
 */
 const
-btnSave = document.querySelector('#createLeiding'),
-btnRmv = document.querySelector('#removeLeiding'),
-inpSaveLeidingNaam = document.querySelector('#leidingNaam'),
-inpSaveLeidingBedrag = document.querySelector('#leidingBedrag');
-buttons = document.querySelector('.buttons'),
-tableLeiding = document.querySelector('#tableLeiding'),
-bordContent = document.querySelector("#home > div > div:nth-child(2)"),
-inpTopUp = document.querySelector('#topUpAmount'),
-errorNewLeiding = document.querySelector('#errorNewLeiding');
+    btnSave = document.querySelector('#createLeiding'),
+    btnRmv = document.querySelector('#removeLeiding'),
+    inpSaveLeidingNaam = document.querySelector('#leidingNaam'),
+    inpSaveLeidingBedrag = document.querySelector('#leidingBedrag');
+    buttons = document.querySelector('.buttons'),
+    tableLeiding = document.querySelector('#tableLeiding'),
+    bordContent = document.querySelector("#home > div > div:nth-child(2)"),
+    inpTopUp = document.querySelector('#topUpAmount'),
+    errorNewLeiding = document.querySelector('#errorNewLeiding'),
+    inpDrankNaam = document.querySelector("#drankNaam"),
+    inpDrankMix = document.querySelector("#inputDrankMix"),
+    inpDrankAmount = document.querySelector("#inpDrankAmount");
+
+const
+    now = new Date(),
+    dd = now.getDate(),
+    mm = now.getMonth(),
+    yyyy = now.getFullYear(),
+    hh = now.getHours(),
+    nn = now.getMinutes();
 
 let leiding = [],
-hasToPay = '',
-personIndex,
-leidingCurrentAmount,
-newAmount,
-content = 2,
-leidingTegoed = TAFFY().store('leiding-tegoed'),
-records = TAFFY().store('records');
-
-// console.log('records' + records().stringify() +  ' ' + records().count());
-// console.log('leidingTegoed' + leidingTegoed().stringify() + ' ' + leidingTegoed().count());
-
+    hasToPay = '',
+    personIndex,
+    leidingCurrentAmount,
+    newAmount,
+    content = 2,
+    leidingTegoed = TAFFY().store('leiding-tegoed'),
+    records = TAFFY().store('records'),
+    dranken = TAFFY().store('dranken');
 
 function initiate() {
     btnSave.addEventListener('click', () => {
@@ -44,14 +52,13 @@ function initiate() {
             leidingTegoed.insert({name: inpSaveLeidingNaam.value, amount: inpSaveLeidingBedrag.value});
             generateUI();
         }
-        // leiding.push([inpSaveLeidingNaam.value + '+' + inpSaveLeidingBedrag.value]);
-        // localStorage.setItem('leiding', leiding);
-        // console.log(localStorage.getItem('leiding'));
     });
 
     testLeidingExists();
     generateUI();
     generateRecords();
+    generateDrank();
+    generateListDranken();
 }
 
 function testLeidingExists() {
@@ -71,13 +78,13 @@ function generateUI() {
     leidingTegoed().each((el) => {
         leidingCurrentAmount = el.amount;
         tempStr += `
-            <button class="btn btn-primary" onclick="selectPerson('${el.name}', '${el.amount}')">${el.name}</button>
+            <button class="btn btn-primary txt-item" onclick="selectPerson('${el.name}', '${el.amount}')">${el.name}</button>
         `;
     
         tableTempStr += `
         <tr>
             <td>${el.name}</td>
-            <td>€${parseFloat(el.amount.toString()).toFixed(2).toString().replace('.',',')}</td>
+            <td>${amount2Eur(el.amount)}</td>
             <td>
                 <button class="btn btn-info mr-2" onclick="topUp()"><i data-feather="dollar-sign"></i>Topup</button>
                 <button class="btn btn-danger no-txt" onclick="removePerson('${el.name}')"><i data-feather="trash-2"></i></button>
@@ -88,7 +95,7 @@ function generateUI() {
 
     buttons.innerHTML = tempStr;
     tableLeiding.innerHTML = tableTempStr;
-    // console.log(buttons);
+
     testLeidingExists();
     feather.replace();
 }
@@ -97,7 +104,7 @@ function selectPerson(n, e) {
     hasToPay = n;
     currentAmount = e;
     console.log(`has to pay: ${hasToPay}`);
-    console.log(bordContent);
+
 
     if (currentAmount <= 1){
         document.querySelector('#notifCurrentAmount').classList.remove('d-none');
@@ -147,8 +154,49 @@ function payDrink(amount, n) {
 }
 
 function showCurrentAmount(e) {
-    document.querySelector('.showCurrentAmount').innerHTML = e.toFixed(2);
+    document.querySelector('.showCurrentAmount').innerHTML = amount2Eur(e);
     document.querySelector("#showCurrentAmount").classList.remove('d-none');
+}
+
+function addDrank() {
+    console.log(`add drank: ${inpDrankNaam.value} ${inpDrankAmount.value} €${inpDrankMix.value}`)
+    dranken.insert({name: inpDrankNaam.value, amount: inpDrankAmount.value, mix: inpDrankMix.value});
+    generateDrank();
+    feather.replace();
+}
+
+function removeDrank(n) {
+    console.log(`remove: ${n}`);
+    dranken({name: n}).remove();
+    generateDrank();
+    feather.replace();
+}
+
+function generateDrank() {
+    tempStr = ''
+    dranken().order("name asec").each((r) => {
+        tempStr += `
+        <tr>
+            <td>${r.name}</td>
+            <td>${amount2Eur(r.amount)}</td>
+            <td>${r.mix}</td>
+            <td><button class="btn btn-danger no-txt" onclick="removeDrank('${r.name}')"><i data-feather="trash-2"></i></button></td>
+        </tr>
+        `
+    });
+
+    document.querySelector('#tableDrank').innerHTML = tempStr;
+}
+
+function generateListDranken() {
+    tempStr = ''
+    dranken().order("name asec").each((r) => {
+        tempStr += `
+        <button class="btn btn-primary txt-item" onclick="payDrink(${r.amount},'${r.name} ${r.mix}')"><span class="d-block">${r.name}</span><span class="d-block">${r.mix}</span></button>
+        `
+    });
+
+    document.querySelector('#listDranken').innerHTML = tempStr
 }
 
 function topUp(n) {
@@ -169,20 +217,13 @@ function generateRecords() {
             <td>${r.date}</td>
             <td>${r.name}</td>
             <td>${r.drank.replace('.',',')}</td>
-            <td>€${r.amount.toFixed(2).toString().replace('.',',')}</td>
+            <td>${amount2Eur(r.amount)}</td>
         </tr>
         `
     });
 
     document.querySelector('#tableRecords').innerHTML = tempStr;
 }
-
-const now = new Date();
-const dd = now.getDate();
-const mm = now.getMonth();
-const yyyy = now.getFullYear();
-const hh = now.getHours();
-const nn = now.getMinutes();
 
 initiate();
 
@@ -194,7 +235,7 @@ function save() {
             <td>${r.date}</td>
             <td>${r.name}</td>
             <td>${r.drank.replace('.',',')}</td>
-            <td>€${r.amount.toString().replace('.',',')}</td>
+            <td>${amount2Eur(r.amount)}</td>
         </tr>
         `
     });
@@ -232,7 +273,7 @@ function save() {
         tempStr2 += `
         <tr>
             <td>${r.name}</td>
-            <td>€${r.amount.toString().replace('.',',')}</td>
+            <td>${amount2Eur(r.amount)}</td>
         </tr>
         `
     });
@@ -268,5 +309,9 @@ function save() {
 
     const blob2 = new Blob([file2], {type: "text/html;charset=utf-8"});
     saveAs(blob2, `extract_leidingtegoed_${dd}${mm}${yyyy}_${hh}${nn}.html`)
+}
+
+function amount2Eur(n) {
+    return `€ ${parseFloat(n.toString()).toFixed(2).toString().replace('.',',')}`
 }
  

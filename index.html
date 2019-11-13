@@ -25,6 +25,9 @@
                 <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Leiding beheer</a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" id="dranken-tab" data-toggle="tab" href="#dranken" role="tab" aria-controls="dranken" aria-selected="false">Drank beheer</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" id="settings-tab" data-toggle="tab" href="#settings" role="tab" aria-controls="settings" aria-selected="false">Instellingen</a>
             </li>
         </ul>
@@ -43,40 +46,44 @@
                     <div class="col">
                         <h3>Naam</h3>
                         <p>Kies je naam</p>
+                        <div id="showCurrentAmount" class="card text-white bg-info mb-4 d-none">
+                            <div class="card-body">
+                                <h5 class="card-title mb-0">Je hebt momenteel <span class="showCurrentAmount">lol</span> tegoed staan</h5>
+                                <p class="card-text d-none">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            </div>
+                        </div>
+                        <div id="notifCurrentAmount" class="card text-white bg-danger mb-4 d-none">
+                            <div class="card-body">
+                                <h4>Je tegoed bedraagt €1,00 of minder</h4>
+                                <p class="mb-0">Als je nu drank koopt zal je een negatief bedrag hebben en dus 3% meer betalen.</p>
+                            </div>
+                        </div>
                         <div class="buttons"></div>
                     </div>
                 </div>
-
-                <div id="showCurrentAmount" class="card text-white bg-info mb-4 d-none">
-                        <div class="card-body">
-                            <h5 class="card-title mb-0">Je hebt momenteel €<span class="showCurrentAmount">lol</span> tegoed staan</h5>
-                            <p class="card-text d-none">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        </div>
-                    </div>
                 
-                <div id="notifCurrentAmount" class="card text-white bg-danger mb-4 d-none">
-                    <div class="card-body">
-                        <h4>Je tegoed bedraagt €1,00 of minder</h4>
-                        <p class="mb-0">Als je nu drank koopt zal je een negatief bedrag hebben en dus 3% meer betalen.</p>
-                    </div>
-                </div>
+                
 
                 <div id="selectContent" class="row mb-4 d-none">
                     <div class="col">
-                        <h3>Hoeveelheid</h3>
-                        <button class="btn btn-primary" onclick="selectAmount(1)">Enkel</button>
-                        <button class="btn btn-primary" onclick="selectAmount(2)">Dubbel</button>
-                        <button class="btn btn-primary" onclick="selectAmount(3)">Halve</button>
+                        <h3 class="mb-3">Hoeveelheid</h3>
+                        <button class="btn btn-primary txt-item" onclick="selectAmount(1)">Enkel</button>
+                        <button class="btn btn-primary txt-item" onclick="selectAmount(2)">Dubbel</button>
+                        <button class="btn btn-primary txt-item" onclick="selectAmount(3)">Halve</button>
                     </div>
                 </div>
 
                 <div id="selectDrank" class="row mb-4 d-none">
                     <div class="col">
-                        <h3>Dranken</h3>
-                        <button class="btn btn-primary" onclick="payDrink(0.80, 'Fanta')">Fanta</button>
-                        <button class="btn btn-primary" onclick="payDrink(0.80, 'Cola')">Cola</button>
-                        <button class="btn btn-primary" onclick="payDrink(1.40, 'Captain')">Captain</button>
-                        <button class="btn btn-primary" onclick="payDrink(1.20, 'Vodka Rood')">Vodka Rood</button>
+                        <h3 class="mb-3">Dranken</h3>
+                        <div id="listDranken"></div>
+                        <!-- <button class="btn btn-primary txt-item" onclick="payDrink(0.80,'Fanta')">Fanta</button>
+                        <button class="btn btn-primary txt-item" onclick="payDrink(0.80,'Cola')">Cola</button>
+                        <button class="btn btn-primary txt-item" onclick="payDrink(1.40,'Captain')">Captain</button>
+                        <button class="btn btn-primary txt-item" onclick="payDrink(1.20,'Vodka Rood + fris')"><span class="d-block">Vodka Rood</span><span class="d-block">fris</span></button>
+                        <button class="btn btn-primary txt-item" onclick="payDrink(1.20,'Vodka Rood')"><span class="d-block">Vodka Rood</span><span class="d-block">fristi / fruitstap</span></button>
+                        <button class="btn btn-primary txt-item" onclick="payDrink(1.20,'Vodka Rood + fris')"><span class="d-block">Vodka</span><span class="d-block">fris</span></button>
+                        <button class="btn btn-primary txt-item" onclick="payDrink(1.20,'Vodka Rood')"><span class="d-block">Vodka</span><span class="d-block">fristi / fruitsap</span></button> -->
                     </div>
                 </div>
             </div>
@@ -85,7 +92,7 @@
             <div class="container">
                 <div class="row mb-4">
                     <div class="col-auto mr-4">
-                        <img src="https://qrcode.tec-it.com/API/QRCode?data=BCD%0a001%0a1%0aSCT%0aKREDBEBB%0aSTAM+HP%0aBE05734047216575%0aEUR5%0a%0a%0a%0aStamkaart&backcolor=%23ffffff" height="120px"/>
+                        <img src="./images/qr_code_5.png" height="120px"/>
                     </div>
                     <div class="col d-flex flex-column justify-content-center">
                         <h2>Stamkaart</h2>
@@ -111,9 +118,7 @@
                             <tbody>
                                 <tr>
                                     <th>
-                                        <div class="input-group">
-                                            <input type="text" class="form-control" name="leiding naam" id="leidingNaam" autocomplete="off" placeholder="Naam leiding"><br>
-                                        </div>
+                                        <input type="text" class="form-control" name="leiding naam" id="leidingNaam" autocomplete="off" placeholder="Naam leiding"><br>
                                     </th>
                                     <th>
                                         <div class="input-group">
@@ -129,9 +134,7 @@
                                     
                                 </tr>
                             </tbody>
-                            <tbody id="tableLeiding">
-                                
-                            </tbody>
+                            <tbody id="tableLeiding"></tbody>
                         </table>
                     </div>
                 </div>
@@ -148,9 +151,7 @@
                             <th scope="col">Bedrag</th>
                         </tr>
                     </thead>
-                    <tbody id="tableRecords">
-                        
-                    </tbody>
+                    <tbody id="tableRecords"></tbody>
                 </table>
             </div>
         </div>
@@ -184,6 +185,45 @@
                         <button class="btn btn-warning d-inline"><i data-feather="trash-2"></i>Registraties verwijderen</button>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="tab-pane fade py-4" id="dranken" role="tabpanel" aria-labelledby="dranken-tab">
+            <div class="container">
+                <h3 class="mb-4">Drank beheer</h3>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Naam drank</th>
+                            <th scope="col">Prijs</th>
+                            <th scope="col">Mix?</th>
+                            <th scope="col">Opties</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>
+                                <input type="text" class="form-control" name="leiding naam" id="drankNaam" autocomplete="off" placeholder="Naam drank"><br>
+                            </th>
+                            <th>
+                                <input type="number" class="form-control" id="inpDrankAmount" placeholder="Kostprijs" min="0.01">       
+                            </th>
+                            <th>                            
+                                <div class="input-group">
+                                    <select class="custom-select" id="inputDrankMix">
+                                        <option value=" " selected>Geen</option>
+                                        <option value="Fris">Fris</option>
+                                        <option value="Fristi / fruitsap">Fristi / fruitsap</option>
+                                    </select>
+                                    <div class="input-group-append">
+                                        <button id="addDrank" class="btn btn-primary" onclick="addDrank()"><i data-feather="plus"></i>Drank toevoegen</button>
+                                    </div>
+                                </div>
+                            </th>
+                            
+                        </tr>
+                    </tbody>
+                    <tbody id="tableDrank"></tbody>
+                </table>
             </div>
         </div>
     </div>

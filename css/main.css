@@ -25,4 +25,17 @@
   -webkit-transform: translateY(-1px);
           transform: translateY(-1px);
 }
+
+.txt-item {
+  width: 150px;
+  height: 100px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.txt-item span:nth-child(2) {
+  font-size: 1rem;
+  font-weight: normal;
+}
 /*# sourceMappingURL=main.css.map */
