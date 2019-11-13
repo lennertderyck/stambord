@@ -4,3 +4,8 @@ yarn.lock
 _site/
 /_site
 _site
+/out
+out/*/**
+out
+out/*
+out/

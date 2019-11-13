@@ -1,8 +1,8 @@
 {
-  "name": "my-app",
-  "productName": "my-app",
-  "version": "1.0.0",
-  "description": "My Electron application description",
+  "name": "bar-bord",
+  "productName": "bar-bord",
+  "version": "alpha-v.0.2",
+  "description": "Beheer de bar van je vereniging",
   "main": "src/index.js",
   "scripts": {
     "start": "electron-forge start",
