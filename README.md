@@ -1,11 +1,10 @@
 # bar-board
-Papieren stamkaarten zijn verleden tijd, hier is Bar Bord!
-
-Gebruik Bar Bord om leiding te laten betalen voor drank, snacks, etc.
+Papieren stamkaarten zijn verleden tijd, hier is Bar Bord! Gebruik Bar Bord om leiding te laten betalen voor drank, snacks, etc.
 
 ### Beschikbaarheid
-Voorlopig is Bar Bord enkel beschikbaar voor MacOS, maar we zouden deze ook graag uitbrengen voor Windows.
+**[Download voor MacOS](https://github.com/lennertderyck/bar-board/releases)**
 
+Voorlopig is Bar Bord enkel beschikbaar voor MacOS, maar we zouden deze ook graag uitbrengen voor Windows.<br>
 Wil je Bar Bord eigenhandig omzetten als Windows programma? Volg de stappen hieronder:
 
 #### 1. Installatie
