@@ -1,11 +1,18 @@
-body {
-    scroll-behavior: smooth;
-}
-
 * {
     padding: 0px;
     margin: 0px;
     box-sizing: border-box;
+    outline: none;
+    box-shadow: none;
+}
+
+*:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+body {
+    scroll-behavior: smooth;
 }
 
 .btn {

@@ -168,6 +168,7 @@ function addDrank() {
     console.log(`add drank: ${inpDrankNaam.value} ${inpDrankAmount.value} €${inpDrankMix.value}`)
     dranken.insert({name: inpDrankNaam.value, amount: inpDrankAmount.value, mix: inpDrankMix.value});
     generateDrank();
+    generateListDranken()
     feather.replace();
 }
 
@@ -233,6 +234,7 @@ function generateRecords() {
 
 initiate();
 
+/*
 function save() {
     let tempStr1 = '';
     records().each(function (r) {
@@ -310,11 +312,37 @@ function save() {
         </style>
     `;
 
-    const blob1 = new Blob([file1], {type: "text/html;charset=utf-8"});
+    // const blob1 = new Blob([file1], {type: "text/html;charset=utf-8"});
+    // saveAs(blob1, `extract_records_${dd}${mm}${yyyy}_${hh}${nn}.html`)
+
+    // const blob2 = new Blob([file2], {type: "text/html;charset=utf-8"});
+    // saveAs(blob2, `extract_leidingtegoed_${dd}${mm}${yyyy}_${hh}${nn}.html`)
+
+    const blob1 = new Blob([file1], {type: "application/json"});
     saveAs(blob1, `extract_records_${dd}${mm}${yyyy}_${hh}${nn}.html`)
 
     const blob2 = new Blob([file2], {type: "text/html;charset=utf-8"});
     saveAs(blob2, `extract_leidingtegoed_${dd}${mm}${yyyy}_${hh}${nn}.html`)
+}*/
+
+function save() {
+    let tempStr1 = '';
+    records().each(function (r) {
+    tempStr1 += `,
+    {
+        "date": "${r.date}",
+        "name": "${r.name}",
+        "drank": "${r.drank.replace('.',',')}",
+        "amount": "${amount2Eur(r.amount)}"
+    }`
+    });
+    const file1 = `
+        [${tempStr1.slice(3)}]
+    `;
+
+    // console.log(tempStr1.slice(3))
+    const blob1 = new Blob([file1], {type: 'application/javascript'});
+    saveAs(blob1, `extract_records_${dd}${mm}${yyyy}_${hh}${nn}.js`)
 }
 
 function amount2Eur(n) {
@@ -340,14 +368,63 @@ function logOffAdmin() {
     // console.log(localStorage.removeItem('admin-logged-in'));
 }
 
-// console.log(localStorage.getItem('admin-logged-in'))
-// adminLoggedIn = localStorage.getItem('admin-logged-in');
+/*
+    console.log(localStorage.getItem('admin-logged-in'))
+    adminLoggedIn = localStorage.getItem('admin-logged-in');
 
-// if (adminLoggedIn == true) {
-//     body.setAttribute('data-admin-login', true)
-//     console.log('admin logged in');
-// }
+    if (adminLoggedIn == true) {
+        body.setAttribute('data-admin-login', true)
+        console.log('admin logged in');
+    }
+*/
 
 // console.log(`logged in: ${body.dataset.adminLogin}`)
 // console.log(`sha: ${a('baarmoeder')}`)
+
+/////////////// JSON BACKUP INPORT
+// var jsonFIle = require('./data.json'); //(with path)
  
+// JSON.parse(jsonFIle, (key, value) => {
+//     console.log(key); // log the current property name, the last is "".
+//     return value;     // return the unchanged property value.
+//   });
+
+
+function loadFile() {
+    var input, file, fr;
+
+    if (typeof window.FileReader !== 'function') {
+        alert("The file API isn't supported on this browser yet.");
+        return;
+    }
+
+    input = document.getElementById('fileinput');
+    if (!input) {
+        alert("Um, couldn't find the fileinput element.");
+    }
+    else if (!input.files) {
+        alert("This browser doesn't seem to support the `files` property of file inputs.");
+    }
+    else if (!input.files[0]) {
+        alert("Please select a file before clicking 'Load'");
+    }
+    else {
+        file = input.files[0];
+        fr = new FileReader();
+        fr.onload = receivedText;
+        fr.readAsText(file);
+    }
+
+    function receivedText(e) {
+        let lines = e.target.result;
+        var newArr = JSON.parse(lines);
+        
+        records().remove();
+        newArr.forEach((r) => {
+            console.log(r.date);
+            records.insert({date: r[0].date,name: r[0].name, amount: r[0].amount, drank: r[0].drank});
+        });
+
+        generateRecords();
+    }
+}

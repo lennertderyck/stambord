@@ -1,12 +1,21 @@
-body {
-  scroll-behavior: smooth;
-}
-
 * {
   padding: 0px;
   margin: 0px;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+  outline: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+*:focus {
+  outline: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+body {
+  scroll-behavior: smooth;
 }
 
 .btn svg {
