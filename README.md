@@ -8,7 +8,7 @@ Voorlopig is Bar Bord enkel beschikbaar voor MacOS, maar we zouden deze ook graa
 Wil je Bar Bord eigenhandig omzetten als Windows programma? Volg de stappen hieronder:
 
 ### Demo
-Test Bar Bord uit op [bar-bord.haegepoorters.be](https://bar-board.haegepoorters.be)
+Test Bar Bord uit op **[bar-bord.haegepoorters.be](https://bar-board.haegepoorters.be)**
 
 #### 1. Installatie
 - Controleer of Node.js geïnstalleerd is
