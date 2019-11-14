@@ -7,6 +7,9 @@ Papieren stamkaarten zijn verleden tijd, hier is Bar Bord! Gebruik Bar Bord om l
 Voorlopig is Bar Bord enkel beschikbaar voor MacOS, maar we zouden deze ook graag uitbrengen voor Windows.<br>
 Wil je Bar Bord eigenhandig omzetten als Windows programma? Volg de stappen hieronder:
 
+### Demo
+Test Bar Bord uit op [bar-bord.haegepoorters.be](https://bar-board.haegepoorters.be)
+
 #### 1. Installatie
 - Controleer of Node.js geïnstalleerd is
   - Open Commandoprompt en plak de volgende code ```node -v```
