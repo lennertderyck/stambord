@@ -1,4 +1,4 @@
-# bar-board
+# Bar Bord
 Papieren stamkaarten zijn verleden tijd, hier is Bar Bord! Gebruik Bar Bord om leiding te laten betalen voor drank, snacks, etc.
 
 ### Beschikbaarheid
