@@ -2,7 +2,7 @@
 Papieren stamkaarten zijn verleden tijd, hier is Bar Bord! Gebruik Bar Bord om leiding te laten betalen voor drank, snacks, etc.
 
 ### Beschikbaarheid
-**[Download voor MacOS](https://github.com/lennertderyck/bar-board/releases)**
+| **[Download voor MacOS](https://github.com/lennertderyck/bar-board/releases)** |
 
 Voorlopig is Bar Bord enkel beschikbaar voor MacOS, maar we zouden deze ook graag uitbrengen voor Windows.<br>
 Wil je Bar Bord eigenhandig omzetten als Windows programma? Volg de stappen hieronder:
@@ -22,6 +22,6 @@ Wil je Bar Bord eigenhandig omzetten als Windows programma? Volg de stappen hier
 Er zal in de map die je gedownload hebt een nieuwe folder gemaakt worden genaamd 'Out', hier vind je de nieuwe applicatie in.
 
 ### Problemen en hulp
-**[Bug reporteren](https://github.com/lennertderyck/bar-board/issues/new?assignees=&labels=bug&template=bug_report.md&title=)**
+| **[Bug raporteren](https://github.com/lennertderyck/bar-board/issues/new?assignees=&labels=bug&template=bug_report.md&title=)** |
 
 Maak voor problemen een nieuw bug report aan of mail voor hulp naar [mij](mailto:hello@lennertderyck.be).
