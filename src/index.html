@@ -203,7 +203,7 @@
                                 </div>
                             </th> 
                             <th>
-                                <input type="color" name="favcolor" value="#ff0000">
+                                <input type="color" id="inpDrankColor" name="favcolor" value="#007bff">
                             </th>
                         </tr>
                     </tbody>
@@ -235,7 +235,7 @@
                 <div class="row">
                     <div class="col">
                         <h5>Gegevens downloaden</h5>
-                        <p>Download alle opgeslagen gegevens zodat er een backup bestaat.<br>Doe dit zo vaak mogelijk.</p>
+                        <p>Download alle opgeslagen gegevens zodat er een backup bestaat. Doe dit zo vaak mogelijk.</p>
                         <button class="btn btn-success" onclick="save()"><i data-feather="download"></i>Gegevens exporteren</button>
                     </div>
                     <div class="col">
@@ -254,8 +254,8 @@
                     <div class="col">
                         <h5>Gegevens verwijderen</h5>
                         <p>Verwijder alle leiding en/of de registraties</p>
-                        <button class="btn btn-danger d-inline mr-3"><i data-feather="trash-2"></i>Leiding verwijderen</button>
-                        <button class="btn btn-warning d-inline" onclick="records().remove()"><i data-feather="trash-2"></i>Registraties verwijderen</button>
+                        <button class="btn btn-danger d-inline mr-3" onclick="removeDBLeiding()"><i data-feather="trash-2"></i>Leiding verwijderen</button>
+                        <button class="btn btn-warning d-inline" onclick="removeDBRecords()"><i data-feather="trash-2"></i>Registraties verwijderen</button>
                     </div>
                 </div>
             </div>

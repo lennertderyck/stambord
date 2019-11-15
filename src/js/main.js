@@ -23,6 +23,7 @@ const
     inpDrankNaam = document.querySelector("#drankNaam"),
     inpDrankMix = document.querySelector("#inputDrankMix"),
     inpDrankAmount = document.querySelector("#inpDrankAmount"),
+    inpDrankColor = document.querySelector("#inpDrankColor"),
     inpAdminPassw = document.querySelector("#inpAdminPassword");
 
 const
@@ -63,6 +64,9 @@ function initiate() {
     generateRecords();
     generateDrank();
     generateListDranken();
+
+    // Als laatst
+    feather.replace();
 }
 
 function testLeidingExists() {
@@ -166,7 +170,7 @@ function showCurrentAmount(e) {
 
 function addDrank() {
     console.log(`add drank: ${inpDrankNaam.value} ${inpDrankAmount.value} €${inpDrankMix.value}`)
-    dranken.insert({name: inpDrankNaam.value, amount: inpDrankAmount.value, mix: inpDrankMix.value});
+    dranken.insert({name: inpDrankNaam.value, amount: inpDrankAmount.value, mix: inpDrankMix.value, color: inpDrankColor.value});
     generateDrank();
     generateListDranken()
     feather.replace();
@@ -187,6 +191,7 @@ function generateDrank() {
             <td>${r.name}</td>
             <td>${amount2Eur(r.amount)}</td>
             <td>${r.mix}</td>
+            <td><div class="drank-color-tag" style="background-color: ${r.color}"></div></td>
             <td><button class="btn btn-danger no-txt" onclick="removeDrank('${r.name}')"><i data-feather="trash-2"></i></button></td>
         </tr>
         `
@@ -199,7 +204,7 @@ function generateListDranken() {
     tempStr = ''
     dranken().order("name asec").each((r) => {
         tempStr += `
-        <button class="btn btn-primary txt-item flex-grid-item" onclick="payDrink(${r.amount},'${r.name} ${r.mix}')"><span class="d-block">${r.name}</span><span class="d-block">${r.mix}</span></button>
+        <button style="background-color: ${r.color} !important; border: none;" class="btn btn-primary txt-item flex-grid-item" onclick="payDrink(${r.amount},'${r.name} ${r.mix}')"><span class="d-block">${r.name}</span><span class="d-block">${r.mix}</span></button>
         `
     });
 
@@ -223,7 +228,7 @@ function generateRecords() {
         <tr>
             <td>${r.date}</td>
             <td>${r.name}</td>
-            <td>${r.drank.replace('.',',')}</td>
+            <td>${r.drank}</td>
             <td>${amount2Eur(r.amount)}</td>
         </tr>
         `
@@ -231,8 +236,6 @@ function generateRecords() {
 
     document.querySelector('#tableRecords').innerHTML = tempStr;
 }
-
-initiate();
 
 /*
 function save() {
@@ -333,7 +336,7 @@ function save() {
         "date": "${r.date}",
         "name": "${r.name}",
         "drank": "${r.drank.replace('.',',')}",
-        "amount": "${amount2Eur(r.amount)}"
+        "amount": "${r.amount}"
     }`
     });
     const file1 = `
@@ -342,14 +345,26 @@ function save() {
 
     // console.log(tempStr1.slice(3))
     const blob1 = new Blob([file1], {type: 'application/javascript'});
-    saveAs(blob1, `extract_records_${dd}${mm}${yyyy}_${hh}${nn}.js`)
-}
+    saveAs(blob1, `backup_records_${dd}${mm}${yyyy}_${hh}${nn}.js`)
 
-function amount2Eur(n) {
-    return `€ ${parseFloat(n.toString()).toFixed(2).toString().replace('.',',')}`
-}
+    //////////////////////////////////////////////////////////////////
 
-console.log(localStorage.getItem('admin-logged-in'))
+    let tempStr2 = '';
+    leidingTegoed().each(function (r) {
+    tempStr2 += `,
+    {
+        "name": "${r.name}",
+        "amount": "${r.amount}"
+    }`
+    });
+    const file2 = `
+        [${tempStr2.slice(3)}]
+    `;
+
+    // console.log(tempStr2.slice(3))
+    const blob2 = new Blob([file2], {type: 'application/javascript'});
+    saveAs(blob2, `backup_leiding_${dd}${mm}${yyyy}_${hh}${nn}.js`)
+}
 
 function logInAdmin() {
     if (a(inpAdminPassword.value) == adminPassw ) {
@@ -359,6 +374,9 @@ function logInAdmin() {
     } else {
         console.log('password false');
     }
+
+    generateDrank();
+    feather.replace();
 }
 
 function logOffAdmin() {
@@ -378,17 +396,8 @@ function logOffAdmin() {
     }
 */
 
-// console.log(`logged in: ${body.dataset.adminLogin}`)
-// console.log(`sha: ${a('baarmoeder')}`)
-
 /////////////// JSON BACKUP INPORT
 // var jsonFIle = require('./data.json'); //(with path)
- 
-// JSON.parse(jsonFIle, (key, value) => {
-//     console.log(key); // log the current property name, the last is "".
-//     return value;     // return the unchanged property value.
-//   });
-
 
 function loadFile() {
     var input, file, fr;
@@ -399,6 +408,8 @@ function loadFile() {
     }
 
     input = document.getElementById('fileinput');
+    let filename = input.value.split("\\").pop();
+
     if (!input) {
         alert("Um, couldn't find the fileinput element.");
     }
@@ -419,12 +430,36 @@ function loadFile() {
         let lines = e.target.result;
         var newArr = JSON.parse(lines);
         
-        records().remove();
-        newArr.forEach((r) => {
-            console.log(r.date);
-            records.insert({date: r[0].date,name: r[0].name, amount: r[0].amount, drank: r[0].drank});
-        });
+        if (filename.includes('records')) {
+            records().remove();
+            newArr.forEach((r) => {
+                console.log(r.date + ' ' + r.amount);
+                records.insert({date: r.date,name: r.name, amount: r.amount, drank: r.drank});
+            });
+        } else if (filename.includes('leiding')) {
+            leidingTegoed().remove();
+            newArr.forEach((r) => {
+                console.log(r.name + ' ' + r.amount);
+                leidingTegoed.insert({name: r.name, amount: r.amount});
+            });
+        }
 
-        generateRecords();
+        initiate();
     }
 }
+
+function removeDBRecords() {
+    records().remove();
+    initiate();
+}
+function removeDBLeiding() {
+    leidingTegoed().remove();
+    initiate();
+}
+
+function amount2Eur(n) {
+    return `€ ${parseFloat(n.toString()).toFixed(2).toString().replace('.',',')}`
+}
+
+
+initiate();

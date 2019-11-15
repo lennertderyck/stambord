@@ -81,3 +81,10 @@ body[data-admin-login='true'] {
     background-color: var(--primary) !important;
     height: 100px !important;
 }
+
+.drank-color-tag {
+    height: 30px;
+    width: 30px;
+    border-radius: 100%;
+    background-color: var(--primary);
+}
