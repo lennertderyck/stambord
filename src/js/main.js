@@ -94,7 +94,7 @@ function generateUI() {
             <td>${el.name}</td>
             <td>${amount2Eur(el.amount)}</td>
             <td>
-                <button class="btn btn-info mr-2" onclick="topUp()"><i data-feather="dollar-sign"></i>Topup</button>
+                <button class="btn btn-info mr-2" onclick="topUp('${el.name}', ${el.amount})"><i data-feather="dollar-sign"></i>Topup</button>
                 <button class="btn btn-danger no-txt" onclick="removePerson('${el.name}')"><i data-feather="trash-2"></i></button>
             </td>
         </tr>
@@ -211,14 +211,21 @@ function generateListDranken() {
     document.querySelector('#listDranken').innerHTML = tempStr
 }
 
-function topUp(n) {
-    personIndex = n;
-    leiding[personIndex];
-    inpTopUp.value;
+function topUp(p, e) {
+    newAmount = e + parseFloat(inpTopUp.value);
+    console.log('topup person ' + p);
+    console.log('input value ' + inpTopUp.value);
+    console.log('current amount ' + parseFloat(e));
+    console.log('new amount ' + newAmount);
+    // console.log('new amount ' + e);
+    if (e != '') {
+        leidingTegoed({name: p}).update({amount: newAmount});
+        inpTopUp.value = '0'
+    } else {
+        alert('false amount')
+    }
 
-    console.log(`selected top up: ${leiding[personIndex]}`);
-
-    generateUI();
+    initiate();
 }
 
 function generateRecords() {
@@ -383,6 +390,7 @@ function removeDBLeiding() {
 }
 
 function amount2Eur(n) {
+    console.log('amount2Eur ' + n)
     return `€ ${parseFloat(n.toString()).toFixed(2).toString().replace('.',',')}`
 }
 
