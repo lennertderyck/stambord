@@ -1,5 +1,5 @@
 # Bar Bord
-Overzicht: | [Functies](#functies) | [Software](#software) |
+**Overzicht: | [Functies](#functies) | [Software](#software) |**
 
 Papieren stamkaarten zijn verleden tijd, hier is Bar Bord! Gebruik Bar Bord om leiding te laten betalen voor drank, snacks, etc.
 
