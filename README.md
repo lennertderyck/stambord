@@ -30,7 +30,7 @@ Voorlopig is Bar Bord enkel beschikbaar voor MacOS, maar we zouden deze ook graa
 Wil je Bar Bord eigenhandig omzetten als Windows programma? Volg de stappen hieronder:
 
 #### 1. Installatie
-- [Download bar-board-master](https://github.com/lennertderyck/bar-board/archive/master.zip)
+- [Download bar-board-master.zip](https://github.com/lennertderyck/bar-board/archive/master.zip)
 - Unzip bar-board-master.zip door hier dubbel op te klikken
 - Controleer of Node.js geïnstalleerd is
   - Open Commandoprompt en plak de volgende code ```node -v```
