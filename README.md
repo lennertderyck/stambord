@@ -21,6 +21,8 @@ Enkel stamleiding kan leiding en drank beheren, en tegoed toevoegen.
 #### Backup
 Alle gegevens kunnen geexporteerd worden als backup indien gegevens verloren raken.
 
+---
+
 ### Software
 | **[Demo](https://bar-bord.haegepoorters.be/src/)** (wachtwoord: ```baarmoeder```) | **[Download voor MacOS](https://github.com/lennertderyck/bar-board/releases)** |
 
