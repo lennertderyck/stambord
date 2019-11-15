@@ -302,6 +302,7 @@ function logInAdmin() {
         // localStorage.setItem('admin-logged-in', true);
     } else {
         console.log('password false');
+        alert('Het opgegeven wachtwoord is fout')
     }
 
     generateDrank();
