@@ -237,97 +237,6 @@ function generateRecords() {
     document.querySelector('#tableRecords').innerHTML = tempStr;
 }
 
-/*
-function save() {
-    let tempStr1 = '';
-    records().each(function (r) {
-        tempStr1 += `
-        <tr>
-            <td>${r.date}</td>
-            <td>${r.name}</td>
-            <td>${r.drank.replace('.',',')}</td>
-            <td>${amount2Eur(r.amount)}</td>
-        </tr>
-        `
-    });
-    const file1 = `
-        <table>
-        <tr>
-            <th>Datum</th>
-            <th>Naam</th>
-            <th>Drank</th>
-            <th>Bedrag</th>
-        </tr>
-        ${tempStr1}
-        </table>
-        <style>
-            table {
-                font-family: arial, sans-serif;
-                border-collapse: collapse;
-                width: 100%;
-            }
-
-            td, th {
-                border: 1px solid #dddddd;
-                text-align: left;
-                padding: 8px;
-            }
-
-            tr:nth-child(even) {
-                background-color: #dddddd;
-            }
-        </style>
-    `;
-
-    let tempStr2 = '';
-    leidingTegoed().each(function (r) {
-        tempStr2 += `
-        <tr>
-            <td>${r.name}</td>
-            <td>${amount2Eur(r.amount)}</td>
-        </tr>
-        `
-    });
-    const file2 = `
-        <table>
-        <tr>
-            <th>Naam</th>
-            <th>Tegoed</th>
-        </tr>
-        ${tempStr2}
-        </table>
-        <style>
-            table {
-                font-family: arial, sans-serif;
-                border-collapse: collapse;
-                width: 100%;
-            }
-
-            td, th {
-                border: 1px solid #dddddd;
-                text-align: left;
-                padding: 8px;
-            }
-
-            tr:nth-child(even) {
-                background-color: #dddddd;
-            }
-        </style>
-    `;
-
-    // const blob1 = new Blob([file1], {type: "text/html;charset=utf-8"});
-    // saveAs(blob1, `extract_records_${dd}${mm}${yyyy}_${hh}${nn}.html`)
-
-    // const blob2 = new Blob([file2], {type: "text/html;charset=utf-8"});
-    // saveAs(blob2, `extract_leidingtegoed_${dd}${mm}${yyyy}_${hh}${nn}.html`)
-
-    const blob1 = new Blob([file1], {type: "application/json"});
-    saveAs(blob1, `extract_records_${dd}${mm}${yyyy}_${hh}${nn}.html`)
-
-    const blob2 = new Blob([file2], {type: "text/html;charset=utf-8"});
-    saveAs(blob2, `extract_leidingtegoed_${dd}${mm}${yyyy}_${hh}${nn}.html`)
-}*/
-
 function save() {
     let tempStr1 = '';
     records().each(function (r) {
@@ -364,6 +273,26 @@ function save() {
     // console.log(tempStr2.slice(3))
     const blob2 = new Blob([file2], {type: 'application/javascript'});
     saveAs(blob2, `backup_leiding_${dd}${mm}${yyyy}_${hh}${nn}.js`)
+
+    //////////////////////////////////////////////////////////////////
+
+    let tempStr3 = '';
+    dranken().each(function (r) {
+    tempStr3 += `,
+    {
+        "name": "${r.name}",
+        "amount": "${r.amount}"
+        "mix": "${r.mix}"
+        "color": "${r.color}"
+    }`
+    });
+    const file3 = `
+        [${tempStr3.slice(3)}]
+    `;
+
+    // console.log(tempStr3.slice(3))
+    const blob3 = new Blob([file3], {type: 'application/javascript'});
+    saveAs(blob3, `backup_drank_${dd}${mm}${yyyy}_${hh}${nn}.js`)
 }
 
 function logInAdmin() {
@@ -385,19 +314,6 @@ function logOffAdmin() {
     // localStorage.setItem('admin-logged-in', false);
     // console.log(localStorage.removeItem('admin-logged-in'));
 }
-
-/*
-    console.log(localStorage.getItem('admin-logged-in'))
-    adminLoggedIn = localStorage.getItem('admin-logged-in');
-
-    if (adminLoggedIn == true) {
-        body.setAttribute('data-admin-login', true)
-        console.log('admin logged in');
-    }
-*/
-
-/////////////// JSON BACKUP INPORT
-// var jsonFIle = require('./data.json'); //(with path)
 
 function loadFile() {
     var input, file, fr;
@@ -442,6 +358,13 @@ function loadFile() {
                 console.log(r.name + ' ' + r.amount);
                 leidingTegoed.insert({name: r.name, amount: r.amount});
             });
+        } else if (filename.includes('dranken')) {
+            leidingTegoed().remove();
+            newArr.forEach((r) => {
+                console.log(r.name + ' ' + r.amount);
+                leidingTegoed.insert({name: r.name, amount: r.amount});
+                dranken.insert({name: r.name,  amount: r.amount, mix: r.mix, color: r.color});
+            });
         }
 
         initiate();
@@ -452,6 +375,7 @@ function removeDBRecords() {
     records().remove();
     initiate();
 }
+
 function removeDBLeiding() {
     leidingTegoed().remove();
     initiate();
@@ -461,5 +385,5 @@ function amount2Eur(n) {
     return `€ ${parseFloat(n.toString()).toFixed(2).toString().replace('.',',')}`
 }
 
-
+// Als laatste
 initiate();
