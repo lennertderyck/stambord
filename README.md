@@ -5,7 +5,7 @@
 # Bar Bord
 Papieren stamkaarten zijn verleden tijd, hier is Bar Bord! Gebruik Bar Bord om leiding te laten betalen voor drank, snacks, etc.
 
-### Functies
+## Functies
 #### Voeg items toe
 Maak een lijst aan van items die verkocht kunnen worden, geef een naam, prijs en kleurtag voor elk item op.
 
@@ -27,7 +27,7 @@ Alle gegevens kunnen geexporteerd worden als backup indien gegevens verloren rak
 
 ---
 
-### Software
+## Software
 | **[Demo](https://bar-bord.haegepoorters.be/src/)** (wachtwoord: ```baarmoeder```) | **[Download voor MacOS](https://github.com/lennertderyck/bar-board/releases)** |
 
 Voorlopig is Bar Bord enkel beschikbaar voor MacOS, maar we zouden deze ook graag uitbrengen voor Windows.<br>
