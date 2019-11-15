@@ -30,6 +30,8 @@ Voorlopig is Bar Bord enkel beschikbaar voor MacOS, maar we zouden deze ook graa
 Wil je Bar Bord eigenhandig omzetten als Windows programma? Volg de stappen hieronder:
 
 #### 1. Installatie
+- [Download bar-board-master](https://github.com/lennertderyck/bar-board/archive/master.zip)
+- Unzip bar-board-master.zip door hier dubbel op te klikken
 - Controleer of Node.js geïnstalleerd is
   - Open Commandoprompt en plak de volgende code ```node -v```
   - Als Node.js niet geïnstalleer is download deze dan via https://nodejs.org/en/
@@ -38,7 +40,7 @@ Wil je Bar Bord eigenhandig omzetten als Windows programma? Volg de stappen hier
 - Installeer Electron Forge ```npm i -g @electron-forge/cli```
 
 #### 2. Omzetting
-- Sleep de folder die je gedownload hebt naar het icoontje van command prompt
+- Sleep de folder bar-board-master naar het icoontje van command prompt
 - Plak het volgende in de commandprompt ```electron-forge make```
 
 Er zal in de map die je gedownload hebt een nieuwe folder gemaakt worden genaamd 'Out', hier vind je de nieuwe applicatie in.
