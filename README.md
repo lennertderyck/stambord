@@ -1,4 +1,4 @@
-### | 👉 [Functies](#functies) | 👉 [Software](#software) |
+### | [Functies](#functies) | [Software](#software) |
 
 ---
 
