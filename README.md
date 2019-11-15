@@ -49,6 +49,8 @@ Wil je Bar Bord eigenhandig omzetten als Windows programma? Volg de stappen hier
 
 Er zal in de map die je gedownload hebt een nieuwe folder gemaakt worden genaamd 'Out', hier vind je de nieuwe applicatie in.
 
+---
+
 ### Problemen en hulp
 | **[Bug raporteren](https://github.com/lennertderyck/bar-board/issues/new?assignees=&labels=bug&template=bug_report.md&title=)** | **[Suggestie insturen](https://github.com/lennertderyck/bar-board/issues/new?assignees=&labels=enhancement&template=feature_request.md&title=)** |
 
