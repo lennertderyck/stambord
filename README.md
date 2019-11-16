@@ -1,3 +1,5 @@
+![bar bord banner](https://raw.githubusercontent.com/lennertderyck/bar-board/master/branding/banner.png)
+
 ### | [Functies](#functies) | [Software](#software) | [Demo](https://bar-bord.haegepoorters.be/src/) |
 
 ---
