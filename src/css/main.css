@@ -1,5 +1,6 @@
 :root {
   --font-main: 'Nexa Slab';
+  --accent-main: #deb887;
 }
 
 * {
@@ -147,5 +148,9 @@ body[data-admin-login='true'] .hide-admin {
   width: 30px;
   border-radius: 100%;
   background-color: var(--primary);
+}
+
+.showCurrentAmount {
+  white-space: nowrap;
 }
 /*# sourceMappingURL=main.css.map */
