@@ -367,7 +367,7 @@ function loadFile() {
                 leidingTegoed.insert({name: r.name, amount: r.amount});
             });
         } else if (filename.includes('dranken')) {
-            leidingTegoed().remove();
+            dranken().remove();
             newArr.forEach((r) => {
                 console.log(r.name + ' ' + r.amount);
                 leidingTegoed.insert({name: r.name, amount: r.amount});
