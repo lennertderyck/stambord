@@ -73,8 +73,6 @@ function initiate() {
 
     // Als laatst
     feather.replace();
-
-    console.log(dranken().stringify())
 }
 
 function testLeidingExists() {
@@ -144,7 +142,7 @@ function removePerson(n) {
 }
 
 function selectAmount(n) {
-    if (currentAmount < 1){
+    if (currentAmount < 0.8){
         content = n*1.03;
     } else {
         content = n;

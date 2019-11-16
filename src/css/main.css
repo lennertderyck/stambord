@@ -1,3 +1,7 @@
+:root {
+  --font-main: 'Nexa Slab';
+}
+
 * {
   padding: 0px;
   margin: 0px;
@@ -16,6 +20,70 @@
 
 body {
   scroll-behavior: smooth;
+}
+
+.spacing-r {
+  padding-right: 237px !important;
+}
+
+header {
+  background-color: burlywood;
+}
+
+header .nav-tabs {
+  border: none;
+}
+
+header .nav-tabs .nav-link, header .nav-tabs .nav-link.active {
+  border: none;
+  background-color: transparent;
+  font-family: var(--font-main);
+  font-weight: bolder;
+  text-transform: lowercase;
+  font-size: 1.2rem;
+  color: white;
+}
+
+h1 {
+  font-family: var(--font-main);
+  font-weight: bold;
+}
+
+h2 {
+  font-family: var(--font-main);
+  font-weight: bold;
+}
+
+h3 {
+  font-family: var(--font-main);
+  font-weight: bold;
+}
+
+h4 {
+  font-family: var(--font-main);
+  font-weight: bold;
+}
+
+h5 {
+  font-family: var(--font-main);
+  font-weight: bold;
+}
+
+h6 {
+  font-family: var(--font-main);
+  font-weight: bold;
+}
+
+.txt-modern, header .nav-tabs .nav-link, header .nav-tabs .nav-link.active, .btn {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 90%;
+}
+
+.btn {
+  font-family: var(--font-main);
+  font-weight: bold;
+  padding-top: 12px;
 }
 
 .btn svg {

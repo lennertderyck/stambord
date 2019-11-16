@@ -1,9 +1,15 @@
+:root {
+    --font-main: 'Nexa Slab';
+}
+
 * {
     padding: 0px;
     margin: 0px;
     box-sizing: border-box;
     outline: none;
     box-shadow: none;
+
+    // font-family: var(--font-main);
 }
 
 *:focus {
@@ -15,7 +21,50 @@ body {
     scroll-behavior: smooth;
 }
 
+.spacing-r {
+    padding-right: 237px !important;
+}
+
+header {
+    background-color: burlywood;
+
+    .nav-tabs {
+        border: none;
+    
+        .nav-link, .nav-link.active{
+            border: none;
+            background-color: transparent;
+            font-family: var(--font-main);
+            font-weight: bolder;
+            text-transform: lowercase;
+            font-size: 1.2rem;
+            color: white;
+
+            @extend .txt-modern;
+        }
+    }
+}
+
+@for $i from 1 through 6 {
+    h#{$i} {
+      font-family: var(--font-main);
+      font-weight: bold;
+    }
+}
+
+.txt-modern {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 90%;
+}
+
 .btn {
+    font-family: var(--font-main);
+    font-weight: bold;
+    padding-top: 12px;
+
+    @extend .txt-modern;
+
     svg {
         --d: 17px;
 

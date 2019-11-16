@@ -11,42 +11,47 @@
     <script src="./js/filesaver.js"></script>
     <!-- <script src="./js/feather.min.js"></script> -->
     <script src="https://unpkg.com/feather-icons"></script>
-    <link rel="stylesheet" href="./css/main.css">
     <script src="./js/sha256.min.js"></script>
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/fonts.css">
 </head>
-<body class="pt-5" data-admin-login="true">
-    <div class="container">
-        <div class="row mb-4">
-            <div class="col-auto mr-4">
-                <img src="./images/qr_code_5.png" height="120px"/>
+<body data-admin-login="true">
+    <header class="py-3">
+        <div class="container">
+            <div class="row mb-4 d-none">
+                <div class="col-auto mr-4">
+                    <img src="./images/qr_code_5.png" height="120px"/>
+                </div>
+                <div class="col d-flex flex-column justify-content-center">
+                    <h2>Stamkaart</h2>
+                    <h4>Scan de code met je bankapp</h4>
+                    <h6>BE58 7360 3139 0779</h6>
+                </div>
             </div>
-            <div class="col d-flex flex-column justify-content-center">
-                <h2>Stamkaart</h2>
-                <h4>Scan de code met je bankapp</h4>
-                <h6>BE58 7360 3139 0779</h6>
+            <div class="flex justify-content-center">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Barbord</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Registratie</a>
+                    </li>
+                    <li class="nav-item show-admin ">
+                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Leiding</a>
+                    </li>
+                    <li class="nav-item show-admin">
+                        <a class="nav-link" id="dranken-tab" data-toggle="tab" href="#dranken" role="tab" aria-controls="dranken" aria-selected="false">Verkoop</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="settings-tab" data-toggle="tab" href="#settings" role="tab" aria-controls="settings" aria-selected="false">Instellingen</a>
+                    </li>
+                </ul>
             </div>
         </div>
-        <ul class="nav nav-tabs" id="myTab" role="tablist">
-            <li class="nav-item">
-                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Bar bord</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Registratie</a>
-            </li>
-            <li class="nav-item show-admin ">
-                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Leiding beheer</a>
-            </li>
-            <li class="nav-item show-admin">
-                <a class="nav-link" id="dranken-tab" data-toggle="tab" href="#dranken" role="tab" aria-controls="dranken" aria-selected="false">Item beheer</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="settings-tab" data-toggle="tab" href="#settings" role="tab" aria-controls="settings" aria-selected="false">Instellingen</a>
-            </li>
-        </ul>
-    </div>
+    </header>
     <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active py-4" id="home" role="tabpanel" aria-labelledby="home-tab">
-            <div class="container" style="padding-right: 237px;">
+            <div class="container spacing-r">
                 <div id="notifNoLeiding" class="card text-white bg-info mb-4">
                     <div class="card-body">
                         <h4>Er werd geen leiding gevonden</h4>
@@ -67,7 +72,7 @@
                                 </div>
                                 <div id="notifCurrentAmount" class="card text-white bg-danger mb-4 d-none">
                                     <div class="card-body">
-                                        <h4>Je tegoed bedraagt €1,00 of minder</h4>
+                                        <h4>Je tegoed bedraagt €0,80 of minder</h4>
                                         <p class="mb-0">Als je nu drank koopt zal je een negatief bedrag hebben en dus 3% meer betalen.</p>
                                     </div>
                                 </div>
@@ -114,6 +119,7 @@
         </div>
         <div class="tab-pane fade py-4" id="profile" role="tabpanel" aria-labelledby="profile-tab">
             <div class="container">
+                <h3 class="mb-4">Leiding</h3>
                 <div class="row">
                     <div class="col">
                         <div id="errorNewLeiding" class="card text-white bg-danger mb-4 d-none">
@@ -155,6 +161,7 @@
         </div>
         <div class="tab-pane fade py-4" id="contact" role="tabpanel" aria-labelledby="contact-tab">
             <div class="container">
+                <h3 class="mb-4">Registratie</h3>
                 <table class="table">
                     <thead>
                         <tr>
@@ -198,7 +205,7 @@
                                         <option value="2">Fristi / fruitsap</option>
                                     </select>
                                     <div class="input-group-append">
-                                        <button id="addDrank" class="btn btn-primary" onclick="addDrank()"><i data-feather="plus"></i>Drank toevoegen</button>
+                                        <button id="addDrank" class="btn btn-primary" onclick="addDrank()"><i data-feather="plus"></i>toevoegen</button>
                                     </div>
                                 </div>
                             </th> 
@@ -228,7 +235,7 @@
                                 <button class="btn btn-primary" onclick="logInAdmin()">Aanmelden</button>
                             </div>
                         </div>
-                        <button class="btn btn-primary show-admin" onclick="logOffAdmin()">Afmelden</button>
+                        <button class="btn btn-primary show-admin" onclick="logOffAdmin()"><i data-feather="log-out"></i>Afmelden</button>
                     </div>
                 </div>
                 <hr class="my-4">

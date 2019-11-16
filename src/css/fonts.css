@@ -1,0 +1,81 @@
+@font-face {
+    font-family: 'Nexa Slab Bold Oblique';
+    src: local('Nexa Slab Bold Oblique'), local('NexaSlabBoldOblique'),
+        url('../fonts/NexaSlabBoldOblique.woff2') format('woff2'),
+        url('../fonts/NexaSlabBoldOblique.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Nexa Slab Black Oblique';
+    src: local('Nexa Slab Black Oblique'), local('NexaSlabBlackOblique'),
+        url('../fonts/NexaSlabBlackOblique.woff2') format('woff2'),
+        url('../fonts/NexaSlabBlackOblique.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Nexa Slab';
+    src: local('Nexa Slab Light'), local('NexaSlab-Light'),
+        url('../fonts/NexaSlab-Light.woff2') format('woff2'),
+        url('../fonts/NexaSlab-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Nexa Slab';
+    src: local('Nexa Slab Bold Italic'), local('NexaSlabBoldItalic'),
+        url('../fonts/NexaSlabBoldItalic.woff2') format('woff2'),
+        url('../fonts/NexaSlabBoldItalic.woff') format('woff');
+    font-weight: bold;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Nexa Slab Book';
+    src: local('Nexa Slab Book'), local('NexaSlab-Book'),
+        url('../fonts/NexaSlab-Book.woff2') format('woff2'),
+        url('../fonts/NexaSlab-Book.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Nexa Slab';
+    src: local('Nexa Slab Black'), local('NexaSlabBlack'),
+        url('../fonts/NexaSlabBlack.woff2') format('woff2'),
+        url('../fonts/NexaSlabBlack.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Nexa Slab';
+    src: local('Nexa Slab Bold'), local('NexaSlab-Bold'),
+        url('../fonts/NexaSlab-Bold.woff2') format('woff2'),
+        url('../fonts/NexaSlab-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Nexa';
+    src: local('Nexa Light'), local('NexaLight'),
+        url('../fonts/NexaLight.woff2') format('woff2'),
+        url('../fonts/NexaLight.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Nexa';
+    src: local('Nexa Bold'), local('NexaBold'),
+        url('../fonts/NexaBold.woff2') format('woff2'),
+        url('../fonts/NexaBold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+}
+
