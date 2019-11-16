@@ -14,8 +14,18 @@
     <link rel="stylesheet" href="./css/main.css">
     <script src="./js/sha256.min.js"></script>
 </head>
-<body class="pt-5" data-admin-login="false">
+<body class="pt-5" data-admin-login="true">
     <div class="container">
+        <div class="row mb-4">
+            <div class="col-auto mr-4">
+                <img src="./images/qr_code_5.png" height="120px"/>
+            </div>
+            <div class="col d-flex flex-column justify-content-center">
+                <h2>Stamkaart</h2>
+                <h4>Scan de code met je bankapp</h4>
+                <h6>BE58 7360 3139 0779</h6>
+            </div>
+        </div>
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item">
                 <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Bar bord</a>
@@ -27,7 +37,7 @@
                 <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Leiding beheer</a>
             </li>
             <li class="nav-item show-admin">
-                <a class="nav-link" id="dranken-tab" data-toggle="tab" href="#dranken" role="tab" aria-controls="dranken" aria-selected="false">Drank beheer</a>
+                <a class="nav-link" id="dranken-tab" data-toggle="tab" href="#dranken" role="tab" aria-controls="dranken" aria-selected="false">Item beheer</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" id="settings-tab" data-toggle="tab" href="#settings" role="tab" aria-controls="settings" aria-selected="false">Instellingen</a>
@@ -68,31 +78,7 @@
                         </div>
                     </div>
                 </div>
-                
-                
-
-                <div id="selectContent" class="row mb-4 d-none">
-                    <div class="col">
-                        <h3 class="mb-3">Hoeveelheid</h3>
-                        <div class="flex-grid-wrapper">
-                            <div class="flex-grid">
-                                <button class="btn btn-primary txt-item flex-grid-item" onclick="selectAmount(1)">
-                                    <img class="mb-2 mx-auto d-block" src="./images/icons/icon_hoev_enkel_white.svg" height="30px" alt="">
-                                    <span class="d-block">Enkel</span>
-                                </button>
-                                <button class="btn btn-primary txt-item flex-grid-item" onclick="selectAmount(2)">
-                                    <img class="mb-2 mx-auto d-block" src="./images/icons/icon_hoev_dubbel_white.svg" height="30px" alt="">
-                                    <span class="d-block">Dubbel</span>
-                                </button>
-                                <button class="btn btn-primary txt-item flex-grid-item" onclick="selectAmount(3)">
-                                    <img class="mb-2 mx-auto d-block" src="./images/icons/icon_hoev_half_white.svg" height="30px" alt="">
-                                    <span class="d-block">Halve</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+                               
                 <div id="selectDrank" class="row mb-4 d-none">
                     <div class="col">
                         <h3 class="mb-3">Dranken</h3> 
@@ -101,20 +87,33 @@
                         </div>
                     </div>
                 </div>
+
+                <div id="selectContent" class="row mb-4 d-none">
+                    <div class="col">
+                        <h3 class="mb-3">Hoeveelheid</h3>
+                        <div class="flex-grid-wrapper">
+                            <div class="flex-grid">
+                                <button class="btn btn-primary txt-item flex-grid-item" onclick="selectAmount(0)">
+                                    <img class="mb-2 mx-auto d-block" src="./images/icons/icon_hoev_enkel_white.svg" height="30px" alt="">
+                                    <span class="d-block">Enkel</span>
+                                </button>
+                                <button class="btn btn-primary txt-item flex-grid-item" onclick="selectAmount(1)">
+                                    <img class="mb-2 mx-auto d-block" src="./images/icons/icon_hoev_dubbel_white.svg" height="30px" alt="">
+                                    <span class="d-block">Dubbel</span>
+                                </button>
+                                <button class="btn btn-primary txt-item flex-grid-item" onclick="selectAmount(2)">
+                                    <img class="mb-2 mx-auto d-block" src="./images/icons/icon_hoev_half_white.svg" height="30px" alt="">
+                                    <span class="d-block">Halve</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                 
             </div>
         </div>
         <div class="tab-pane fade py-4" id="profile" role="tabpanel" aria-labelledby="profile-tab">
             <div class="container">
-                <div class="row mb-4">
-                    <div class="col-auto mr-4">
-                        <img src="./images/qr_code_5.png" height="120px"/>
-                    </div>
-                    <div class="col d-flex flex-column justify-content-center">
-                        <h2>Stamkaart</h2>
-                        <h4>Scan de code met je bankapp</h4>
-                        <h6>BE58 7360 3139 0779</h6>
-                    </div>
-                </div>
                 <div class="row">
                     <div class="col">
                         <div id="errorNewLeiding" class="card text-white bg-danger mb-4 d-none">
@@ -161,7 +160,7 @@
                         <tr>
                             <th scope="col">Datum</th>
                             <th scope="col">Naam</th>
-                            <th scope="col">Drank</th>
+                            <th scope="col">Item</th>
                             <th scope="col">Bedrag</th>
                         </tr>
                     </thead>
@@ -177,7 +176,7 @@
                         <tr>
                             <th scope="col">Naam drank</th>
                             <th scope="col">Prijs</th>
-                            <th scope="col">Mix?</th>
+                            <th scope="col">Cocktail?</th>
                             <th scope="col">Kleur</th>
                         </tr>
                     </thead>
@@ -186,15 +185,17 @@
                             <th>
                                 <input type="text" class="form-control" name="leiding naam" id="drankNaam" autocomplete="off" placeholder="Naam drank"><br>
                             </th>
-                            <th>
-                                <input type="number" class="form-control" id="inpDrankAmount" placeholder="Kostprijs" value="0" min="0.01">       
+                            <th class="input-group">
+                                <input type="number" class="form-control" id="inpDrankAmount" placeholder="Enkel" min="0.01">
+                                <input type="number" class="form-control" id="inpDrankAmount2" placeholder="Dubbel" min="0.01">
+                                <input type="number" class="form-control" id="inpDrankAmount3" placeholder="Half" min="0.01">
                             </th>
                             <th>                            
                                 <div class="input-group">
                                     <select class="custom-select" id="inputDrankMix">
-                                        <option value=" " selected>Geen</option>
-                                        <option value="Fris">Fris</option>
-                                        <option value="Fristi / fruitsap">Fristi / fruitsap</option>
+                                        <option value="0" selected>Geen</option>
+                                        <option value="1">Fris</option>
+                                        <option value="2">Fristi / fruitsap</option>
                                     </select>
                                     <div class="input-group-append">
                                         <button id="addDrank" class="btn btn-primary" onclick="addDrank()"><i data-feather="plus"></i>Drank toevoegen</button>
@@ -254,7 +255,8 @@
                         <h5>Gegevens verwijderen</h5>
                         <p>Verwijder alle leiding en/of de registraties</p>
                         <button class="btn btn-danger d-inline mr-3" onclick="removeDBLeiding()"><i data-feather="trash-2"></i>Leiding verwijderen</button>
-                        <button class="btn btn-warning d-inline" onclick="removeDBRecords()"><i data-feather="trash-2"></i>Registraties verwijderen</button>
+                        <button class="btn btn-warning d-inline mr-3" onclick="removeDBRecords()"><i data-feather="trash-2"></i>Registraties verwijderen</button>
+                        <button class="btn btn-warning d-inline" onclick="removeDBDranken()"><i data-feather="trash-2"></i>Dranken verwijderen</button>
                     </div>
                 </div>
             </div>

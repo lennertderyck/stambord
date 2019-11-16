@@ -23,6 +23,8 @@ const
     inpDrankNaam = document.querySelector("#drankNaam"),
     inpDrankMix = document.querySelector("#inputDrankMix"),
     inpDrankAmount = document.querySelector("#inpDrankAmount"),
+    inpDrankAmount2 = document.querySelector("#inpDrankAmount2"),
+    inpDrankAmount3 = document.querySelector("#inpDrankAmount3"),
     inpDrankColor = document.querySelector("#inpDrankColor"),
     inpAdminPassw = document.querySelector("#inpAdminPassword");
 
@@ -37,6 +39,10 @@ const
 let leiding = [],
     hasToPay = '',
     personIndex,
+    selectedDrank,
+    selectedDrankAmount,
+    selectedDrankIsMix,
+    selectedDrankMix,
     leidingCurrentAmount,
     newAmount,
     content = 2,
@@ -123,10 +129,10 @@ function selectPerson(n, e) {
         document.querySelector('#notifCurrentAmount').classList.add('d-none');
     }
 
-    document.querySelector("#selectContent").classList.remove('d-none');
+    document.querySelector("#selectDrank").classList.remove('d-none');
 
     showCurrentAmount(currentAmount);
-    document.querySelector("#selectContent").scrollIntoView();
+    document.querySelector("#selectDrank").scrollIntoView();
 }
 
 function removePerson(n) {
@@ -142,25 +148,45 @@ function selectAmount(n) {
         content = n;
     }
 
-    document.querySelector("#selectDrank").classList.remove('d-none');
-    console.log(`amount selected: ${n}`)
-    document.querySelector("#selectDrank").scrollIntoView()
-}
-
-function payDrink(amount, n) {
-    newAmount = currentAmount - amount*content;
-
     document.querySelector("#selectContent").classList.add('d-none');
     document.querySelector("#selectDrank").classList.add('d-none');
     document.querySelector("#showCurrentAmount").classList.add('d-none');
     document.querySelector("#notifCurrentAmount").classList.add('d-none');
 
+    if (selectedDrankIsMix == true) {
+        newAmount = currentAmount - selectedDrankAmount[n];
+        console.log(`newAmount with cocktail`)
+    } else if (selectedDrankIsMix == false) {
+        newAmount = currentAmount - selectedDrankAmount;
+        console.log(`newAmount one`)
+    }
+
     leidingTegoed({name: hasToPay}).update({amount: newAmount})
-    records.insert({date: new Date().toLocaleString('en-GB', { timeZone: 'UTC' }),name: hasToPay, amount:amount*content, drank: n});
+    records.insert({date: new Date().toLocaleString('en-GB', { timeZone: 'UTC' }),name: hasToPay, amount: selectedDrankAmount, drank: selectedDrank});
     
-    console.log(`updated tegoed: ${leidingTegoed().filter({column: hasToPay})}`)
-    generateUI();
-    generateRecords();
+    // console.log(`updated tegoed: ${leidingTegoed().filter({column: hasToPay})}`)
+
+    initiate();
+
+    console.log(`amount selected: ${n}`)
+}
+
+function selectDrink(amount, n, mix) {
+    selectedDrank = n;
+    selectedDrankAmount = amount;
+    selectedDrankMix = mix;
+
+    if (mix == 0) {
+        console.log(`selectDrink item not cocktail`)
+        selectedDrankIsMix = false;
+    } else {
+        selectedDrankIsMix = true;
+    }
+
+    console.log(`price selected is ${selectedDrankAmount}`)
+
+    document.querySelector("#selectContent").classList.remove('d-none');
+    document.querySelector("#selectContent").scrollIntoView()
 }
 
 function showCurrentAmount(e) {
@@ -169,8 +195,14 @@ function showCurrentAmount(e) {
 }
 
 function addDrank() {
-    console.log(`add drank: ${inpDrankNaam.value} ${inpDrankAmount.value} €${inpDrankMix.value}`)
-    dranken.insert({name: inpDrankNaam.value, amount: inpDrankAmount.value, mix: inpDrankMix.value, color: inpDrankColor.value});
+    console.log(`add drank: ${inpDrankNaam.value} €${inpDrankAmount.value} ${inpDrankMix.value}`)
+    if (inpDrankMix.value != '0') {
+        console.log('cocktail toegevoegd')
+        dranken.insert({name: inpDrankNaam.value, amount: [inpDrankAmount.value, inpDrankAmount2.value, inpDrankAmount3.value], mix: inpDrankMix.value, color: inpDrankColor.value});
+    } else {
+        console.log('fris/bier toegevoegd')
+        dranken.insert({name: inpDrankNaam.value, amount: inpDrankAmount.value, mix: inpDrankMix.value, color: inpDrankColor.value});
+    }
     generateDrank();
     generateListDranken()
     feather.replace();
@@ -186,11 +218,18 @@ function removeDrank(n) {
 function generateDrank() {
     tempStr = ''
     dranken().order("name asec").each((r) => {
+        let calcAMount = parseFloat(r.amount[0]) + parseFloat(r.amount[1]) + parseFloat(r.amount[2]);
+        if (calcAMount >= 0) {
+            d = `<strong>Enkel</strong> ${amount2Eur(r.amount[0])} <strong class="ml-3">Dubbel</strong> ${amount2Eur(r.amount[1])} <strong class="ml-3">Halve</strong> ${amount2Eur(r.amount[2])}`
+        } else {
+            d = `${amount2Eur(r.amount)}`;
+        }
+        
         tempStr += `
         <tr>
             <td>${r.name}</td>
-            <td>${amount2Eur(r.amount)}</td>
-            <td>${r.mix}</td>
+            <td>${d}</td>
+            <td>${inputMix2String(r.mix)}</td>
             <td><div class="drank-color-tag" style="background-color: ${r.color}"></div></td>
             <td><button class="btn btn-danger no-txt" onclick="removeDrank('${r.name}')"><i data-feather="trash-2"></i></button></td>
         </tr>
@@ -203,8 +242,14 @@ function generateDrank() {
 function generateListDranken() {
     tempStr = ''
     dranken().order("name asec").each((r) => {
+        let calcAMount = parseFloat(r.amount[0]) + parseFloat(r.amount[1]) + parseFloat(r.amount[2]);
+        if (calcAMount >= 0) {
+            d = `${r.amount[0]}, ${r.amount[1]}, ${r.amount[2]}`;
+        } else {
+            d = r.amount;
+        }
         tempStr += `
-        <button style="background-color: ${r.color} !important; border: none;" class="btn btn-primary txt-item flex-grid-item" onclick="payDrink(${r.amount},'${r.name} ${r.mix}')"><span class="d-block">${r.name}</span><span class="d-block">${r.mix}</span></button>
+        <button style="background-color: ${r.color} !important; border: none;" class="btn btn-primary txt-item flex-grid-item" onclick="selectDrink([${d}],'${r.name}', ${r.mix})"><span class="d-block">${r.name}</span><span class="d-block">${inputMix2String(r.mix)}</span></button>
         `
     });
 
@@ -389,9 +434,30 @@ function removeDBLeiding() {
     initiate();
 }
 
+function removeDBDranken() {
+    dranken().remove();
+    initiate();
+}
+
 function amount2Eur(n) {
-    console.log('amount2Eur ' + n)
+    // console.log('amount2Eur ' + n)
     return `€ ${parseFloat(n.toString()).toFixed(2).toString().replace('.',',')}`
+}
+
+function inputMix2String(n) {
+    let d = '';
+    switch (n) {
+        case '1':
+            d = 'Fris';
+            break;
+        case '2':
+            d = 'Fristi / fruitsap';
+            break;
+    }
+
+    // console.log(`n: ${n}, d: ${d}`)
+
+    return d
 }
 
 // Als laatste
