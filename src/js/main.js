@@ -73,6 +73,8 @@ function initiate() {
 
     // Als laatst
     feather.replace();
+
+    console.log(dranken().stringify())
 }
 
 function testLeidingExists() {
@@ -89,7 +91,7 @@ function testLeidingExists() {
 function generateUI() {
     let tempStr = '', tableTempStr = '';
 
-    leidingTegoed().each((el) => {
+    leidingTegoed().order("name asec").each((el) => {
         leidingCurrentAmount = el.amount;
         tempStr += `
             <button class="btn btn-primary txt-item flex-grid-item" onclick="selectPerson('${el.name}', '${el.amount}')">${el.name}</button>
@@ -148,27 +150,50 @@ function selectAmount(n) {
         content = n;
     }
 
+    let nOutput = '';
+    switch (n) {
+        case 0:
+            nOutput = 'enkel'
+            break;
+        case 1:
+            nOutput = 'dubbel'
+            break;
+        case 2:
+            nOutput = 'extra'
+            break;
+    }
+    let mixOutput = '';
+    switch (n) {
+        case 1:
+            mixOutput = 'fris'
+            break;
+        case 2:
+            mixOutput = 'fristi / fruitsap'
+            break;
+    }
+
     document.querySelector("#selectContent").classList.add('d-none');
     document.querySelector("#selectDrank").classList.add('d-none');
     document.querySelector("#showCurrentAmount").classList.add('d-none');
     document.querySelector("#notifCurrentAmount").classList.add('d-none');
 
+    console.log(`amount selected: ${n}`)
+
     if (selectedDrankIsMix == true) {
         newAmount = currentAmount - selectedDrankAmount[n];
-        console.log(`newAmount with cocktail`)
+        console.log(`newAmount with cocktail: ${currentAmount} - ${selectedDrankAmount[n]}`)
+        records.insert({date: new Date().toLocaleString('en-GB', { timeZone: 'UTC' }),name: hasToPay, amount: selectedDrankAmount[n], drank: selectedDrank + ` (${nOutput} + ${mixOutput})`});
     } else if (selectedDrankIsMix == false) {
         newAmount = currentAmount - selectedDrankAmount;
         console.log(`newAmount one`)
+        records.insert({date: new Date().toLocaleString('en-GB', { timeZone: 'UTC' }),name: hasToPay, amount: selectedDrankAmount, drank: selectedDrank});
     }
 
     leidingTegoed({name: hasToPay}).update({amount: newAmount})
-    records.insert({date: new Date().toLocaleString('en-GB', { timeZone: 'UTC' }),name: hasToPay, amount: selectedDrankAmount, drank: selectedDrank});
     
     // console.log(`updated tegoed: ${leidingTegoed().filter({column: hasToPay})}`)
 
     initiate();
-
-    console.log(`amount selected: ${n}`)
 }
 
 function selectDrink(amount, n, mix) {
@@ -330,11 +355,17 @@ function save() {
 
     let tempStr3 = '';
     dranken().each(function (r) {
+        let calcAMount = parseFloat(r.amount[0]) + parseFloat(r.amount[1]) + parseFloat(r.amount[2]);
+        if (calcAMount >= 0) {
+            d = `[${r.amount[0]}, ${r.amount[1]}, ${r.amount[2]}]`;
+        } else {
+            d = `"${r.amount}"`;
+        }
     tempStr3 += `,
     {
         "name": "${r.name}",
-        "amount": "${r.amount}"
-        "mix": "${r.mix}"
+        "amount": "${r.amount}",
+        "mix": ${d},
         "color": "${r.color}"
     }`
     });
@@ -411,11 +442,11 @@ function loadFile() {
                 console.log(r.name + ' ' + r.amount);
                 leidingTegoed.insert({name: r.name, amount: r.amount});
             });
-        } else if (filename.includes('dranken')) {
+        } else if (filename.includes('drank')) {
             dranken().remove();
+            let tempStr;
             newArr.forEach((r) => {
-                console.log(r.name + ' ' + r.amount);
-                leidingTegoed.insert({name: r.name, amount: r.amount});
+                console.log(`${r.name} ${r.amount} ${r.mix} ${r.color}`);
                 dranken.insert({name: r.name,  amount: r.amount, mix: r.mix, color: r.color});
             });
         }
