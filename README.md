@@ -1,8 +1,8 @@
 ![bar bord banner](https://raw.githubusercontent.com/lennertderyck/bar-board/master/branding/banner.png)
 
-<h3 style="text-align: center">| [Functies](#functies) | [Software](#software) | [Demo](https://bar-bord.haegepoorters.be/src/) |</h3>
-
 ---
+
+### | [Functies](#functies) | [Software](#software) | [Demo](https://bar-bord.haegepoorters.be/src/) |
 
 # Bar Bord
 Papieren stamkaarten zijn verleden tijd, hier is Bar Bord! Gebruik Bar Bord om leiding te laten betalen voor drank, snacks, etc.
