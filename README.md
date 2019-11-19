@@ -9,6 +9,10 @@
 # Bar Bord
 Papieren stamkaarten zijn verleden tijd, hier is Bar Bord! Gebruik Bar Bord om leiding te laten betalen voor drank, snacks, etc.
 
+Oorspronkelijk ontwikkeld om het betaalprobleem op te lossen op m'n [eigen scouts](https://www.google.com/search?q=haegepoorters+destelbergen), nu beschikbaar voor elke vereniging die het betalen van drank, snacks etc. eenvoudig wil doen verlopen.
+
+Opgelet, deze applicatie is op geen enkele manier verbonden met het internet. Het is dus mogelijk om het te draaien zonder een verbinding, maar er is geen integratie met een betalingsysteem zoals Bancontact. Je dient dus zelf handmatig tegoed toe te voegen als beheerder.
+
 ## Functies
 #### Voeg items toe
 Maak een lijst aan van items die verkocht kunnen worden, geef een naam, prijs en kleurtag voor elk item op.
