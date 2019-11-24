@@ -63,19 +63,56 @@
 
 @font-face {
     font-family: 'Nexa';
-    src: local('Nexa Light'), local('NexaLight'),
-        url('../fonts/NexaLight.woff2') format('woff2'),
-        url('../fonts/NexaLight.woff') format('woff');
+    src: local('Nexa Black'), local('NexaBlack'),
+        url('NexaBlack.woff2') format('woff2');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Nexa XBold';
+    src: local('Nexa XBold'), local('Nexa-XBold'),
+        url('Nexa-XBold.woff2') format('woff2');
+    font-weight: 800;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Nexa';
+    src: local('Nexa Light'), local('Nexa-Light'),
+        url('Nexa-Light.woff2') format('woff2');
     font-weight: 300;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Nexa';
-    src: local('Nexa Bold'), local('NexaBold'),
-        url('../fonts/NexaBold.woff2') format('woff2'),
-        url('../fonts/NexaBold.woff') format('woff');
-    font-weight: bold;
+    src: local('Nexa Regular'), local('NexaRegular'),
+        url('NexaRegular.woff2') format('woff2');
+    font-weight: normal;
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'Nexa';
+    src: local('Nexa Thin'), local('NexaThin'),
+        url('NexaThin.woff2') format('woff2');
+    font-weight: 100;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Nexa';
+    src: local('Nexa Heavy'), local('NexaHeavy'),
+        url('NexaHeavy.woff2') format('woff2');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Nexa';
+    src: local('Nexa Bold'), local('Nexa-Bold'),
+        url('Nexa-Bold.woff2') format('woff2');
+    font-weight: bold;
+    font-style: normal;
+}

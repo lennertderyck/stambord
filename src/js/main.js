@@ -45,7 +45,7 @@ let leiding = [],
     selectedDrankMix,
     leidingCurrentAmount,
     newAmount,
-    content = 2,
+    intrest = 2,
     leidingTegoed = TAFFY().store('leiding-tegoed'),
     records = TAFFY().store('records'),
     dranken = TAFFY().store('dranken'),
@@ -142,10 +142,12 @@ function removePerson(n) {
 }
 
 function selectAmount(n) {
-    if (currentAmount < 0.8){
-        content = n*1.03;
+    if (currentAmount <= 0.8){
+        intrest = 1.03;
+        // console.log('pay intrest')
     } else {
-        content = n;
+        // console.log('didn\'t intrest')
+        intrest = 1;
     }
 
     let nOutput = '';
@@ -175,22 +177,24 @@ function selectAmount(n) {
     document.querySelector("#showCurrentAmount").classList.add('d-none');
     document.querySelector("#notifCurrentAmount").classList.add('d-none');
 
-    console.log(`amount selected: ${n}`)
+    console.log(`amount selected: ${n}`)    
 
     if (selectedDrankIsMix == true) {
-        newAmount = currentAmount - selectedDrankAmount[n];
-        console.log(`newAmount with cocktail: ${currentAmount} - ${selectedDrankAmount[n]}`)
-        records.insert({date: new Date().toLocaleString('en-GB', { timeZone: 'UTC' }),name: hasToPay, amount: selectedDrankAmount[n], drank: selectedDrank + ` (${nOutput} + ${mixOutput})`});
+        newAmount = currentAmount - (selectedDrankAmount[n]*intrest);
+        // console.log(`newAmount with cocktail: ${currentAmount} - ${selectedDrankAmount[n]}`)
+        // console.log(`selectedDrankAmount[n] type (${typeof selectedDrankAmount[n]}) = ${selectedDrankAmount[n]} \b intrest type (${typeof intrest}) = ${intrest}; ${selectedDrankAmount[n]*intrest}; ${newAmount}`)
+        records.insert({date: new Date().toLocaleString('en-GB', { timeZone: 'UTC' }),name: hasToPay, amount: (selectedDrankAmount[n]*intrest), drank: selectedDrank + ` (${nOutput} + ${mixOutput})`});
     } else if (selectedDrankIsMix == false) {
-        newAmount = currentAmount - selectedDrankAmount;
-        console.log(`newAmount one`)
-        records.insert({date: new Date().toLocaleString('en-GB', { timeZone: 'UTC' }),name: hasToPay, amount: selectedDrankAmount, drank: selectedDrank});
+        newAmount = currentAmount - selectedDrankAmount*intrest;
+        // console.log(`newAmount one`)
+        // console.log(`selectedDrankAmount[n] type (${typeof selectedDrankAmount}) = ${selectedDrankAmount} \b intrest type (${typeof intrest}) = ${intrest}; ${selectedDrankAmount*intrest}; ${newAmount}`)
+        records.insert({date: new Date().toLocaleString('en-GB', { timeZone: 'UTC' }),name: hasToPay, amount: (selectedDrankAmount*intrest), drank: selectedDrank});
     }
 
+    // console.log(`newAmount: ${newAmount}`)
     leidingTegoed({name: hasToPay}).update({amount: newAmount})
     
-    // console.log(`updated tegoed: ${leidingTegoed().filter({column: hasToPay})}`)
-
+    document.querySelector("#home").scrollIntoView()
     initiate();
 }
 
@@ -204,6 +208,8 @@ function selectDrink(amount, n, mix) {
         selectedDrankIsMix = false;
     } else {
         selectedDrankIsMix = true;
+        document.querySelector("#selectContent > div > div > div > button:nth-child(2)").classList.remove('d-none')
+        document.querySelector("#selectContent > div > div > div > button:nth-child(3)").classList.remove('d-none')        
     }
 
     console.log(`price selected is ${selectedDrankAmount}`)
@@ -286,12 +292,15 @@ function topUp(p, e) {
     console.log('current amount ' + parseFloat(e));
     console.log('new amount ' + newAmount);
     // console.log('new amount ' + e);
-    if (e != '') {
-        leidingTegoed({name: p}).update({amount: newAmount});
-        inpTopUp.value = '0'
-    } else {
-        alert('false amount')
-    }
+    // if (e != '') {
+    //     leidingTegoed({name: p}).update({amount: newAmount});
+    //     inpTopUp.value = 0;
+    // } else {
+    //     alert('false amount')
+    // }
+
+    leidingTegoed({name: p}).update({amount: newAmount});
+
 
     initiate();
 }
@@ -470,7 +479,9 @@ function removeDBDranken() {
 
 function amount2Eur(n) {
     // console.log('amount2Eur ' + n)
-    return `€ ${parseFloat(n.toString()).toFixed(2).toString().replace('.',',')}`
+    if (n !== null || n !== 'null') {
+        return `€ ${parseFloat(n.toString()).toFixed(2).toString().replace('.',',')}`;
+    }
 }
 
 function inputMix2String(n) {
@@ -483,8 +494,6 @@ function inputMix2String(n) {
             d = 'Fristi / fruitsap';
             break;
     }
-
-    // console.log(`n: ${n}, d: ${d}`)
 
     return d
 }

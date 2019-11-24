@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Bar Board</title>
+    <title>Bar Bord</title>
     <script src="https://ce.lennertderyck.be/library/elements.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="./js/taffy.js"></script>
@@ -15,9 +15,9 @@
     <link rel="stylesheet" href="./css/main.css">
     <link rel="stylesheet" href="./css/fonts.css">
 </head>
-<body data-admin-login="true">
-    <header class="py-3">
-        <div class="container">
+<body class="mt-5 mb-4" data-admin-login="false">
+    <header>
+        <div class="container pl-0">
             <div class="row mb-4 d-none">
                 <div class="col-auto mr-4">
                     <img src="./images/qr_code_5.png" height="120px"/>
@@ -31,7 +31,7 @@
             <div class="flex justify-content-center">
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active pl-0" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Barbord</a>
+                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Barbord</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Registratie</a>
@@ -50,8 +50,8 @@
         </div>
     </header>
     <div class="tab-content" id="myTabContent">
-        <div class="tab-pane fade show active py-4" id="home" role="tabpanel" aria-labelledby="home-tab">
-            <div class="container spacing-r">
+        <div class="tab-pane fade show active spacing-r" id="home" role="tabpanel" aria-labelledby="home-tab">
+            <div class="container">
                 <div id="notifNoLeiding" class="card text-white bg-info mb-4">
                     <div class="card-body">
                         <h4>Er werd geen leiding gevonden</h4>
@@ -63,21 +63,6 @@
                     <div class="col">
                         <h3>Naam</h3>
                         <p>Kies je naam</p>
-                        <div id="showCurrents" class="p-4">
-                            <div>
-                                <div id="showCurrentAmount" class="card text-white bg-color-main mb-4 d-none">
-                                    <div class="card-body">
-                                        <h5 class="card-title mb-0">Je hebt momenteel <span class="showCurrentAmount">lol</span> tegoed</h5>
-                                    </div>
-                                </div>
-                                <div id="notifCurrentAmount" class="card text-white bg-danger mb-4 d-none">
-                                    <div class="card-body">
-                                        <h4>Je tegoed bedraagt €0,80 of minder</h4>
-                                        <p class="mb-0">Als je nu drank koopt zal je een negatief bedrag hebben en dus 3% meer betalen.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                         <div class="flex-grid-wrapper row-item-4">
                             <div class="buttons flex-grid"></div>
                         </div>
@@ -102,11 +87,11 @@
                                     <img class="mb-2 mx-auto d-block" src="./images/icons/icon_hoev_enkel_white.svg" height="30px" alt="">
                                     <span class="d-block">Enkel</span>
                                 </button>
-                                <button class="btn btn-primary txt-item flex-grid-item" onclick="selectAmount(1)">
+                                <button class="btn btn-primary txt-item flex-grid-item d-none" onclick="selectAmount(1)">
                                     <img class="mb-2 mx-auto d-block" src="./images/icons/icon_hoev_dubbel_white.svg" height="30px" alt="">
                                     <span class="d-block">Dubbel</span>
                                 </button>
-                                <button class="btn btn-primary txt-item flex-grid-item" onclick="selectAmount(2)">
+                                <button class="btn btn-primary txt-item flex-grid-item d-none" onclick="selectAmount(2)">
                                     <img class="mb-2 mx-auto d-block" src="./images/icons/icon_hoev_half_white.svg" height="30px" alt="">
                                     <span class="d-block">Extra</span>
                                 </button>
@@ -117,7 +102,7 @@
                  
             </div>
         </div>
-        <div class="tab-pane fade py-4" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
             <div class="container">
                 <h3 class="mb-4">Leiding</h3>
                 <div class="row">
@@ -159,7 +144,7 @@
                 </div>
             </div>
         </div>
-        <div class="tab-pane fade py-4" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
             <div class="container">
                 <h3 class="mb-4">Registratie</h3>
                 <table class="table">
@@ -175,7 +160,7 @@
                 </table>
             </div>
         </div>
-        <div class="tab-pane fade py-4" id="dranken" role="tabpanel" aria-labelledby="dranken-tab">
+        <div class="tab-pane fade" id="dranken" role="tabpanel" aria-labelledby="dranken-tab">
             <div class="container">
                 <h3 class="mb-4">Drank beheer</h3>
                 <table class="table">
@@ -195,7 +180,7 @@
                             <th class="input-group">
                                 <input type="number" class="form-control" id="inpDrankAmount" placeholder="Enkel" min="0.01">
                                 <input type="number" class="form-control" id="inpDrankAmount2" placeholder="Dubbel" min="0.01">
-                                <input type="number" class="form-control" id="inpDrankAmount3" placeholder="Half" min="0.01">
+                                <input type="number" class="form-control" id="inpDrankAmount3" placeholder="Extra" min="0.01">
                             </th>
                             <th>                            
                                 <div class="input-group">
@@ -218,7 +203,7 @@
                 </table>
             </div>
         </div>
-        <div class="tab-pane fade py-4" id="settings" role="tabpanel" aria-labelledby="settings-tab">
+        <div class="tab-pane fade" id="settings" role="tabpanel" aria-labelledby="settings-tab">
             <div class="container">
                 <h3 class="mb-4">Instellingen</h3>
                 <div class="row mb-4">
@@ -256,14 +241,44 @@
                         </form>
                     </div>
                 </div>
-                <hr class="my-4">
                 <div class="row mb-4 show-admin">
                     <div class="col">
+                        <hr class="my-4">
                         <h5>Gegevens verwijderen</h5>
                         <p>Verwijder alle leiding en/of de registraties</p>
                         <button class="btn btn-danger d-inline mr-3" onclick="removeDBLeiding()"><i data-feather="trash-2"></i>Leiding verwijderen</button>
                         <button class="btn btn-warning d-inline mr-3" onclick="removeDBRecords()"><i data-feather="trash-2"></i>Registraties verwijderen</button>
                         <button class="btn btn-warning d-inline" onclick="removeDBDranken()"><i data-feather="trash-2"></i>Dranken verwijderen</button>
+                    </div>
+                </div>
+                <hr class="my-4">
+                <div class="row">
+                    <div class="col">
+                        <p class="font-scnd mb-0">Credits</p>
+                        <small class="d-block">Ontwikkeld door <a href="https://www.instagram.com/lennertderyck/" target="_blank" rel="noopener" class="url">@lennertderyck</a>, bijdragen kan op <a href="https://github.com/lennertderyck/bar-board" target="_blank" rel="noopener" class="url">GitHub</a>.</small>
+                        <small class="d-block"><i data-feather="heart"></i> Bootstrap</small>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div id="showCurrents" class="p-4 container">
+        <div class="row">
+            <div class="col-auto">
+                <div id="showCurrentAmount" class="card text-white bg-color-main mb-4 d-none">
+                    <div class="card-body">
+                        <h5 class="card-title mb-0">Je hebt momenteel <span class="showCurrentAmount">lol</span> tegoed</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div id="notifCurrentAmount" class="card text-white bg-danger d-none">
+                    <div class="card-body">
+                        <h4 class="mb-0">Je tegoed bedraagt €0,80 of minder</h4>
+                        <p class="mb-0">Als je nu drank koopt zal je een negatief bedrag hebben en dus 3% meer betalen.</p>
+                        <!-- <p class="mb-0 d-none">Je zal 3% meer betalen</p> -->
                     </div>
                 </div>
             </div>
