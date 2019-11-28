@@ -10,4 +10,4 @@ out
 out/*
 out/
 .DS_Store
-/.DS_Store
+**/.DS_Store

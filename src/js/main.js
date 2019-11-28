@@ -26,7 +26,8 @@ const
     inpDrankAmount2 = document.querySelector("#inpDrankAmount2"),
     inpDrankAmount3 = document.querySelector("#inpDrankAmount3"),
     inpDrankColor = document.querySelector("#inpDrankColor"),
-    inpAdminPassw = document.querySelector("#inpAdminPassword");
+    inpAdminPassw = document.querySelector("#inpAdminPassword"),
+    inpChangePassword = document.querySelector("#inpChangePassword");
 
 const
     now = new Date(),
@@ -49,8 +50,10 @@ let leiding = [],
     leidingTegoed = TAFFY().store('leiding-tegoed'),
     records = TAFFY().store('records'),
     dranken = TAFFY().store('dranken'),
-    adminPassw = '110a6e0aecf707012331d14f13d4a251b9d392c5317fa39332567ee57a140cc6',
-    adminLoggedIn = false;
+    adminPassword = TAFFY().store('password'),
+    adminPasswordDefault = '110a6e0aecf707012331d14f13d4a251b9d392c5317fa39332567ee57a140cc6',
+    adminLoggedIn = false,
+    newAdminPassword;
 
 function initiate() {
     btnSave.addEventListener('click', () => {
@@ -133,6 +136,8 @@ function selectPerson(n, e) {
 
     showCurrentAmount(currentAmount);
     document.querySelector("#selectDrank").scrollIntoView();
+
+    document.querySelector("#home").classList.add('spacing-r');
 }
 
 function removePerson(n) {
@@ -195,6 +200,8 @@ function selectAmount(n) {
     leidingTegoed({name: hasToPay}).update({amount: newAmount})
     
     document.querySelector("#home").scrollIntoView()
+    document.querySelector("#home").classList.remove('spacing-r');
+
     initiate();
 }
 
@@ -386,10 +393,13 @@ function save() {
 }
 
 function logInAdmin() {
-    if (a(inpAdminPassword.value) == adminPassw ) {
+    if (a(inpAdminPassword.value) == adminPasswordDefault && readCookie('adpw') == null) {
         console.log('admin logged in');
         body.setAttribute('data-admin-login', true)
         // localStorage.setItem('admin-logged-in', true);
+    } else if (a(inpAdminPassword.value) == getCookie('adpw')) {
+        console.log('admin logged in');
+        body.setAttribute('data-admin-login', true)
     } else {
         console.log('password false');
         alert('Het opgegeven wachtwoord is fout')
@@ -404,6 +414,12 @@ function logOffAdmin() {
     body.setAttribute('data-admin-login', false)
     // localStorage.setItem('admin-logged-in', false);
     // console.log(localStorage.removeItem('admin-logged-in'));
+}
+
+function saveAdminPassword() {
+    newAdminPassword = inpChangePassword.value;
+    console.log(`new password registered: ${newAdminPassword} = ${a(newAdminPassword)}`);
+    createCookie('adpw', a(newAdminPassword));
 }
 
 function loadFile() {

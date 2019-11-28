@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="./js/taffy.js"></script>
     <script src="./js/filesaver.js"></script>
+    <script src="./js/cookies.js"></script>
     <!-- <script src="./js/feather.min.js"></script> -->
     <script src="https://unpkg.com/feather-icons"></script>
     <script src="./js/sha256.min.js"></script>
@@ -50,7 +51,7 @@
         </div>
     </header>
     <div class="tab-content" id="myTabContent">
-        <div class="tab-pane fade show active spacing-r" id="home" role="tabpanel" aria-labelledby="home-tab">
+        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
             <div class="container">
                 <div id="notifNoLeiding" class="card text-white bg-info mb-4">
                     <div class="card-body">
@@ -59,12 +60,34 @@
                     </div>
                 </div>
 
+                
+
                 <div class="row mb-4 d-none">
                     <div class="col">
                         <h3>Naam</h3>
                         <p>Kies je naam</p>
                         <div class="flex-grid-wrapper row-item-4">
                             <div class="buttons flex-grid"></div>
+                        </div>
+                    </div>
+                    <div id="showCurrents" class="p-4 container">
+                        <div class="row">
+                            <div class="col-auto">
+                                <div id="showCurrentAmount" class="card text-white bg-color-main mb-4 d-none">
+                                    <div class="card-body">
+                                        <h5 class="card-title mb-0">Je hebt momenteel <span class="showCurrentAmount">lol</span> tegoed</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div id="notifCurrentAmount" class="card text-white bg-danger d-none">
+                                    <div class="card-body">
+                                        <h4 class="mb-0">Je tegoed bedraagt €0,80 of minder</h4>
+                                        <p class="mb-0">Als je nu drank koopt zal je een negatief bedrag hebben en dus 3% meer betalen.</p>
+                                        <!-- <p class="mb-0 d-none">Je zal 3% meer betalen</p> -->
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -112,7 +135,7 @@
                                 <h5 class="card-title mb-0 ">Geef een naam en bedrag op</h5>
                             </div>
                         </div>
-                        <table class="table">
+                        <table class="table mb-0">
                             <thead>
                                 <tr>
                                     <th scope="col">Naam</th>
@@ -120,7 +143,7 @@
                                     <th scope="col">Topup</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody class="nohover">
                                 <tr>
                                     <th>
                                         <input type="text" class="form-control" name="leiding naam" id="leidingNaam" autocomplete="off" placeholder="Naam leiding"><br>
@@ -147,7 +170,7 @@
         <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
             <div class="container">
                 <h3 class="mb-4">Registratie</h3>
-                <table class="table">
+                <table class="table mb-0">
                     <thead>
                         <tr>
                             <th scope="col">Datum</th>
@@ -163,7 +186,7 @@
         <div class="tab-pane fade" id="dranken" role="tabpanel" aria-labelledby="dranken-tab">
             <div class="container">
                 <h3 class="mb-4">Drank beheer</h3>
-                <table class="table">
+                <table class="table mb-0">
                     <thead>
                         <tr>
                             <th scope="col">Naam drank</th>
@@ -172,7 +195,7 @@
                             <th scope="col">Kleur</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="nohover">
                         <tr>
                             <th>
                                 <input type="text" class="form-control" name="leiding naam" id="drankNaam" autocomplete="off" placeholder="Naam drank"><br>
@@ -207,7 +230,7 @@
             <div class="container">
                 <h3 class="mb-4">Instellingen</h3>
                 <div class="row mb-4">
-                    <div class="col-4 mr-5">
+                    <div class="col-6">
                         <h5>Aanmelden</h5>
                         <p>Login als stamleiding om het Bar Board te beheren</p>
 
@@ -221,6 +244,19 @@
                             </div>
                         </div>
                         <button class="btn btn-primary show-admin" onclick="logOffAdmin()"><i data-feather="log-out"></i>Afmelden</button>
+                    </div>
+                    <div class="col-6 show-admin">
+                        <h5>Wachtwoord</h5>
+                        <p>Wachtwoord aanpassen</p>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text icon-sm"><i data-feather="lock"></i></div>
+                            </div>
+                            <input type="password" class="form-control" id="inpChangePassword" placeholder="Wachtwoord">
+                            <div class="input-group-append">
+                            <button class="btn btn-primary" onclick="saveAdminPassword()"><i data-feather="save"></i>Opslaan</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <hr class="my-4">
@@ -255,32 +291,11 @@
                 <div class="row">
                     <div class="col">
                         <p class="font-scnd mb-0">Credits</p>
-                        <small class="d-block">Ontwikkeld door <a href="https://www.instagram.com/lennertderyck/" target="_blank" rel="noopener" class="url">@lennertderyck</a>, bijdragen kan op <a href="https://github.com/lennertderyck/bar-board" target="_blank" rel="noopener" class="url">GitHub</a>.</small>
-                        <small class="d-block"><i data-feather="heart"></i> Bootstrap</small>
+                        <small class="d-block mb-2">Ontwikkeld door <a href="https://www.instagram.com/lennertderyck/" target="_blank" rel="noopener" class="url">@lennertderyck</a>, bijdragen kan op <a href="https://github.com/lennertderyck/bar-board" target="_blank" rel="noopener" class="url">GitHub</a>.</small>
+                        <small class="d-block icon-sm"><i data-feather="heart"></i> <a href="https://getbootstrap.com" target="_blank" rel="noopener" class="url">Bootstrap</a> & <a href="https://feathericons.com/" target="_blank" rel="noopener" class="url">Feather</a></small>
                     </div>
                 </div>
 
-            </div>
-        </div>
-    </div>
-
-    <div id="showCurrents" class="p-4 container">
-        <div class="row">
-            <div class="col-auto">
-                <div id="showCurrentAmount" class="card text-white bg-color-main mb-4 d-none">
-                    <div class="card-body">
-                        <h5 class="card-title mb-0">Je hebt momenteel <span class="showCurrentAmount">lol</span> tegoed</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div id="notifCurrentAmount" class="card text-white bg-danger d-none">
-                    <div class="card-body">
-                        <h4 class="mb-0">Je tegoed bedraagt €0,80 of minder</h4>
-                        <p class="mb-0">Als je nu drank koopt zal je een negatief bedrag hebben en dus 3% meer betalen.</p>
-                        <!-- <p class="mb-0 d-none">Je zal 3% meer betalen</p> -->
-                    </div>
-                </div>
             </div>
         </div>
     </div>

@@ -21,10 +21,10 @@
           box-shadow: none;
 }
 
-*:focus {
-  outline: none;
-  -webkit-box-shadow: none;
-          box-shadow: none;
+:focus, :focus-within, ::after, ::before {
+  outline: none !important;
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
 }
 
 body {
@@ -101,8 +101,38 @@ h6 {
   margin-right: 0px;
 }
 
+.btn.btn-primary {
+  background-color: #007bff38;
+  color: #0065ff;
+  border: none;
+}
+
+.btn.btn-success {
+  background-color: #28a74538;
+  color: #186d2c;
+  border: none;
+}
+
+.btn.btn-danger {
+  background-color: #dc355138;
+  color: #ab2e3a;
+  border: none;
+}
+
+.btn.btn-warning {
+  background-color: #ffc10738;
+  color: #a27c07;
+  border: none;
+}
+
+.btn.btn-info {
+  color: #107080;
+  background-color: #17a2b838;
+  border: none;
+}
+
 .icon-sm svg {
-  --d: 17px;
+  --d: 12px;
   width: var(--d);
   height: var(--d);
   -webkit-transform: translateY(-1px);
@@ -183,5 +213,13 @@ header .nav-tabs .nav-item .nav-link.active, header .nav-tabs .nav-item .nav-lin
   padding: 30px;
   background-color: var(--accent-1);
   border-radius: 0px 8px 8px 8px;
+}
+
+.tab-content .tab-pane div:last-of-type.row {
+  margin-bottom: 0px !important;
+}
+
+table tbody:not(.nohover) > tr:hover, table tbody:not(.nohover) > tr:focus {
+  background-color: #ececec;
 }
 /*# sourceMappingURL=main.css.map */
