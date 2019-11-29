@@ -36,7 +36,7 @@ Alle gegevens kunnen geexporteerd worden als backup indien gegevens verloren rak
 ---
 
 ## Software
-| **[Demo](https://bar-bord.haegepoorters.be/src/)** (wachtwoord: ```baarmoeder```) | **[Download voor MacOS](https://github.com/lennertderyck/bar-board/releases)** |
+| **[Demo](https://bar-bord.haegepoorters.be/src/)** (wachtwoord: ```stamvader```) | **[Download voor MacOS](https://github.com/lennertderyck/bar-board/releases)** |
 
 Voorlopig is Bar Bord enkel beschikbaar voor MacOS, maar we zouden deze ook graag uitbrengen voor Windows.<br>
 Wil je Bar Bord eigenhandig omzetten als Windows programma? Volg de stappen hieronder:
