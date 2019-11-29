@@ -2,7 +2,7 @@
 
 <br>
 
-### [Functies](#functies) | [Software](#software) | [Demo](https://bar-bord.haegepoorters.be/src/)
+### [Functies](#functies) | [Software](#software) | [Demo](https://bar-bord.haegepoorters.be/src/) (wachtwoord: ```stamvader```)
 
 ---
 
