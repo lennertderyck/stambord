@@ -51,7 +51,7 @@ let leiding = [],
     records = TAFFY().store('records'),
     dranken = TAFFY().store('dranken'),
     adminPassword = TAFFY().store('password'),
-    adminPasswordDefault = '110a6e0aecf707012331d14f13d4a251b9d392c5317fa39332567ee57a140cc6',
+    adminPasswordDefault = a('stamvader'),
     adminLoggedIn = false,
     newAdminPassword;
 
@@ -405,6 +405,8 @@ function logInAdmin() {
         alert('Het opgegeven wachtwoord is fout')
     }
 
+    inpAdminPassword.value = '';
+
     generateDrank();
     feather.replace();
 }
@@ -420,6 +422,8 @@ function saveAdminPassword() {
     newAdminPassword = inpChangePassword.value;
     console.log(`new password registered: ${newAdminPassword} = ${a(newAdminPassword)}`);
     createCookie('adpw', a(newAdminPassword));
+    inpChangePassword.value = '';
+    alert('Het nieuwe wachtwoord werd opgeslagen.')
 }
 
 function loadFile() {

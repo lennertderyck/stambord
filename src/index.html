@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- <script>alert('bevestig om te beginnen')</script> -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -257,6 +258,7 @@
                             <button class="btn btn-primary" onclick="saveAdminPassword()"><i data-feather="save"></i>Opslaan</button>
                             </div>
                         </div>
+                        <p><small>Hoeft er geen wachtwoord ingesteld te worden? Laat het vak dan leeg en sla op.</small></p>
                     </div>
                 </div>
                 <hr class="my-4">
@@ -268,13 +270,14 @@
                     </div>
                     <div class="col">
                         <h5 class="mb-3">Backup importeren</h5>
-                        <p>Importeer het gedownloade bestand om gegevens te herstellen</p>
-                        <form id="jsonFile" name="jsonFile" enctype="multipart/form-data" method="post">
+                        <p class="show-admin">Importeer het gedownloade bestand om gegevens te herstellen</p>
+                        <form id="jsonFile" class="show-admin" name="jsonFile" enctype="multipart/form-data" method="post">
                             <fieldset>
                                 <input type='file' id='fileinput'>
                                 <input type='button' class="btn btn-primary" id='btnLoad' value='Inladen' onclick='loadFile();'>
                             </fieldset>
                         </form>
+                        <p class="hide-admin">Een backup terugzetten is enkel mogelijk als beheerder; Meld je aan hierboven</p>
                     </div>
                 </div>
                 <div class="row mb-4 show-admin">
@@ -292,7 +295,7 @@
                     <div class="col">
                         <p class="font-scnd mb-0">Credits</p>
                         <small class="d-block mb-2">Ontwikkeld door <a href="https://www.instagram.com/lennertderyck/" target="_blank" rel="noopener" class="url">@lennertderyck</a>, bijdragen kan op <a href="https://github.com/lennertderyck/bar-board" target="_blank" rel="noopener" class="url">GitHub</a>.</small>
-                        <small class="d-block icon-sm"><i data-feather="heart"></i> <a href="https://getbootstrap.com" target="_blank" rel="noopener" class="url">Bootstrap</a> & <a href="https://feathericons.com/" target="_blank" rel="noopener" class="url">Feather</a></small>
+                        <small class="d-block icon-sm"><i data-feather="heart"></i> <a href="https://getbootstrap.com" target="_blank" rel="noopener" class="url">Bootstrap</a>, <a href="https://feathericons.com/" target="_blank" rel="noopener" class="url">Feather</a> & <a href="https://electronjs.org/" target="_blank" rel="noopener" class="url">Electron</a></small>
                     </div>
                 </div>
 
