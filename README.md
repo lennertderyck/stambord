@@ -19,6 +19,7 @@ Oorspronkelijk ontwikkeld om het betaalprobleem op te lossen op m'n [eigen scout
 - **Verkooprecords** Alles wat verkocht wordt, wordt bijgehouden. Dit maakt het mogelijk om te controleren of iemand te weinig betaald. Men kan dan de verkochtte items, de naam van de persoon en de prijs (incl. intrest) nazien.
 - **Beheer** Items en leiding toevoegen/verwijderen of tegoed toevoegen kan enkel gedaan worden door een beheerder die zich moet aanmelden. Daarbij is het mogeelijk het wachtwoord hier voor te wijzigen.
 - **Backup** De records, personen en items kunnen bewaard worden als een bestand. Dit bestand kan later terug worden ingeladen om de gegevens te herstellen.
+- **Online of offline** De demo kan gewoon gebruikt worden als volledige online versie. Doch is het aangeraden om de software te installeren.
 
 ### Roadmap
 - Instellen of er items gekocht kunnen worden met een negatief tegoed.
