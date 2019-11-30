@@ -14,7 +14,7 @@ Oorspronkelijk ontwikkeld om het betaalprobleem op te lossen op m'n [eigen scout
 > Opgelet, deze applicatie is op geen enkele manier verbonden met het internet. Het is dus mogelijk om het te draaien zonder een verbinding, maar er is geen integratie met een betalingsysteem zoals Bancontact. Je dient dus zelf handmatig tegoed toe te voegen als beheerder.
 
 ## Functies
-- **Items toevoegen** Geef drank, snacks of andere items op die verkocht kunnen worden. Je kan voor elk item een kleur opgeven zodat dit visueel duidelijk is.
+- **Items toevoegen** Geef drank, snacks of andere items op die verkocht kunnen worden. Je kan voor elk item een kleur opgeven dat wordt weergegeven bij de oplijsting van de items.
 - **Personen toevoegen** Voeg personen toe aan het systeem. Elke persoon krijgt zijn eigen 'rekening'.
 - **Verkooprecords** Alles wat verkocht wordt, wordt bijgehoude. Dit maakt het mogelijk om te controleren of iemand te weinig betaald. Men ziet items, de naam van de persoon en de prijs (incl. intrest)
 - **Beheer** Items en leiding toevoegen/verwijderen of tegoed toevoegen kan enkel gedaan worden door een beheerder die zich moet aanmelden.
