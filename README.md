@@ -14,24 +14,15 @@ Oorspronkelijk ontwikkeld om het betaalprobleem op te lossen op m'n [eigen scout
 > Opgelet, deze applicatie is op geen enkele manier verbonden met het internet. Het is dus mogelijk om het te draaien zonder een verbinding, maar er is geen integratie met een betalingsysteem zoals Bancontact. Je dient dus zelf handmatig tegoed toe te voegen als beheerder.
 
 ## Functies
-#### Voeg items toe
-Maak een lijst aan van items die verkocht kunnen worden, geef een naam, prijs en kleurtag voor elk item op.
+- **Items toevoegen** Geef drank, snacks of andere items op die verkocht kunnen worden. Je kan voor elk item een kleur opgeven zodat dit visueel duidelijk is.
+- **Personen toevoegen** Voeg personen toe aan het systeem. Elke persoon krijgt zijn eigen 'rekening'.
+- **Verkooprecords** Alles wat verkocht wordt, wordt bijgehoude. Dit maakt het mogelijk om te controleren of iemand te weinig betaald. Men ziet items, de naam van de persoon en de prijs (incl. intrest)
+- **Beheer** Items en leiding toevoegen/verwijderen of tegoed toevoegen kan enkel gedaan worden door een beheerder die zich moet aanmelden.
+- **Backup** De records, personen en items kunnen bewaard worden in een bestand. Dit bestand kan later terug worden ingeladen om de gegevens te herstellen.
 
-#### Maak leiding aan
-Voeg namen van leiding toe en een bedrag dat deze persoon bij het aanmaken als tegoed overgemaakt heeft.
-
-#### Itemkeuze
-De personen worden opgelijst, hier kan iemand zijn naam uit kiezen. Daarna wordt een hoeveelheid gekozen en het item die ze willen kopen.
-De items die gekozen worden hebben worden in het kleur getoond dat werd opgegeven wanneer het item aangemaakt werkt.
-
-#### Records
-Elk item dat gekocht wordt, wordt bewaard en is te controleren.
-
-#### Beheer
-Enkel stamleiding kan leiding en drank beheren, en tegoed toevoegen.
-
-#### Backup
-Alle gegevens kunnen geexporteerd worden als backup indien gegevens verloren raken.
+### Roadmap
+- Instellen of er items gekocht kunnen worden met een negatief tegoed.
+- Instellen hoeveel intrest er gevraagd wordt bij een negatief tegoed.
 
 ---
 
