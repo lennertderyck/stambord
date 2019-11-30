@@ -16,9 +16,9 @@ Oorspronkelijk ontwikkeld om het betaalprobleem op te lossen op m'n [eigen scout
 ## Functies
 - **Items toevoegen** Geef drank, snacks of andere items op die verkocht kunnen worden. Je kan voor elk item een kleur opgeven dat wordt weergegeven bij de oplijsting van de items.
 - **Personen toevoegen** Voeg personen toe aan het systeem. Elke persoon krijgt zijn eigen 'rekening'.
-- **Verkooprecords** Alles wat verkocht wordt, wordt bijgehoude. Dit maakt het mogelijk om te controleren of iemand te weinig betaald. Men ziet items, de naam van de persoon en de prijs (incl. intrest)
-- **Beheer** Items en leiding toevoegen/verwijderen of tegoed toevoegen kan enkel gedaan worden door een beheerder die zich moet aanmelden.
-- **Backup** De records, personen en items kunnen bewaard worden in een bestand. Dit bestand kan later terug worden ingeladen om de gegevens te herstellen.
+- **Verkooprecords** Alles wat verkocht wordt, wordt bijgehouden. Dit maakt het mogelijk om te controleren of iemand te weinig betaald. Men kan dan de verkochtte items, de naam van de persoon en de prijs (incl. intrest) nazien.
+- **Beheer** Items en leiding toevoegen/verwijderen of tegoed toevoegen kan enkel gedaan worden door een beheerder die zich moet aanmelden. Daarbij is het mogeelijk het wachtwoord hier voor te wijzigen.
+- **Backup** De records, personen en items kunnen bewaard worden als een bestand. Dit bestand kan later terug worden ingeladen om de gegevens te herstellen.
 
 ### Roadmap
 - Instellen of er items gekocht kunnen worden met een negatief tegoed.
