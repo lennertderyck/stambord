@@ -20,16 +20,6 @@
 <body class="mt-5 mb-4" data-admin-login="false">
     <header>
         <div class="container pl-0">
-            <div class="row mb-4 d-none">
-                <div class="col-auto mr-4">
-                    <img src="./images/qr_code_5.png" height="120px"/>
-                </div>
-                <div class="col d-flex flex-column justify-content-center">
-                    <h2>Stamkaart</h2>
-                    <h4>Scan de code met je bankapp</h4>
-                    <h6>BE58 7360 3139 0779</h6>
-                </div>
-            </div>
             <div class="flex justify-content-center">
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item">
@@ -46,6 +36,9 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="settings-tab" data-toggle="tab" href="#settings" role="tab" aria-controls="settings" aria-selected="false">Instellingen</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="other-tab" data-toggle="tab" href="#other" role="tab" aria-controls="other" aria-selected="false">Help</a>
                     </li>
                 </ul>
             </div>
@@ -280,7 +273,7 @@
                         <p class="hide-admin">Een backup terugzetten is enkel mogelijk als beheerder; Meld je aan hierboven</p>
                     </div>
                 </div>
-                <div class="row mb-4 show-admin">
+                <div class="row mb-0 show-admin">
                     <div class="col">
                         <hr class="my-4">
                         <h5>Gegevens verwijderen</h5>
@@ -290,15 +283,67 @@
                         <button class="btn btn-warning d-inline" onclick="removeDBDranken()"><i data-feather="trash-2"></i>Dranken verwijderen</button>
                     </div>
                 </div>
+
+
+            </div>
+        </div>
+        <div class="tab-pane fade" id="other" role="tabpanel" aria-labelledby="other-tab">
+            <div class="container">
+                <h3 class="mb-4">Help</h3>
+                <div class="row">
+                    <div class="col">
+                        <div class="row mb-2">
+                            <div class="col-auto mr-4">
+                                <img src="./images/qr_code_5.png" height="120px"/>
+                            </div>
+                            <div class="col d-flex flex-column justify-content-center">
+                                <h5 class="mt-0">Stamkaart</h5>
+                                <p class="mb-0">Scan de code met je bankapp</p>
+                                <p class="mb-0"><strong>BE58 7360 3139 0779</strong></p>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col">
+                                <p class="mb-0">
+                                    of ga naar <strong>haegepoorters.be/stamkaart/5</strong>
+                                </p>
+                                <p class="mb-0"><small>rekeningnummer wordt automatisch gekopieerd</small></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="col">
+                            <h5>Stam HP</h5>
+                            <p class="mb-1">Volg op Spotify en voeg zelf nummers toe!</p>
+                            <small class="d-block mb-3"><strong>Open spotify → Zoeken → Camera icoon → Scan de code</strong></small>
+                            <img class="mb-3" src="./images/spotify_code.svg" alt="" width="200px">
+
+                            <p class="mb-0">of ga naar <strong>haegepoorters.be/stamhp</strong></p>
+
+                        </div>
+                    </div>
+                </div>
                 <hr class="my-4">
                 <div class="row">
                     <div class="col">
-                        <p class="font-scnd mb-0">Credits</p>
-                        <small class="d-block mb-2">Ontwikkeld door <a href="https://www.instagram.com/lennertderyck/" target="_blank" rel="noopener" class="url">@lennertderyck</a>, bijdragen kan op <a href="https://github.com/lennertderyck/bar-board" target="_blank" rel="noopener" class="url">GitHub</a>.</small>
+                        <h5><small><strong>Voorwaarden en beveiliging</strong></small></h5>
+                        <p class="mb-2"><small>
+                            Deze applicatie werd gemaakt met context in het achterhoofd. Het is bedoeld voor jeugdverenigingen, kleine vzw's en dergelijke om het betalen van drank en snacks te vergemakkelijken. De beveiliging voor bijvoorbeeld de gegevens en zorgen dat deze niet gemanipuleerd worden is minimaal.
+                        </small></p>
+                        <p class="mb-2"><small>
+                            Een persoon met enige kennis van Javascript en/of andere webtechnologieën zou vrij eenvoudig gegevens kunnen manipuleren of verwijderen indien men gebruik maakt van de webapplicatie (de demoversie), het is dus aangeraden de applicatie als software te gebruiken.
+                            Doch zou de beveiliging genoeg moeten zijn voor gebruik op plaatsen zoals een jeugdvereniging.
+                        </small></p>
+                        <p class="mb-0"><small>
+                            Het is aangeraden regelmatig een back-up te maken. De ontwikkelaar is niet verantwoordelijk voor het verlies van data of voor enige vorm van misbruik van de applicatie.
+                        </small></p>
+                    </div>
+                    <div class="col-3">
+                        <p class="font-scnd mb-0"><strong>Credits</strong></p>
+                        <small class="d-block mb-2">Ontwikkeld door <a href="https://www.instagram.com/lennertderyck/" target="_blank" rel="noopener" class="url">@lennertderyck</a>,<br>bijdragen kan op <a href="https://github.com/lennertderyck/bar-board" target="_blank" rel="noopener" class="url">GitHub</a>.</small>
                         <small class="d-block icon-sm"><i data-feather="heart"></i> <a href="https://getbootstrap.com" target="_blank" rel="noopener" class="url">Bootstrap</a>, <a href="https://feathericons.com/" target="_blank" rel="noopener" class="url">Feather</a> & <a href="https://electronjs.org/" target="_blank" rel="noopener" class="url">Electron</a></small>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>

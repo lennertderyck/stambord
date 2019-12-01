@@ -336,7 +336,7 @@ function save() {
         "date": "${r.date}",
         "name": "${r.name}",
         "drank": "${r.drank.replace('.',',')}",
-        "amount": "${r.amount}"
+        "amount": ${r.amount}
     }`
     });
     const file1 = `
@@ -354,7 +354,7 @@ function save() {
     tempStr2 += `,
     {
         "name": "${r.name}",
-        "amount": "${r.amount}"
+        "amount": ${r.amount}
     }`
     });
     const file2 = `
@@ -378,7 +378,7 @@ function save() {
     tempStr3 += `,
     {
         "name": "${r.name}",
-        "amount": "${r.amount}",
+        "amount": ${r.amount},
         "mix": ${d},
         "color": "${r.color}"
     }`
@@ -456,6 +456,10 @@ function loadFile() {
     function receivedText(e) {
         let lines = e.target.result;
         var newArr = JSON.parse(lines);
+
+        // console.log(`e = ${e}`)
+        // console.log(`e.target = ${e.target}`)
+        // console.log(`lines = ${lines}`)
         
         if (filename.includes('records')) {
             records().remove();
@@ -474,8 +478,15 @@ function loadFile() {
             let tempStr;
             newArr.forEach((r) => {
                 console.log(`${r.name} ${r.amount} ${r.mix} ${r.color}`);
-                dranken.insert({name: r.name,  amount: r.amount, mix: r.mix, color: r.color});
+                dranken.insert({name: r.name, amount: r.amount, mix: r.mix, color: r.color});
             });
+        } else if (filename.includes('test')) {
+            console.log(`newArr = ${lines}`)
+            // records().remove();
+            // newArr.records.forEach((r) => {
+            //     console.log(r.date + ' ' + r.amount);
+            //     records.insert({date: r.date,name: r.name, amount: r.amount, drank: r.drank});
+            // });
         }
 
         initiate();
@@ -498,10 +509,13 @@ function removeDBDranken() {
 }
 
 function amount2Eur(n) {
-    // console.log('amount2Eur ' + n)
-    if (n !== null || n !== 'null') {
+    const type = typeof n;
+    console.log(`amount2Eur conversion with ${type}`)
+    if (n !== null || n !== 'null' && type == 'string' ) {
+        console.log(`amount2Eur(${n}) = string`)
         return `€ ${parseFloat(n.toString()).toFixed(2).toString().replace('.',',')}`;
     }
+    // return `${n} euro`
 }
 
 function inputMix2String(n) {
