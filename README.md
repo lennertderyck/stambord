@@ -25,6 +25,10 @@ Oorspronkelijk ontwikkeld om het betaalprobleem op te lossen op m'n [eigen scout
 - Instellen of er items gekocht kunnen worden met een negatief tegoed.
 - Instellen hoeveel intrest er gevraagd wordt bij een negatief tegoed.
 
+- QR-code generator voor het toevoegen van QR-code in app
+- Eigen rekeningnummer opgeven
+- Eigen spotify-code opgeven
+
 ---
 
 ## Software
