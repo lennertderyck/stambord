@@ -1,7 +1,7 @@
 {
-  "name": "bar-bord",
-  "productName": "bar-bord",
-  "version": "v.1.0-beta ",
+  "name": "bar-board",
+  "productName": "bar-board",
+  "version": "v1.3-beta",
   "description": "Beheer de bar van je vereniging",
   "main": "src/index.js",
   "scripts": {
@@ -13,8 +13,8 @@
   },
   "keywords": [],
   "author": {
-    "name": "lennert-de-ryck",
-    "email": "hello@lennertderyck.be"
+    "name": "gdm-lenndery",
+    "email": "32176355+gdm-1718-lenndery@users.noreply.github.com"
   },
   "license": "MIT",
   "config": {
@@ -24,7 +24,7 @@
         {
           "name": "@electron-forge/maker-squirrel",
           "config": {
-            "name": "my_app"
+            "name": "bar_board"
           }
         },
         {
@@ -53,6 +53,6 @@
     "@electron-forge/maker-rpm": "6.0.0-beta.45",
     "@electron-forge/maker-squirrel": "6.0.0-beta.45",
     "@electron-forge/maker-zip": "6.0.0-beta.45",
-    "electron": "7.1.1"
+    "electron": "7.1.3"
   }
 }

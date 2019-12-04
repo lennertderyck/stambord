@@ -19,6 +19,7 @@
     box-sizing: border-box;
     outline: none;
     box-shadow: none;
+    // transition: .2s all ease;
 }
 
 :focus, :focus-within, ::after, ::before {
@@ -114,6 +115,16 @@ a, a:hover, a:focus {
 .icon-sm {
     svg {
         --d: 12px;
+
+        width: var(--d);
+        height: var(--d);
+        transform: translateY(-1px);
+    }
+}
+
+.icon-md {
+    svg {
+        --d: 16px;
 
         width: var(--d);
         height: var(--d);
@@ -223,5 +234,22 @@ header {
 table {
     tbody:not(.nohover) > tr:hover, tbody:not(.nohover) > tr:focus {
         background-color: #ececec;
+    }
+}
+
+#toastContainer {
+    --distance: 30px;
+    position: fixed;
+    top: var(--distance);
+    right: var(--distance);
+    z-index: 100000;
+
+    .toast {
+        min-width: 300px;
+        margin-bottom: 17px;
+
+        .feather {
+            stroke-width: 3px;
+        }
     }
 }

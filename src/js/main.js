@@ -53,7 +53,8 @@ let leiding = [],
     adminPassword = TAFFY().store('password'),
     adminPasswordDefault = a('stamvader'),
     adminLoggedIn = false,
-    newAdminPassword;
+    newAdminPassword,
+    toastIndex = 0;
 
 function initiate() {
     btnSave.addEventListener('click', () => {
@@ -144,6 +145,7 @@ function removePerson(n) {
     console.log(`remove: ${n}`);
     leidingTegoed({name: n}).remove();
     generateUI();
+    createToast('Persoon verwijderd', `${n} werd verwijderd uit de database`)
 }
 
 function selectAmount(n) {
@@ -242,6 +244,7 @@ function addDrank() {
     generateDrank();
     generateListDranken()
     feather.replace();
+    createToast('Item toegevoegd', `${inpDrankNaam.value} toegevoegd aan database`)
 }
 
 function removeDrank(n) {
@@ -310,6 +313,7 @@ function topUp(p, e) {
 
 
     initiate();
+    createToast('Topup', `Er werd €${inpTopUp.value} opgeladen voor ${p}`)
 }
 
 function generateRecords() {
@@ -402,7 +406,8 @@ function logInAdmin() {
         body.setAttribute('data-admin-login', true)
     } else {
         console.log('password false');
-        alert('Het opgegeven wachtwoord is fout')
+        // alert('Het opgegeven wachtwoord is fout')
+        createToast('Wachtwoord', 'Het opgegeven wachtwoord is fout')
     }
 
     inpAdminPassword.value = '';
@@ -423,14 +428,16 @@ function saveAdminPassword() {
     console.log(`new password registered: ${newAdminPassword} = ${a(newAdminPassword)}`);
     createCookie('adpw', a(newAdminPassword));
     inpChangePassword.value = '';
-    alert('Het nieuwe wachtwoord werd opgeslagen.')
+    // alert('Het nieuwe wachtwoord werd opgeslagen.')
+    createToast('Wachtwoord', 'Het nieuwe wachtwoord werd opgeslagen.')
 }
 
 function loadFile() {
     var input, file, fr;
 
     if (typeof window.FileReader !== 'function') {
-        alert("The file API isn't supported on this browser yet.");
+        // alert("The file API isn't supported on this browser yet.");
+        createToast('Backup import', 'The file API isn\'t supported on this browser yet.')
         return;
     }
 
@@ -438,19 +445,23 @@ function loadFile() {
     let filename = input.value.split("\\").pop();
 
     if (!input) {
-        alert("Um, couldn't find the fileinput element.");
+        // alert("Um, couldn't find the fileinput element.");
+        createToast('Backup import', 'Fout bij het importeren')
     }
     else if (!input.files) {
-        alert("This browser doesn't seem to support the `files` property of file inputs.");
+        // alert("This browser doesn't seem to support the `files` property of file inputs.");
+        createToast('Backup import', 'Deze browser ondersteund deze functie niet')
     }
     else if (!input.files[0]) {
-        alert("Please select a file before clicking 'Load'");
+        // alert("Please select a file before clicking 'Load'");
+        createToast('Backup import', 'Kies eerst een bestand voor op \'Inladen\' te klikken')
     }
     else {
         file = input.files[0];
         fr = new FileReader();
         fr.onload = receivedText;
         fr.readAsText(file);
+        createToast('Backup import', 'Inladen bestand en terugzetten gegevens gelukt')
     }
 
     function receivedText(e) {
@@ -496,16 +507,19 @@ function loadFile() {
 function removeDBRecords() {
     records().remove();
     initiate();
+    createToast('Database records', 'Records werden verwijderd')
 }
 
 function removeDBLeiding() {
     leidingTegoed().remove();
     initiate();
+    createToast('Database leiding', 'Leiding werd verwijderd')
 }
 
 function removeDBDranken() {
     dranken().remove();
     initiate();
+    createToast('Database dranken', 'Dranken werden verwijderd')
 }
 
 function amount2Eur(n) {
@@ -530,6 +544,38 @@ function inputMix2String(n) {
     }
 
     return d
+}
+
+function createToast(title, message) {
+    let toast = document.createElement('div');
+    toastIndex ++;
+
+    toast.classList.add('toast', 'animated', 'fadeInRight', 'faster');
+    toast.setAttribute('data-toast', `toastIndex${toastIndex}`);
+    toast.setAttribute('data-delay', `3500`);
+    toast.setAttribute('role', `alert`);
+    toast.setAttribute('aria-atomic', `true`);
+    toast.setAttribute('aria-live', `assertive`);
+
+    toast.innerHTML = `
+        <div class="toast-header">
+            <div class="icon-md mr-2"><i data-feather="bell"></i></div>
+            <strong class="mr-auto">${title}</strong>
+            <small class="text-muted d-none">just now</small>
+            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                <div class="icon-md"><i data-feather="x"></i></div>
+            </button>
+        </div>
+        <div class="toast-body">
+            ${message}
+        </div>
+    `
+
+    toast.addEventListener('animationend', function() {toast.classList.add('animated', 'fadeOutRight', 'delay-3s')})
+
+    document.querySelector('#toastContainer').appendChild(toast);
+    feather.replace();
+    $(`[data-toast="toastIndex${toastIndex}"]`).toast('show');
 }
 
 // Als laatste

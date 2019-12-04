@@ -139,6 +139,14 @@ h6 {
           transform: translateY(-1px);
 }
 
+.icon-md svg {
+  --d: 16px;
+  width: var(--d);
+  height: var(--d);
+  -webkit-transform: translateY(-1px);
+          transform: translateY(-1px);
+}
+
 .txt-item {
   width: 150px;
   height: 100px;
@@ -221,5 +229,22 @@ header .nav-tabs .nav-item .nav-link.active, header .nav-tabs .nav-item .nav-lin
 
 table tbody:not(.nohover) > tr:hover, table tbody:not(.nohover) > tr:focus {
   background-color: #ececec;
+}
+
+#toastContainer {
+  --distance: 30px;
+  position: fixed;
+  top: var(--distance);
+  right: var(--distance);
+  z-index: 100000;
+}
+
+#toastContainer .toast {
+  min-width: 300px;
+  margin-bottom: 17px;
+}
+
+#toastContainer .toast .feather {
+  stroke-width: 3px;
 }
 /*# sourceMappingURL=main.css.map */
