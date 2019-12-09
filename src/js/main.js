@@ -28,6 +28,7 @@ const
     inpDrankColor = document.querySelector("#inpDrankColor"),
     inpAdminPassw = document.querySelector("#inpAdminPassword"),
     inpChangePassword = document.querySelector("#inpChangePassword");
+    cookieSudo = readCookie('sudo');
 
 const
     now = new Date(),
@@ -55,6 +56,13 @@ let leiding = [],
     adminLoggedIn = false,
     newAdminPassword,
     toastIndex = 0;
+
+if (cookieSudo !== null) {
+    console.log('sudo mode');
+    body.setAttribute('data-admin-login', true);
+} else {
+    console.log('not logged in')
+}
 
 function initiate() {
     btnSave.addEventListener('click', () => {
@@ -399,11 +407,13 @@ function save() {
 function logInAdmin() {
     if (a(inpAdminPassword.value) == adminPasswordDefault && readCookie('adpw') == null) {
         console.log('admin logged in');
-        body.setAttribute('data-admin-login', true)
+        body.setAttribute('data-admin-login', true);
         // localStorage.setItem('admin-logged-in', true);
+        goSudo(true);
     } else if (a(inpAdminPassword.value) == getCookie('adpw')) {
         console.log('admin logged in');
-        body.setAttribute('data-admin-login', true)
+        body.setAttribute('data-admin-login', true);
+        goSudo(true);
     } else {
         console.log('password false');
         // alert('Het opgegeven wachtwoord is fout')
@@ -421,6 +431,7 @@ function logOffAdmin() {
     body.setAttribute('data-admin-login', false)
     // localStorage.setItem('admin-logged-in', false);
     // console.log(localStorage.removeItem('admin-logged-in'));
+    goSudo(false);
 }
 
 function saveAdminPassword() {
@@ -524,9 +535,7 @@ function removeDBDranken() {
 
 function amount2Eur(n) {
     const type = typeof n;
-    console.log(`amount2Eur conversion with ${type}`)
     if (n !== null || n !== 'null' && type == 'string' ) {
-        console.log(`amount2Eur(${n}) = string`)
         return `€ ${parseFloat(n.toString()).toFixed(2).toString().replace('.',',')}`;
     }
     // return `${n} euro`
@@ -576,6 +585,19 @@ function createToast(title, message) {
     document.querySelector('#toastContainer').appendChild(toast);
     feather.replace();
     $(`[data-toast="toastIndex${toastIndex}"]`).toast('show');
+}
+
+function addAdmin() {
+    createToast('Beheerders', 'Beheerder werd toegevoegd')
+    // dranken.insert({name: inpDrankNaam.value, code: inp.value});
+}
+
+function goSudo(input) {
+    if (input == true) {
+        createCookie('sudo', true)
+    } else if (input == false) {
+        eraseCookie('sudo')
+    }
 }
 
 // Als laatste
