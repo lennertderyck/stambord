@@ -187,29 +187,67 @@ header {
     // background-color: burlywood;
 
     .nav-tabs {
+        flex-wrap: nowrap;
+        overflow: scroll;
         border: none;
 
-        .nav-item {
-            margin-right: 10px;
+        &::-webkit-scrollbar {
+            display: none;
+        }
 
-            .nav-link, .nav-link{
+        .nav-item {
+            --d-corner: 10px;
+            position: relative;
+            margin-right: calc(var(--d-corner) * 2);
+
+            .nav-link{
                 border: none;
                 background-color: var(--accent-3);
                 margin-bottom: 1px;
-                padding-left: 30px;
-                padding-right: 30px;
+                padding: 7px 15px 5px 15px;
                 font-family: var(--font-main);
                 font-weight: 900;
                 color: var(--accent-5);
-                // text-transform: lowercase;
-                // font-size: 1.2rem;
-                // color: white;
     
                 @extend .txt-modern;
+
+                .nav-tab-corner {
+                    position: absolute;
+                    height: var(--d)-corner;
+                    width: var(--d-corner);
+                    /* color: red; */
+                    fill: var(--accent-3);
+    
+                    &.corner-left {
+                        left: calc(var(--d-corner) * -1);
+                        bottom: 1px;
+                        transform: scale(-1, 1);
+                    }
+    
+                    &.corner-right {
+                        right: calc(var(--d-corner) * -1);
+                        bottom: 1px;
+                    }
+                }
 
                 &.active {
                     background-color: var(--accent-1);
                     color: var(--accent-6);
+
+                    .nav-tab-corner {
+                        fill: var(--accent-1);
+                    }
+                }
+            }
+
+            &:first-child {
+                .nav-tab-corner.corner-left {
+                    display: none;
+                }
+            }
+            &:last-child {
+                .nav-tab-corner.corner-right {
+                    display: none;
                 }
             }
         }
@@ -222,7 +260,7 @@ header {
         &>.container {
             padding: 30px;
             background-color: var(--accent-1);
-            border-radius: 0px 8px 8px 8px;
+            border-radius: 0px 0px 8px 8px;
         }
 
         div:last-of-type.row {

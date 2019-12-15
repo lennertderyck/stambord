@@ -17,7 +17,7 @@
     <script src="./js/cookies.js"></script>
     <script src="./js/feather.min.js"></script>
     <script src="./js/sha256.min.js"></script>
-    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/min/main.min.css">
     <link rel="stylesheet" href="./css/fonts.css">
     <link rel="stylesheet" href="./css/animate.min.css">
 
@@ -28,26 +28,50 @@
 <body class="mt-5 mb-4" data-admin-login="false">
     <div id="toastContainer" aria-live="polite" aria-atomic="true"></div>
     <header>
-        <div class="container pl-0">
+        <div class="container px-0">
             <div class="flex justify-content-center">
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Barbord</a>
+                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">
+                            <svg class="nav-tab-corner corner-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 241.97 241.97"><title>corner_1</title><g data-name="corner left"><g data-name="corner left"><path d="M242,242H0V0C0,133.64,108.34,242,242,242Z"/></g></g></svg >
+                            Barbord
+                            <svg class="nav-tab-corner corner-right" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 241.97 241.97"><title>corner_1</title><g data-name="corner right"><g data-name="corner right"><path d="M242,242H0V0C0,133.64,108.34,242,242,242Z"/></g></g></svg>
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Registratie</a>
+                        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">
+                            <svg class="nav-tab-corner corner-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 241.97 241.97"><title>corner_1</title><g data-name="corner left"><g data-name="corner left"><path d="M242,242H0V0C0,133.64,108.34,242,242,242Z"/></g></g></svg >
+                            Registratie
+                            <svg class="nav-tab-corner corner-right" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 241.97 241.97"><title>corner_1</title><g data-name="corner right"><g data-name="corner right"><path d="M242,242H0V0C0,133.64,108.34,242,242,242Z"/></g></g></svg>
+                        </a>
                     </li>
                     <li class="nav-item show-admin ">
-                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Leiding</a>
+                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">
+                            <svg class="nav-tab-corner corner-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 241.97 241.97"><title>corner_1</title><g data-name="corner left"><g data-name="corner left"><path d="M242,242H0V0C0,133.64,108.34,242,242,242Z"/></g></g></svg >
+                            Leiding
+                            <svg class="nav-tab-corner corner-right" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 241.97 241.97"><title>corner_1</title><g data-name="corner right"><g data-name="corner right"><path d="M242,242H0V0C0,133.64,108.34,242,242,242Z"/></g></g></svg>
+                        </a>
                     </li>
                     <li class="nav-item show-admin">
-                        <a class="nav-link" id="dranken-tab" data-toggle="tab" href="#dranken" role="tab" aria-controls="dranken" aria-selected="false">Verkoop</a>
+                        <a class="nav-link" id="dranken-tab" data-toggle="tab" href="#dranken" role="tab" aria-controls="dranken" aria-selected="false">
+                            <svg class="nav-tab-corner corner-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 241.97 241.97"><title>corner_1</title><g data-name="corner left"><g data-name="corner left"><path d="M242,242H0V0C0,133.64,108.34,242,242,242Z"/></g></g></svg >
+                            Verkoop
+                            <svg class="nav-tab-corner corner-right" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 241.97 241.97"><title>corner_1</title><g data-name="corner right"><g data-name="corner right"><path d="M242,242H0V0C0,133.64,108.34,242,242,242Z"/></g></g></svg>
+                        </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="settings-tab" data-toggle="tab" href="#settings" role="tab" aria-controls="settings" aria-selected="false">Instellingen</a>
+                    <li class="nav-item mr-lg-auto">
+                        <a class="nav-link" id="settings-tab" data-toggle="tab" href="#settings" role="tab" aria-controls="settings" aria-selected="false">
+                            <svg class="nav-tab-corner corner-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 241.97 241.97"><title>corner_1</title><g data-name="corner left"><g data-name="corner left"><path d="M242,242H0V0C0,133.64,108.34,242,242,242Z"/></g></g></svg >
+                            Instellingen
+                            <svg class="nav-tab-corner corner-right" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 241.97 241.97"><title>corner_1</title><g data-name="corner right"><g data-name="corner right"><path d="M242,242H0V0C0,133.64,108.34,242,242,242Z"/></g></g></svg>
+                        </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="other-tab" data-toggle="tab" href="#other" role="tab" aria-controls="other" aria-selected="false">Help</a>
+                    <li class="nav-item mr-0">
+                        <a class="nav-link" id="other-tab" data-toggle="tab" href="#other" role="tab" aria-controls="other" aria-selected="false">
+                            <svg class="nav-tab-corner corner-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 241.97 241.97"><title>corner_1</title><g data-name="corner left"><g data-name="corner left"><path d="M242,242H0V0C0,133.64,108.34,242,242,242Z"/></g></g></svg >
+                            Help
+                            <svg class="nav-tab-corner corner-right" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 241.97 241.97"><title>corner_1</title><g data-name="corner right"><g data-name="corner right"><path d="M242,242H0V0C0,133.64,108.34,242,242,242Z"/></g></g></svg>
+                        </a>
                     </li>
                 </ul>
             </div>
