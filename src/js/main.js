@@ -325,17 +325,7 @@ function topUp(p, e) {
 }
 
 function generateRecords() {
-    tempStr = ''
-    records().order("date desc").each((r) => {
-        tempStr += `
-        <tr>
-            <td>${r.date}</td>
-            <td>${r.name}</td>
-            <td>${r.drank}</td>
-            <td>${amount2Eur(r.amount)}</td>
-        </tr>
-        `
-    });
+    tempStr = '';
 
     document.querySelector('#tableRecords').innerHTML = tempStr;
 }
