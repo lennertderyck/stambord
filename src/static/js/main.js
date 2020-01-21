@@ -64,6 +64,14 @@
             };
 
             this.setPane = {
+                removeData: {
+                    btn: document.querySelector('[data-label="removeData"]'),
+                    check: {
+                        users: document.querySelector('#removeData-users'),
+                        items: document.querySelector('#removeData-items'),
+                        posLog: document.querySelector('#removeData-posLog'),
+                    }
+                },
                 backup: {
                     file: document.querySelector('[data-label="fileinput"]'),
                     export: document.querySelector('[data-label="exportBackup"]'),
@@ -114,6 +122,7 @@
                 toastIndex = 0;
 
             this.tempStr = '';
+
         },
 
         moment() {
@@ -181,6 +190,7 @@
             this.pos.btnConfirm.addEventListener('click', () => {this.posPay(this.userPane.user.selected, this.pos.calculate.newCreditStatus, this.pos.calculate.toPay)});
             this.pos.btnCancel.addEventListener('click', () => {this.readyState()});
             
+            this.setPane.removeData.btn.addEventListener('click', () => {this.removeData()});
             this.setPane.backup.export.addEventListener('click', () => {this.exportBackup()});
             this.setPane.backup.import.addEventListener('click', () => {this.importBackup()});
         },
@@ -222,6 +232,10 @@
             // this.pos.displayArea.innerHTML = '';
             this.itemSelectControls('hide');
             // this.cached();
+
+            this.setPane.removeData.check.users.checked == false;
+            this.setPane.removeData.check.items.checked == false;
+            this.setPane.removeData.check.posLog.checked == false;
         },
 
         addUser() {
@@ -243,7 +257,7 @@
                 if (r.credit <= 0) {tr.classList.add('user-credit-neg')};
                 tr.innerHTML = `
                     <td>${r.name}</td>
-                    <td><span>€${(r.credit).toFixed(2)}</span></td>
+                    <td><span>€${r.credit}</span></td>
                 `;
                 tr.addEventListener('click', () => {
                     if (tr.classList.contains('active')) {
@@ -338,6 +352,30 @@
             this.db.items({___id: this.itemPane.item.selected}).remove();
         },
 
+        removeData() {
+            let actionTaken = false;
+            if (this.setPane.removeData.check.users.checked == true) {
+                this.db.users().remove();
+                actionTaken = true;
+            }
+            if (this.setPane.removeData.check.items.checked == true) {
+                this.db.items().remove();
+                actionTaken = true;
+            }
+            if (this.setPane.removeData.check.posLog.checked == true) {
+                this.db.posLog().remove();
+                actionTaken = true;
+            }
+
+            if (actionTaken == true) {
+                createToast('Gegevens', 'Gegevens succesvol verwijderd')
+                this.readyState();
+            } else {
+                createToast('Gegevens', 'Er werden geen gegevens verwijderd. Selecteerd eerst een type om te verwijderen.')
+            }
+            
+        },
+
         generatePosLog() {
             this.pos.records.innerHTML = '';
             this.db.posLog().order("timeUnix asec").each((r, index) => {
@@ -372,7 +410,7 @@
                 div.classList.add('flex-grid-item', 'pos-el');
                 div.innerHTML = `
                     <h3>${r.name}</h3>
-                    <small>€${(r.credit).toFixed(2)}</small>
+                    <small>€${r.credit}</small>
                 `;
                 div.addEventListener('click', () => {
                     if (div.classList.contains('active')) {
@@ -511,11 +549,11 @@
 
             const result = `
 [{
-    "dbFirst": [
+    "posLog": [
         ${tempStr1.slice(2)}],
-    "dbSec": [
+    "items": [
         ${tempStr2.slice(2)}],
-    "dbThird": [
+    "users": [
         ${tempStr3.slice(2)}]
 }]
             `;
@@ -549,44 +587,68 @@
                     createToast('Backup import', 'Inladen bestand en terugzetten gegevens gelukt')
                 }
             
+                
                 function receivedText(e) {
                     let lines = e.target.result;
                     var newArr = JSON.parse(lines);
-                    
-                    // if (filename.includes('records')) {
-                    //     records().remove();
-                    //     newArr.forEach((r) => {
-                    //         console.log(r.date + ' ' + r.amount);
-                    //         records.insert({date: r.date,name: r.name, amount: r.amount, drank: r.drank});
-                    //     });
-                    // } else if (filename.includes('leiding')) {
-                    //     leidingTegoed().remove();
-                    //     newArr.forEach((r) => {
-                    //         console.log(r.name + ' ' + r.amount);
-                    //         leidingTegoed.insert({name: r.name, amount: r.amount});
-                    //     });
-                    // } else if (filename.includes('drank')) {
-                    //     dranken().remove();
-                    //     let tempStr;
-                    //     newArr.forEach((r) => {
-                    //         console.log(`${r.name} ${r.amount} ${r.mix} ${r.color}`);
-                    //         dranken.insert({name: r.name, amount: r.amount, mix: r.mix, color: r.color});
-                    //     });
-                    // } else if (filename.includes('test')) {
-                    //     console.log(`newArr = ${lines}`)
-                    //     // records().remove();
-                    //     // newArr.records.forEach((r) => {
-                    //     //     console.log(r.date + ' ' + r.amount);
-                    //     //     records.insert({date: r.date,name: r.name, amount: r.amount, drank: r.drank});
-                    //     // });
-                    // } else {
+
+                    this.db = {
+                        users: TAFFY().store('users'),
+                        posLog: TAFFY().store('poslog'),
+                        items: TAFFY().store('items'),
+                    }
+
+                    function addZero(i) {
+                        if (i < 10) {
+                            i = "0" + i;
+                        }
+                        return i;
+                    }
+                    this.now = new Date()
+                    this.date = {
+                        dd: addZero(this.now.getDate()),
+                        mm: addZero(this.now.getMonth() + 1),
+                        yyyy: this.now.getFullYear(),
+                        hh: addZero(this.now.getHours()),
+                        nn: addZero(this.now.getMinutes()),
+                    }
+
+                    this.db.posLog().remove();
+                    newArr[0].posLog.forEach((r) => {
+                        this.db.posLog.insert({
+                            timeUnix: r.timeUnix,
+                            time: r.time,
+                            date: r.date,
+                            user:  r.user,
+                            item:  r.item,
+                            amount: r.amount,
+                            credit: r.credit,
+                        })
+                    })
+                    this.db.items().remove();
+                    newArr[0].items.forEach((r) => {
+                        this.db.items.insert({
+                            name: r.name, 
+                            type: r.type,
+                            price: r.price
+                        });
+                    })
+                    this.db.users().remove();
+                    newArr[0].users.forEach((r) => {
+                        this.db.users.insert({
+                            name: r.name, 
+                            credit: r.credit
+                        });
+                    })
+
     
-                    console.log(newArr[0].dbFirst);
+                    // console.log(newArr[0].dbFirst);
             
                 }
             }
 
             loadFile();
+            this.readyState();
         },        
     }
 

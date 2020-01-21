@@ -200,10 +200,10 @@
                         <div class="tab-pane-title d-flex align-items-center justify-content-between">
                             <h3>Verkoop</h3>
                             <div class="d-flex">
-                                <button class="mr-3 btn-blue" data-toggle="modal" data-target="#modalAddItem">
+                                <button class="btn-blue" data-toggle="modal" data-target="#modalAddItem">
                                     <i data-feather="plus"></i> nieuw item
                                 </button>
-                                <button data-label="removeItem" class="item-select-control">
+                                <button data-label="removeItem" class="ml-3 item-select-control">
                                     <i data-feather="trash"></i> verwijder
                                 </button>
                             </div>
@@ -225,13 +225,13 @@
                         <div class="tab-pane-title d-flex align-items-center justify-content-between">
                             <h3>Gebruikers</h3>
                             <div class="d-flex">
-                                <button class="mr-3 btn-blue" data-label="addUserPort" data-toggle="modal" data-target="#modalAddUser">
+                                <button class="btn-blue" data-label="addUserPort" data-toggle="modal" data-target="#modalAddUser">
                                     <i data-feather="plus"></i> nieuwe gebruiker
                                 </button>
-                                <button class="mr-3 btn-accent item-select-control" data-label="topUp" data-toggle="modal" data-target="#modalTopUp">
+                                <button class="ml-3 btn-accent item-select-control" data-label="topUp" data-toggle="modal" data-target="#modalTopUp">
                                     <i data-feather="arrow-up"></i> topup
                                 </button>
-                                <button data-label="removeUser" class="item-select-control">
+                                <button data-label="removeUser" class="ml-3 item-select-control">
                                     <i data-feather="trash"></i> verwijder
                                 </button>
                             </div>
@@ -282,11 +282,12 @@
                             <div class="row mb-4">
                                 <div class="col">
                                     <h5>Gegevens verwijderen</h5>
-                                    <div class="d-flex">
-                                        <button class="btn-danger mr-2"><i data-feather="trash-2"></i>alle gegevens</button>
-                                        <button class="btn-danger mr-2"><i data-feather="trash-2"></i>items</button>
-                                        <button class="btn-danger"><i data-feather="trash-2"></i>gebruikers</button>
+                                    <div class="mt-3 input-group d-flex align-items-center">
+                                        <input class="mr-2" type="checkbox" name="removeData" id="removeData-users"><label for="removeData-users" class="mb-0 mr-3 text-modern">Gebruikers</label>
+                                        <input class="mr-2" type="checkbox" name="removeData" id="removeData-items"><label for="removeData-items" class="mb-0 mr-3 text-modern">Verkoopitems</label>
+                                        <input class="mr-2" type="checkbox" name="removeData" id="removeData-posLog"><label for="removeData-posLog" class="mb-0 mr-3 text-modern">Logboek</label>
                                     </div>
+                                    <button class="btn-danger mt-3" data-label="removeData"><i data-feather="trash-2"></i>gegevens verwijderen</button>
                                 </div>
                             </div>
                             <div class="row">

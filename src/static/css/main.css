@@ -1377,4 +1377,16 @@ table.table tbody tr td:last-child {
   [data-label="posAmount"] .pos-el {
     flex-basis: calc(100% / 3 - 24px) !important; }
 
+#toastContainer {
+  --distance: 30px;
+  position: fixed;
+  top: var(--distance);
+  right: var(--distance);
+  z-index: 100000; }
+  #toastContainer .toast {
+    min-width: 300px;
+    margin-bottom: 17px; }
+    #toastContainer .toast .feather {
+      stroke-width: 3px; }
+
 /*# sourceMappingURL=main.css.map */

@@ -204,3 +204,21 @@ table.table {
         flex-basis: calc(100% / 3 - 24px) !important;
     }
 }
+
+// Toasts
+#toastContainer {
+    --distance: 30px;
+    position: fixed;
+    top: var(--distance);
+    right: var(--distance);
+    z-index: 100000;
+
+    .toast {
+        min-width: 300px;
+        margin-bottom: 17px;
+
+        .feather {
+            stroke-width: 3px;
+        }
+    }
+}
