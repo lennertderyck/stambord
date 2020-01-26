@@ -73,7 +73,7 @@ button, .btn {
 
     svg.feather {
         width: 17px;
-        margin-right: 6px;
+        margin-right: 8px;
         stroke-width: 2.7px;
         stroke-linecap: square;
     }
@@ -118,3 +118,25 @@ svg.feather {
     height: 19px;
 }
 
+[data-error] {
+    font-size: 80%;
+    color: red;
+}
+
+[data-sudo-mode="false"] {
+    .sudo-show {
+        display: none;
+    }
+    .sudo-hide {
+        display: block;
+    }
+}
+
+[data-sudo-mode="true"] {
+    .sudo-show {
+        display: block;
+    }
+    .sudo-hide {
+        display: none;
+    }
+}

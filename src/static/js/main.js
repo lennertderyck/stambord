@@ -76,6 +76,11 @@
                     file: document.querySelector('[data-label="fileinput"]'),
                     export: document.querySelector('[data-label="exportBackup"]'),
                     import: document.querySelector('[data-label="importBackup"]'),
+                },
+                sudo: {
+                    goSudo: document.querySelector('[data-label="goSudo"]'),
+                    noSudo: document.querySelector('[data-label="noSudo"]'),
+                    pw: document.querySelector('#sudo-password').value,
                 }
             }
 
@@ -193,6 +198,9 @@
             this.setPane.removeData.btn.addEventListener('click', () => {this.removeData()});
             this.setPane.backup.export.addEventListener('click', () => {this.exportBackup()});
             this.setPane.backup.import.addEventListener('click', () => {this.importBackup()});
+
+            this.setPane.sudo.goSudo.addEventListener('click', () => {this.goSudo()});
+            this.setPane.sudo.noSudo.addEventListener('click', () => {this.noSudo()});
         },
 
         itemSelectControls(state) {
@@ -215,6 +223,10 @@
         },
 
         readyState() {
+            if (this.db.users().get().length <= 0) {
+                this.alerts.noUsers.classList.remove('d-none')
+                this.alerts.noUsers.classList.add('d-flex')
+            };
             $('#modalPosConfirm').modal('hide');
             $('#carouselPosSteps').carousel(0);
             this.generateUsers();
@@ -246,8 +258,8 @@
                 name: this.userPane.user.name, 
                 credit: parseFloat(this.userPane.user.credit)
             });
-            this.generateUsers();
-            this.generatePosUsers();
+            this.readyState();
+            this.alerts.noUsers.classList.remove('d-none');
         },
 
         generateUsers() {
@@ -257,7 +269,7 @@
                 if (r.credit <= 0) {tr.classList.add('user-credit-neg')};
                 tr.innerHTML = `
                     <td>${r.name}</td>
-                    <td><span>€${r.credit}</span></td>
+                    <td><span>€${r.credit.toFixed(2)}</span></td>
                 `;
                 tr.addEventListener('click', () => {
                     if (tr.classList.contains('active')) {
@@ -284,6 +296,7 @@
         removeUser() {
             document.querySelector('[data-label="userRecords"] tr.active').outerHTML = '';
             this.db.users({___id: this.userPane.user.selected}).remove();
+            this.readyState();
         },
 
         topUp() {
@@ -410,7 +423,7 @@
                 div.classList.add('flex-grid-item', 'pos-el');
                 div.innerHTML = `
                     <h3>${r.name}</h3>
-                    <small>€${r.credit}</small>
+                    <small>€${r.credit.toFixed(2)}</small>
                 `;
                 div.addEventListener('click', () => {
                     if (div.classList.contains('active')) {
@@ -511,6 +524,26 @@
 
             this.readyState();
             document.querySelector('#modalPosConfirm .modal-content').classList.remove('modal-danger');
+        },
+
+        goSudo() {
+            this.setPane.sudo.pw = document.querySelector('#sudo-password').value;
+
+            if (a(this.setPane.sudo.pw) == a('stamvader')) {
+                console.log('logged in')
+                document.querySelector('#sudo-password').value = '';
+                document.body.setAttribute('data-sudo-mode', 'true');
+                createCookie('sudo', true)
+                errorText('sudoFalse', '');
+            } else {
+                console.log('password false')
+                errorText('sudoFalse', 'Het opgegeven wachtwoord was fout');
+            }
+        },
+
+        noSudo() {
+            createCookie('sudo', true, 0);
+            document.body.setAttribute('data-sudo-mode', 'false');
         },
 
         exportBackup() {
@@ -665,6 +698,14 @@ function replaceElement(element, content) {
 function fillElement(element, content) {
     element = document.querySelectorAll(`[data-fill="${element}"]`);
     element.forEach((el) => {
+        el.innerHTML = content;
+    })
+}
+
+function errorText(element, content) {
+    element = document.querySelectorAll(`[data-error="${element}"]`);
+    element.forEach((el) => {
+        // el.style.display = 'block !important';
         el.innerHTML = content;
     })
 }
