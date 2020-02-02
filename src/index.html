@@ -249,27 +249,71 @@
                         <div class="tab-pane-title d-flex align-items-center justify-content-between">
                             <h3>Instellingen</h3>
                             <div class="d-flex">
-                                <button class="btn-blue" data-label="dataReload" data-toggle="modal" data-target="#modalAddUser">
-                                    <i data-feather="refresh-cw"></i> gegevens herladen
+                                <div class="sudo-hide">
+                                    <button class="btn-blue" data-toggle="modal" data-target="#modalGoSudo"><i data-feather="key"></i> Aanmelden</button>
+                                </div>
+                                <div class="sudo-show">
+                                    <div class="d-flex">
+                                        <button data-label="noSudo" class="btn-blue mr-3"><i data-feather="key"></i> Afmelden</button>
+                                        <button class="btn-danger" data-toggle="modal" data-target="#modalDataRemove"><i data-feather="trash-2"></i> Gegevens verwijderen</button>
+                                    </div>
+                                </div>
+                                <button class="ml-3" data-label="dataReload">
+                                    <i data-feather="refresh-cw"></i> herladen
                                 </button>
                             </div>
                         </div>
-                        <div class="p-4">
+                        <div class="p-5">
                             <div class="row mb-5">
-                                <div class="col-12 col-lg-6 mb-4 mb-lg-0">
-                                    <div class="sudo-hide">
-                                        <h5 class="mb-3">Aanmelden</h5>
-                                        <div class="input-group floating-label mb-3">
-                                            <input type="password" id="sudo-password" class="form-control" required>
-                                            <label for="sudo-password">wachtwoord</label>
+                                <div class="col-12 d-flex flex-column align-items-center justify-content-center">
+                                    <h2 class="text-center mb-4">Goals</h2>
+                                    <div data-label="progress-goals">
+                                        <div class="goal-item" data-label="goalProfit">
+                                            <div class="text-modern">
+                                                <small>inkomst</small> <br>
+                                                <span class="text-modern elCounter">€12,3</span><br>
+                                            </div>
+                                            <div class="edit-goal">
+                                                <i data-feather="edit-3"></i>
+                                                <small class="text-modern mt-2">bewerk<br>doel</small>
+                                            </div>
+                                            <svg viewBox="0 0 100 100" class="progress-circle" style="display: block;"><path d="M 50,50 m 0,-47.5 a 47.5,47.5 0 1 1 0,95 a 47.5,47.5 0 1 1 0,-95" stroke="#001a3b" stroke-width="5" fill-opacity="0" style="stroke-dasharray: 298.493, 298.493; stroke-dashoffset: 0;"></path></svg>
                                         </div>
-                                        <p data-error="sudoFalse"></p>
-                                        <button data-label="goSudo" class="btn-blue"><i data-feather="key"></i> Go sudo</button>
+                                        <div class="goal-item">
+                                            <div class="text-modern">
+                                                <small>tegoed</small> <br>
+                                                <span class="text-modern">€213</span><br>
+                                            </div>
+                                            <div class="edit-goal">
+                                                <i data-feather="edit-3"></i>
+                                                <small class="text-modern mt-2">bewerk<br>doel</small>
+                                            </div>
+                                            <svg viewBox="0 0 100 100" class="progress-circle" style="display: block;"><path d="M 50,50 m 0,-47.5 a 47.5,47.5 0 1 1 0,95 a 47.5,47.5 0 1 1 0,-95" stroke="#001a3b" stroke-width="5" fill-opacity="0" style="stroke-dasharray: 298.493, 298.493; stroke-dashoffset: 0;"></path></svg>
+                                        </div>
+                                        <div class="goal-item">
+                                            <div class="text-modern">
+                                                <small>totaal</small> <br>
+                                                <span class="text-modern">€320,89</span><br>
+                                            </div>
+                                            <div class="edit-goal">
+                                            	<i data-feather="edit-3"></i>
+                                            	<small class="text-modern mt-2">bewerk<br>doel</small>
+                                            </div>
+                                            <svg viewBox="0 0 100 100" class="progress-circle" style="display: block;"><path d="M 50,50 m 0,-47.5 a 47.5,47.5 0 1 1 0,95 a 47.5,47.5 0 1 1 0,-95" stroke="#001a3b" stroke-width="5" fill-opacity="0" style="stroke-dasharray: 298.493, 298.493; stroke-dashoffset: 0;"></path></svg>
+                                        </div>
                                     </div>
-                                    <div class="sudo-show">
-                                        <h5 class="mb-3">Afmelden</h5>
-                                        <button data-label="noSudo" class="btn-blue"><i data-feather="key"></i> Afmelden</button>
-                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-5">
+                                <div class="col-12 col-lg mb-4 mb-lg-0">
+                                	<h5>Backup</h5>
+                                	<p>Gegevens opslaan of terugzetten</p>
+                                	<div class="d-flex">
+                                        <button class="btn-blue mr-3" data-label="exportBackup"><i data-feather="download-cloud"></i>exporteren</button>
+                                        <div class="sudo-show">
+                                            <button class="btn-blue" data-toggle="modal" data-target="#modalDataExport"><i data-feather="upload-cloud"></i>importeren</button>
+                                        </div>
+                                	</div>
                                 </div>
                                 <div class="col-12 col-lg-6">
                                     <div class="sudo-show">
@@ -292,32 +336,11 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row mb-5">
-                                <div class="col mb-4 mb-lg-0">
-                                    <h5>Gegevens downloaden</h5>
-                                    <p>Bewaar en download alle gegevens als één bestand</p>
-                                    <button class="btn-blue" data-label="exportBackup"><i data-feather="download-cloud"></i>backup exporteren</button>
-                                </div>
-                                <div class="col">
-                                    <div class="sudo-show">
-                                        <h5>Backup importeren</h5>
-                                        <p>Heb je eerder een backup gemaakt? Zet dan hier alle gegevens terug.</p>
-                                        <p>Let op! Dit proces verwijderd alle huidige gegevens!</p>
-                                        <input type="file" data-label="fileinput">
-                                        <button class="btn-blue mt-3" data-label="importBackup"><i data-feather="upload-cloud"></i>backup importeren</button>
-                                    </div>
-                                </div>
-                            </div>
                             <div class="row">
                                 <div class="col">
                                     <div class="sudo-show">
-                                        <h5>Gegevens verwijderen</h5>
-                                        <div class="mt-3 input-group d-flex align-items-center">
-                                            <input class="mr-2" type="checkbox" name="removeData" id="removeData-users"><label for="removeData-users" class="mb-0 mr-3 text-modern">Gebruikers</label>
-                                            <input class="mr-2" type="checkbox" name="removeData" id="removeData-items"><label for="removeData-items" class="mb-0 mr-3 text-modern">Verkoopitems</label>
-                                            <input class="mr-2" type="checkbox" name="removeData" id="removeData-posLog"><label for="removeData-posLog" class="mb-0 mr-3 text-modern">Logboek</label>
-                                        </div>
-                                        <button class="btn-danger mt-3" data-label="removeData"><i data-feather="trash-2"></i>gegevens verwijderen</button>
+                                        <h5></h5>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -370,9 +393,22 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="input-group mb-3 floating-label">
-                        <input type="text" id="AddItem-name" class="form-control" required>
-                        <label for="AddItem-name">naam item</label>
+                    <div class="d-flex mb-3">
+                        <div class="input-group floating-label mr-3">
+                            <input type="text" id="AddItem-name" class="form-control" required>
+                            <label for="AddItem-name">naam item</label>
+                        </div>
+                        <div class="input-group floating-label">
+                            <input type="number" id="AddItem-profit" class="form-control" value="0.10" required>
+                            <label for="AddItem-profit">winst</label>
+                        </div>
+                    </div>
+                    <div class="input-group d-flex align-items-center mb-4">
+                        <input class="mr-2" type="radio" name="itemType" id="itemType-1" value="1" checked><label for="itemType-1" class="mb-0 mr-3 text-modern">Fris / Bier</label>
+                        <input class="mr-2" type="radio" name="itemType" id="itemType-2" value="2"><label for="itemType-2" class="mb-0 mr-3 text-modern">Shotje</label>
+                        <input class="mr-2" type="radio" name="itemType" id="itemType-3" value="3"><label for="itemType-3" class="mb-0 mr-3 text-modern">Sterk</label>
+                        <input class="mr-2" type="radio" name="itemType" id="itemType-4" value="4"><label for="itemType-4" class="mb-0 mr-3 text-modern">Cocktail</label>
+                        <input class="mr-2" type="radio" name="itemType" id="itemType-5" value="5"><label for="itemType-5" class="mb-0 mr-3 text-modern">Snack</label>
                     </div>
                     <div class="d-flex">
                         <div class="input-group mb-3 floating-label mr-3">
@@ -387,13 +423,6 @@
                             <input type="number" id="AddItem-priceExtra" class="form-control" value="0" required>
                             <label for="AddItem-priceExtra">prijs extra</label>
                         </div>
-                    </div>
-                    <div class="input-group d-flex align-items-center">
-                        <input class="mr-2" type="radio" name="itemType" id="itemType-1" value="1" checked><label for="itemType-1" class="mb-0 mr-3 text-modern">Fris / Bier</label>
-                        <input class="mr-2" type="radio" name="itemType" id="itemType-2" value="2"><label for="itemType-2" class="mb-0 mr-3 text-modern">Shotje</label>
-                        <input class="mr-2" type="radio" name="itemType" id="itemType-3" value="3"><label for="itemType-3" class="mb-0 mr-3 text-modern">Sterk</label>
-                        <input class="mr-2" type="radio" name="itemType" id="itemType-4" value="4"><label for="itemType-4" class="mb-0 mr-3 text-modern">Cocktail</label>
-                        <input class="mr-2" type="radio" name="itemType" id="itemType-5" value="5"><label for="itemType-5" class="mb-0 mr-3 text-modern">Snack</label>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -428,7 +457,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" data-label="posCancel" class="btn" data-dismiss="modal"><i data-feather="x"></i>annuleren</button>
-                    <button type="button" data-label="posConfirm" class="btn btn-danger" data-dismiss="modal"><i data-feather="check"></i>toch kopen</button>
+                    <button type="button" data-label="posConfirm" class="btn-danger" data-dismiss="modal"><i data-feather="check"></i>kopen</button>
                 </div>
             </div>
         </div>
@@ -451,6 +480,82 @@
                 <div class="modal-footer">
                     <button type="button" class="btn" data-dismiss="modal"><i data-feather="x"></i>annuleren</button>
                     <button type="button" data-label="topUpConfirm" class="btn btn-blue" data-dismiss="modal"><i data-feather="plus"></i>TopUp</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="modalGoSudo" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="modalGoSudoLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalGoSudoLabel">Aanmelden</h5>
+                    <button type="button" class="close d-none" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><i data-feather="x"></i></span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group floating-label mb-3">
+                        <input type="password" id="sudo-password" class="form-control" required>
+                        <label for="sudo-password">wachtwoord</label>
+                    </div>
+                    <p data-error="sudoFalse"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn" data-dismiss="modal"><i data-feather="x"></i>sluiten</button>
+                    <button type="button" data-label="goSudo" class="btn btn-blue"><i data-feather="key"></i>Go sudo</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="modalDataImport" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="modalDataImportLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalDataImportLabel">Backup importeren</h5>
+                    <button type="button" class="close d-none" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><i data-feather="x"></i></span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Heb je eerder een backup gemaakt? Zet dan hier alle gegevens terug.</p>
+                    <small class="d-flex">Let op! Dit proces verwijderd alle huidige gegevens!</small>
+                    <div data-label="backupDragDrop">
+                    	<div class="overlay">
+                    		<i data-feather="file-plus"></i>
+                    		<small class="ml-3 d-block fontw-500 text-modern mb-0">Drop een backup<br>of klik hier om
+                    			toe te voegen</small>
+                    	</div>
+                    	<input type="file" data-label="fileinput">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn" data-dismiss="modal"><i data-feather="x"></i>annuleren</button>
+                    <button class="btn-blue mt-3" data-label="importBackup"><i data-feather="upload-cloud"></i>backup
+                    	importeren</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="modalDataRemove" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="modalDataRemoveLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalDataRemoveLabel">Gegevens verwijderen</h5>
+                    <button type="button" class="close d-none" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><i data-feather="x"></i></span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group d-flex align-items-center">
+                        <input class="mr-2" type="checkbox" name="removeData" id="removeData-users"><label for="removeData-users" class="mb-0 mr-3 text-modern">Gebruikers</label>
+                        <input class="mr-2" type="checkbox" name="removeData" id="removeData-items"><label for="removeData-items" class="mb-0 mr-3 text-modern">Verkoopitems</label>
+                        <input class="mr-2" type="checkbox" name="removeData" id="removeData-posLog"><label for="removeData-posLog" class="mb-0 mr-3 text-modern">Logboek</label>
+                    </div>
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn" data-dismiss="modal"><i data-feather="x"></i>annuleren</button>
+                    <button class="btn-danger" data-label="removeData"><i data-feather="trash-2"></i>gegevens verwijderen</button>
                 </div>
             </div>
         </div>

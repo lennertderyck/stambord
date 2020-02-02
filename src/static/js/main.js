@@ -12,21 +12,26 @@
             this.generatePosItems();
             this.generatePosLog();
             this.itemSelectControls();
-
+            this.calculateGoals();
+            this.goSudo();
             // this.db.posLog().remove();
         },
 
         cached() {
+            // window.localStorage.removeItem('goalProfit');
+            // console.log(window.localStorage.getItem('goalProfit'));
+            window.localStorage.setItem('goalProfit', 250);
             console.log(`%c[service] ${arguments.callee.name}()`, 'font-weight: bold');
 
             this.alerts =  {
                 noUsers: document.querySelector('[data-label="alert-noUsers"]'),
             }
-
+            
             this.db = {
                 users: TAFFY().store('users'),
                 posLog: TAFFY().store('poslog'),
                 items: TAFFY().store('items'),
+                settings: window.localStorage.setItem('settings', []),
             }
 
             this.userPane = {
@@ -81,7 +86,8 @@
                     goSudo: document.querySelector('[data-label="goSudo"]'),
                     noSudo: document.querySelector('[data-label="noSudo"]'),
                     pw: document.querySelector('#sudo-password').value,
-                }
+                },
+                reload: document.querySelector('[data-label="dataReload"]'),
             }
 
             this.pos = {
@@ -106,6 +112,14 @@
                 displayArea: document.querySelector('[data-label="posCalulateArea"]'),
             }
 
+            this.goals =  {
+                profit: {
+                    circle: document.querySelector('[data-label="goalProfit"] svg path'),
+                    elCounter: document.querySelector('[data-label="goalProfit"] .elCounter'),
+                    count: 0,
+                }
+            }
+
             this.ui =  {
                 tabControls: document.querySelectorAll('[data-label="mainNav"] #nav-tab li'),
                 itemSelectControlsArray: document.querySelectorAll('.item-select-control'),
@@ -128,9 +142,12 @@
 
             this.tempStr = '';
 
+            if (window.localStorage.getItem('goalProfit') == null) {
+                window.localStorage.setItem('goalProfit', 0);
+            }
         },
 
-        moment() {
+        setTime() {
             function addZero(i) {
                 if (i < 10) {
                     i = "0" + i;
@@ -138,7 +155,7 @@
                 return i;
             }
             this.now = new Date()
-            this.date = {
+            this.moment = {
                 dd: addZero(this.now.getDate()),
                 mm: addZero(this.now.getMonth() + 1),
                 yyyy: this.now.getFullYear(),
@@ -196,11 +213,22 @@
             this.pos.btnCancel.addEventListener('click', () => {this.readyState()});
             
             this.setPane.removeData.btn.addEventListener('click', () => {this.removeData()});
-            this.setPane.backup.export.addEventListener('click', () => {this.exportBackup()});
+            this.setPane.backup.export.addEventListener('click', () => {
+                createToast('Backup', 'Uw gegevens worden klaargemaakt')
+                this.exportBackup();
+            });
             this.setPane.backup.import.addEventListener('click', () => {this.importBackup()});
 
             this.setPane.sudo.goSudo.addEventListener('click', () => {this.goSudo()});
-            this.setPane.sudo.noSudo.addEventListener('click', () => {this.noSudo()});
+            this.setPane.sudo.noSudo.addEventListener('click', () => {
+                this.noSudo();
+                createToast('Sudo', 'Je bent afgemeld');
+            });
+            this.setPane.reload.addEventListener('click', () => {
+                this.readyState();
+                this.cached();
+                createToast('Gegevens herladen', 'Gegevens succesvol ingeladen');
+            });
         },
 
         itemSelectControls(state) {
@@ -234,6 +262,7 @@
             this.generatePosUsers();
             this.generatePosItems();
             this.generatePosLog();
+            this.calculateGoals();
             if (this.userPane.recordSelected !== null) {
                 this.userPane.recordSelected.classList.remove('active');
             };
@@ -241,10 +270,11 @@
                 this.itemPane.recordSelected.classList.remove('active');
             };
             this.pos.selectAmount.selected = 1;
+            this.pos.selectAmount.window.classList.add('d-none');
             // this.pos.displayArea.innerHTML = '';
             this.itemSelectControls('hide');
             // this.cached();
-
+            document.querySelector('#modalPosConfirm .modal-content').classList.remove('modal-danger');
             this.setPane.removeData.check.users.checked == false;
             this.setPane.removeData.check.items.checked == false;
             this.setPane.removeData.check.posLog.checked == false;
@@ -264,33 +294,35 @@
 
         generateUsers() {
             this.userPane.records.innerHTML = '';
-            this.db.users().order("date desc").each((r, index) => {
-                let tr = document.createElement('tr');
-                if (r.credit <= 0) {tr.classList.add('user-credit-neg')};
-                tr.innerHTML = `
-                    <td>${r.name}</td>
-                    <td><span>€${r.credit.toFixed(2)}</span></td>
-                `;
-                tr.addEventListener('click', () => {
-                    if (tr.classList.contains('active')) {
-                        tr.classList.remove('active');
-                        this.ui.itemSelectControlsArray.forEach(el => {
-                            el.classList.add('d-none');
-                        });
-                    } else {
-                        this.userPane.recordSelected = document.querySelector('[data-label="userRecords"] tr.active');
-                        if (this.userPane.recordSelected !== null) {
-                            this.userPane.recordSelected.classList.remove('active');
+            if (this.db.users().get().length != 0) {
+                this.db.users().order("date desc").each((r, index) => {
+                    let tr = document.createElement('tr');
+                    if (r.credit <= 0) {tr.classList.add('user-credit-neg')};
+                    tr.innerHTML = `
+                        <td>${r.name}</td>
+                        <td><span>€${r.credit.toFixed(2)}</span></td>
+                    `;
+                    tr.addEventListener('click', () => {
+                        if (tr.classList.contains('active')) {
+                            tr.classList.remove('active');
+                            this.ui.itemSelectControlsArray.forEach(el => {
+                                el.classList.add('d-none');
+                            });
+                        } else {
+                            this.userPane.recordSelected = document.querySelector('[data-label="userRecords"] tr.active');
+                            if (this.userPane.recordSelected !== null) {
+                                this.userPane.recordSelected.classList.remove('active');
+                            }
+                            tr.classList.add('active');
+                            this.ui.itemSelectControlsArray.forEach(el => {
+                                el.classList.remove('d-none');
+                            });
                         }
-                        tr.classList.add('active');
-                        this.ui.itemSelectControlsArray.forEach(el => {
-                            el.classList.remove('d-none');
-                        });
-                    }
-                    this.userPane.user.selected = r.___id;
+                        this.userPane.user.selected = r.___id;
+                    });
+                    this.userPane.records.appendChild(tr);
                 });
-                this.userPane.records.appendChild(tr);
-            });
+            }
         },
 
         removeUser() {
@@ -344,6 +376,7 @@
                         this.ui.itemSelectControlsArray.forEach(el => {
                             el.classList.add('d-none');
                         });
+                        
                     } else {
                         this.itemPane.recordSelected = document.querySelector('[data-label="itemRecords"] tr.active');
                         if (this.itemPane.recordSelected !== null) {
@@ -381,16 +414,19 @@
             }
 
             if (actionTaken == true) {
-                createToast('Gegevens', 'Gegevens succesvol verwijderd')
+                $('#modalDataRemove').modal('hide');
+                createToast('Gegevens', 'Gegevens succesvol verwijderd');
                 this.readyState();
             } else {
                 createToast('Gegevens', 'Er werden geen gegevens verwijderd. Selecteerd eerst een type om te verwijderen.')
             }
             
+            this.readyState();
         },
 
         generatePosLog() {
             this.pos.records.innerHTML = '';
+            this.goals.profit.count = 0
             this.db.posLog().order("timeUnix asec").each((r, index) => {
                 let amount = '';
                 if (r.amount == 2) {
@@ -413,33 +449,36 @@
                 `;
                 // this.pos.records.appendChild(tr);
                 this.pos.records.insertBefore(tr, this.pos.records.childNodes[0]);
+                this.goals.profit.count = this.goals.profit.count + r.credit
             });
         },
 
         generatePosUsers() {
             this.pos.users.innerHTML = '';
-            this.db.users().order("name desc").each((r, index) => {
-                let div = document.createElement('div');
-                div.classList.add('flex-grid-item', 'pos-el');
-                div.innerHTML = `
-                    <h3>${r.name}</h3>
-                    <small>€${r.credit.toFixed(2)}</small>
-                `;
-                div.addEventListener('click', () => {
-                    if (div.classList.contains('active')) {
-                        div.classList.remove('active');
-                    } else {
-                        this.pos.userSelected = document.querySelector('[data-label="posUsers"] div.active');
-                        if (this.pos.userSelected !== null) {
-                            this.pos.userSelected.classList.remove('active');
+            if (this.db.users().get().length != 0) {
+                this.db.users().order("name desc").each((r, index) => {
+                    let div = document.createElement('div');
+                    div.classList.add('flex-grid-item', 'pos-el');
+                    div.innerHTML = `
+                        <h3>${r.name}</h3>
+                        <small>€${r.credit.toFixed(2)}</small>
+                    `;
+                    div.addEventListener('click', () => {
+                        if (div.classList.contains('active')) {
+                            div.classList.remove('active');
+                        } else {
+                            this.pos.userSelected = document.querySelector('[data-label="posUsers"] div.active');
+                            if (this.pos.userSelected !== null) {
+                                this.pos.userSelected.classList.remove('active');
+                            }
+                            div.classList.add('active');
                         }
-                        div.classList.add('active');
-                    }
-                    this.userPane.user.selected = r.___id;
-                    $('#carouselPosSteps').carousel('next');
+                        this.userPane.user.selected = r.___id;
+                        $('#carouselPosSteps').carousel('next');
+                    });
+                    this.pos.users.appendChild(div);
                 });
-                this.pos.users.appendChild(div);
-            });
+            }
         },
 
         generatePosItems() {
@@ -454,6 +493,7 @@
                 div.addEventListener('click', () => {
                     if (div.classList.contains('active')) {
                         div.classList.remove('active');
+                        this.pos.selectAmount.window.classList.add('d-none');
                     } else {
                         this.pos.itemSelected = document.querySelector('[data-label="posItems"] div.active');
                         if (this.pos.itemSelected !== null) {
@@ -463,10 +503,13 @@
                     }
                     this.itemPane.item.selected = r.___id;
                     if (r.type !== 1 && r.type !== 5) {
-                        this.pos.selectAmount.window.classList.remove('d-none');
+                        if (div.classList.contains('active') == true) {
+                            this.pos.selectAmount.window.classList.remove('d-none');
+                        }
                     } else {
                         $('#modalPosConfirm').modal('show');
                         this.generatePosPrice()
+                        this.pos.selectAmount.window.classList.add('d-none');
                     }
                 });
                 this.pos.items.appendChild(div);
@@ -495,6 +538,10 @@
                     <hr>
                     <p class="text-right text-modern">totaal <span class="fontw-500">€${price}</span></p>
                 `;
+                this.pos.btnConfirm.classList.add('btn-blue');
+                this.pos.btnConfirm.classList.remove('btn-danger');
+                this.pos.btnConfirm.classList.innerHTML = `<i data-feather="check"></i>kopen`;
+                feather.replace();
             } else {
                 document.querySelector('#modalPosConfirm .modal-content').classList.add('modal-danger');
                 this.pos.calculate.toPay = (this.pos.calculate.toPay * 1.2).toFixed(2);
@@ -505,17 +552,22 @@
                     <hr>
                     <p class="text-right text-modern">totaal <span class="fontw-500">€${this.pos.calculate.toPay}</span></p>
                 `;
+                this.pos.btnConfirm.classList.add('btn-danger');
+                this.pos.btnConfirm.classList.remove('btn-blue');
+                this.pos.btnConfirm.classList.innerHTML = `<i data-feather="check"></i>toch kopen`;
+                feather.replace();
+
             }
         },
 
         posPay(selectedUser, newCredit, pay) {
-            this.moment();
+            this.setTime();
             this.db.users(selectedUser).update({credit: parseFloat(newCredit)});
 
             this.db.posLog.insert({
                 timeUnix: new Date().getTime(),
-                time: `${this.date.hh}:${this.date.nn}`,
-                date: `${this.date.dd}/${this.date.mm}/${this.date.yyyy}`,
+                time: `${this.moment.hh}:${this.moment.nn}`,
+                date: `${this.moment.dd}/${this.moment.mm}/${this.moment.yyyy}`,
                 user:  this.db.users(this.userPane.user.selected).get()[0].name,
                 item:  this.db.items(this.itemPane.item.selected).get()[0].name,
                 amount: parseFloat(this.pos.selectAmount.selected),
@@ -524,25 +576,26 @@
 
             this.readyState();
             document.querySelector('#modalPosConfirm .modal-content').classList.remove('modal-danger');
+            this.calculateGoals();
         },
 
         goSudo() {
+            
             this.setPane.sudo.pw = document.querySelector('#sudo-password').value;
 
-            if (a(this.setPane.sudo.pw) == a('stamvader')) {
-                console.log('logged in')
+            if (a(this.setPane.sudo.pw) == a('stamvader') || getCookie('sudo') == 'true') {
                 document.querySelector('#sudo-password').value = '';
                 document.body.setAttribute('data-sudo-mode', 'true');
                 createCookie('sudo', true)
                 errorText('sudoFalse', '');
+                $('#modalGoSudo').modal('hide');
             } else {
-                console.log('password false')
                 errorText('sudoFalse', 'Het opgegeven wachtwoord was fout');
             }
         },
 
         noSudo() {
-            createCookie('sudo', true, 0);
+            createCookie('sudo', false, 0);
             document.body.setAttribute('data-sudo-mode', 'false');
         },
 
@@ -591,9 +644,9 @@
 }]
             `;
 
-            this.moment();
+            this.setTime();
             const blob = new Blob([result], {type: 'application/javascript'});
-            saveAs(blob, `barbord_backup_${this.date.dd}${this.date.mm}${this.date.yyyy}_${this.date.hh}${this.date.nn}.json`)
+            saveAs(blob, `barbord_backup_${this.moment.dd}${this.moment.mm}${this.moment.yyyy}_${this.moment.hh}${this.moment.nn}.json`)
         },
 
         importBackup() {
@@ -602,22 +655,23 @@
             
                 if (typeof window.FileReader !== 'function') {
                     // alert("The file API isn't supported on this browser yet.");
-                    createToast('Backup import', 'The file API isn\'t supported on this browser yet.')
+                    createToast('Backup', 'De vereiste API wordt niet ondersteund')
                     return;
                 }
             
                 input = document.querySelector('[data-label="fileinput"]');
                 let filename = input.value.split("\\").pop();
             
-                if (!input) {createToast('Backup import', 'Fout bij het importeren')}
-                else if (!input.files) {createToast('Backup import', 'Deze browser ondersteund deze functie niet')}
-                else if (!input.files[0]) {createToast('Backup import', 'Kies eerst een bestand voor op \'Inladen\' te klikken')}
+                if (!input) {createToast('Backup', 'Fout bij het importeren')}
+                else if (!input.files) {createToast('Backup', 'Deze browser ondersteund deze functie niet')}
+                else if (!input.files[0]) {createToast('Backup', 'Upload eerst een bestand')}
                 else {
                     file = input.files[0];
                     fr = new FileReader();
                     fr.onload = receivedText;
                     fr.readAsText(file);
-                    createToast('Backup import', 'Inladen bestand en terugzetten gegevens gelukt')
+                    $('#modalDataImport').modal('hide')
+                    createToast('Backup', 'Terugzetten gegevens gelukt')
                 }
             
                 
@@ -638,7 +692,7 @@
                         return i;
                     }
                     this.now = new Date()
-                    this.date = {
+                    this.moment = {
                         dd: addZero(this.now.getDate()),
                         mm: addZero(this.now.getMonth() + 1),
                         yyyy: this.now.getFullYear(),
@@ -682,7 +736,14 @@
 
             loadFile();
             this.readyState();
-        },        
+        },
+
+        calculateGoals() {
+            this.goals.profit.elCounter.innerHTML = `€${this.goals.profit.count.toFixed(2)}`;
+            let percent = (this.goals.profit.count / window.localStorage.getItem('goalProfit'))
+            console.log(percent)
+            this.goals.profit.circle.setAttribute('style', `stroke-dasharray: ${percent*299}, 298.493; stroke: hsl(214, 100%, ${100 - (percent * 100)}%);`);
+        },
     }
 
     app.initialize();
@@ -714,34 +775,48 @@ let toastIndex = 0;
 
 function createToast(title, message) {
     console.log(`%c[service] ${arguments.callee.name}()`, 'font-weight: bold');
+    console.log(toastIndex);
+
+    let now, moment;
+    function addZero(i) {
+        if (i < 10) {
+            i = "0" + i;
+        }
+        return i;
+    }
+    now = new Date()
+    moment = {
+        dd: addZero(now.getDate()),
+        mm: addZero(now.getMonth() + 1),
+        yyyy: now.getFullYear(),
+        hh: addZero(now.getHours()),
+        nn: addZero(now.getMinutes()),
+    }
 
     let toast = document.createElement('div');
-    this.toastIndex ++;
+    toastIndex ++;
 
     toast.classList.add('toast', 'animated', 'fadeInRight', 'faster');
-    toast.setAttribute('data-toast', `toastIndex${this.toastIndex}`);
+    toast.setAttribute('data-toast', `toastIndex${toastIndex}`);
     toast.setAttribute('data-delay', `3500`);
     toast.setAttribute('role', `alert`);
     toast.setAttribute('aria-atomic', `true`);
     toast.setAttribute('aria-live', `assertive`);
 
     toast.innerHTML = `
-        <div class="toast-header">
-            <div class="icon-md mr-2"><i data-feather="bell"></i></div>
-            <strong class="mr-auto">${title}</strong>
-            <small class="text-muted d-none">just now</small>
-            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-                <div class="icon-md"><i data-feather="x"></i></div>
-            </button>
-        </div>
         <div class="toast-body">
-            ${message}
+            <p class="toast-title mr-auto text-modern bold mb-0">${title}</p>
+            <p class="mb-0">${message}</p>
+            <small class="text-muted d-none">${moment.hh}:${moment.nn}</small>
         </div>
+        <button type="button" class="close" data-dismiss="toast" aria-label="Close">
+            <div class="icon-md"><i data-feather="x"></i></div>
+        </button>
     `
 
     toast.addEventListener('animationend', function() {toast.classList.add('animated', 'fadeOutRight', 'delay-3s')})
 
     document.querySelector('#toastContainer').appendChild(toast);
     feather.replace();
-    $(`[data-toast="toastIndex${this.toastIndex}"]`).toast('show');
+    $(`[data-toast="toastIndex${toastIndex}"]`).toast('show');
 }
