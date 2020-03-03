@@ -2,30 +2,12 @@
 
 <br>
 
-### [Functies](#functies) | [Software](#software) | [Demo](https://bar-bord.haegepoorters.be/src/) (wachtwoord: ```stamvader```)
-
----
-
-# Bar Bord
-Papieren stamkaarten zijn verleden tijd, hier is Bar Bord! Gebruik Bar Bord om leiding te laten betalen voor drank, snacks, etc.
-
-Oorspronkelijk ontwikkeld om het betaalprobleem op te lossen op m'n [eigen scouts](https://www.google.com/search?q=haegepoorters+destelbergen), nu beschikbaar voor elke vereniging die het betalen van drank, snacks etc. eenvoudig wil doen verlopen.
-
-> Opgelet, deze applicatie is op geen enkele manier verbonden met het internet. Het is dus mogelijk om het te draaien zonder een verbinding, maar er is geen integratie met een betalingsysteem zoals Bancontact. Je dient dus zelf handmatig tegoed toe te voegen als beheerder.
-
-## Functies
-- **Items toevoegen** Geef drank, snacks of andere items op die verkocht kunnen worden. Je kan voor elk item een kleur opgeven dat wordt weergegeven bij de oplijsting van de items.
-- **Personen toevoegen** Voeg personen toe aan het systeem. Elke persoon krijgt zijn eigen 'rekening'.
-- **Verkooprecords** Alles wat verkocht wordt, wordt bijgehouden. Dit maakt het mogelijk om te controleren of iemand te weinig betaald. Men kan dan de verkochtte items, de naam van de persoon en de prijs (incl. intrest) nazien.
-- **Beheer** Items en leiding toevoegen/verwijderen of tegoed toevoegen kan enkel gedaan worden door een beheerder die zich moet aanmelden. Daarbij is het mogeelijk het wachtwoord hier voor te wijzigen.
-- **Backup** De records, personen en items kunnen bewaard worden als een bestand. Dit bestand kan later terug worden ingeladen om de gegevens te herstellen.
-- **Online of offline** De demo kan gewoon gebruikt worden als volledige online versie. Doch is het aangeraden om de software te installeren.
+### [Software](#software) | [Demo](https://bar-bord.haegepoorters.be/src/) (wachtwoord: ```stamvader```)
 
 ### Roadmap
 - Instellen of er items gekocht kunnen worden met een negatief tegoed.
 - Instellen hoeveel intrest er gevraagd wordt bij een negatief tegoed.
 
-- QR-code generator voor het toevoegen van QR-code in app
 - Eigen rekeningnummer opgeven
 - Eigen spotify-code opgeven
 
