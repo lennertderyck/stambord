@@ -2,7 +2,7 @@
 
 <br>
 
-### [Software](#software) | [Demo](https://bar-bord.haegepoorters.be/src/) (wachtwoord: ```stamvader```)
+### [Software](#software) | [Roadmap](#roadmap) | [Help](#problemen-en-hulp) | [Demo](https://bar-bord.haegepoorters.be/src/) (wachtwoord: ```stamvader```)
 
 ---
 
