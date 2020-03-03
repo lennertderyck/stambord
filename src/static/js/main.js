@@ -365,9 +365,26 @@
                 } else {
                     priceOutput = `€${r.price[0]}`
                 }
+                switch(r.type){
+                    case 1:
+                        typeOutput = "Fries/Bier";
+                        break;
+                    case 2:
+                        typeOutput = "Shotje";
+                        break;
+                    case 3:
+                        typeOutput = "Sterk";
+                        break;
+                    case 4:
+                        typeOutput = "Cocktail";
+                        break;
+                    case 5:
+                        typeOutput = "Snack";
+                        break;
+                }
                 tr.innerHTML = `
                     <td>${r.name}</td>
-                    <td>${r.type}</td>
+                    <td>${typeOutput}</td>
                     <td>${priceOutput}</td>
                 `;
                 tr.addEventListener('click', () => {
