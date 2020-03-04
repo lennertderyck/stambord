@@ -288,8 +288,10 @@
                 name: this.userPane.user.name, 
                 credit: parseFloat(this.userPane.user.credit)
             });
+            console.log("AddUserReadyStateCall");
             this.readyState();
-            this.alerts.noUsers.classList.remove('d-none');
+            this.alerts.noUsers.classList.remove('d-flex');
+            this.alerts.noUsers.classList.add('d-none');
         },
 
         generateUsers() {
@@ -348,7 +350,7 @@
 
             this.db.items.insert({
                 name: this.itemPane.item.name, 
-                type: parseFloat(this.itemPane.item.type),
+                type: this.itemPane.item.type,
                 price: [parseFloat(this.itemPane.item.price.single), parseFloat(this.itemPane.item.price.double), parseFloat(this.itemPane.item.price.extra)]
             });
             this.generateItems();
@@ -360,31 +362,14 @@
             let priceOutput = '';
             this.db.items().each((r, index) => {
                 let tr = document.createElement('tr');
-                if (r.type !== 1 && r.type !== 5) {
+                if (r.type !== "Fris/Bier" && r.type !== "Snack") {
                     priceOutput = `<strong>Enkel:</strong> €${r.price[0]} <strong class="ml-3">Dubbel:</strong> €${r.price[1]} <strong class="ml-3">Extra:</strong> €${r.price[2]}`
                 } else {
                     priceOutput = `€${r.price[0]}`
                 }
-                switch(r.type){
-                    case 1:
-                        typeOutput = "Fries/Bier";
-                        break;
-                    case 2:
-                        typeOutput = "Shotje";
-                        break;
-                    case 3:
-                        typeOutput = "Sterk";
-                        break;
-                    case 4:
-                        typeOutput = "Cocktail";
-                        break;
-                    case 5:
-                        typeOutput = "Snack";
-                        break;
-                }
                 tr.innerHTML = `
                     <td>${r.name}</td>
-                    <td>${typeOutput}</td>
+                    <td>${r.type}</td>
                     <td>${priceOutput}</td>
                 `;
                 tr.addEventListener('click', () => {
@@ -519,7 +504,7 @@
                         div.classList.add('active');
                     }
                     this.itemPane.item.selected = r.___id;
-                    if (r.type !== 1 && r.type !== 5) {
+                    if (r.type !== "Fris/Bier" && r.type !== "Snack") {
                         if (div.classList.contains('active') == true) {
                             this.pos.selectAmount.window.classList.remove('d-none');
                         }
