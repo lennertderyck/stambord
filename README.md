@@ -2,14 +2,7 @@
 
 <br>
 
-### [Software](#software) | [Demo](https://bar-bord.haegepoorters.be/src/) (wachtwoord: ```stamvader```)
-
-### Roadmap
-- Instellen of er items gekocht kunnen worden met een negatief tegoed.
-- Instellen hoeveel intrest er gevraagd wordt bij een negatief tegoed.
-
-- Eigen rekeningnummer opgeven
-- Eigen spotify-code opgeven
+### [Software](#software) | [Roadmap](#roadmap) | [Help](#problemen-en-hulp) | [Demo](https://bar-bord.haegepoorters.be/src/) (wachtwoord: ```stamvader```)
 
 ---
 
@@ -34,6 +27,13 @@ Wil je Bar Bord eigenhandig omzetten als Windows programma? Volg de stappen hier
 - Plak het volgende in de commandprompt ```electron-forge make```
 
 Er zal in de map die je gedownload hebt een nieuwe folder gemaakt worden genaamd 'Out', hier vind je de nieuwe applicatie in.
+
+## Roadmap
+- Instellen of er items gekocht kunnen worden met een negatief tegoed.
+- Instellen hoeveel intrest er gevraagd wordt bij een negatief tegoed.
+
+- Eigen rekeningnummer opgeven
+- Eigen spotify-code opgeven
 
 ---
 
