@@ -368,7 +368,7 @@
                 }
                 switch(r.type){
                     case 1:
-                        typeOutput = "Fries/Bier";
+                        typeOutput = "Fris/Bier";
                         break;
                     case 2:
                         typeOutput = "Shotje";
