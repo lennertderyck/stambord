@@ -1,4 +1,4 @@
-![bar bord banner](https://raw.githubusercontent.com/lennertderyck/bar-board/master/branding/banner.png)
+![bar bord banner](https://raw.githubusercontent.com/lennertderyck/stam-bord/master/branding/BANNER_BARBORD.svg)
 
 <br>
 
