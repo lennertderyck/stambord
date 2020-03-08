@@ -335,7 +335,8 @@
             this.userPane.topup.amount = parseFloat(document.querySelector('#topUp-credit').value);
             let creditCurrent = this.db.users(this.userPane.user.selected).get()[0].credit;
             this.db.users(this.userPane.user.selected).update({credit: parseFloat(creditCurrent) + this.userPane.topup.amount});
-            this.readyState();
+            this.readyState(); 
+            createToast('Topup gelukt!', `€${this.userPane.topup.amount} tegoed toegevoegd door ${this.db.users(this.userPane.user.selected).get()[0].name}`)
         },
 
         addItem() {
@@ -590,10 +591,22 @@
                 amount: parseFloat(this.pos.selectAmount.selected),
                 credit: parseFloat(pay),
             })
-
+            
+            let currentCreditStateForToast;
+            if(parseFloat(newCredit) <= 0) {
+                currentCreditStateForToast = `<br><strong>Je staat ${parseFloat(newCredit).toFixed(2)} in het rood</strong>, zuiver je toegoed aan!`;
+            } else {
+                currentCreditStateForToast = `<br><strong>€${parseFloat(newCredit).toFixed(2)} toegoed over</strong>`
+            };
+            
+            
             this.readyState();
             document.querySelector('#modalPosConfirm .modal-content').classList.remove('modal-danger');
             this.calculateGoals();
+            
+            createToast(
+                `Item verkocht`, 
+                `${this.db.users(this.userPane.user.selected).get()[0].name} heeft ${this.db.items(this.itemPane.item.selected).get()[0].name} gekocht voor €${parseFloat(pay)}. ${currentCreditStateForToast}`)
         },
 
         goSudo() {
@@ -606,6 +619,7 @@
                 createCookie('sudo', true)
                 errorText('sudoFalse', '');
                 $('#modalGoSudo').modal('hide');
+                createToast('sudo', 'Je bent nu aangemeld');
             } else {
                 errorText('sudoFalse', 'Het opgegeven wachtwoord was fout');
             }
@@ -823,7 +837,7 @@ function createToast(title, message) {
     toast.innerHTML = `
         <div class="toast-body">
             <p class="toast-title mr-auto text-modern bold mb-0">${title}</p>
-            <p class="mb-0">${message}</p>
+            <p class="toast-content mb-0">${message}</p>
             <small class="text-muted d-none">${moment.hh}:${moment.nn}</small>
         </div>
         <button type="button" class="close" data-dismiss="toast" aria-label="Close">
