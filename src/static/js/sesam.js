@@ -11,7 +11,7 @@
                     this.collapseDo(trigger.dataset.sesamTrigger);
                 }));
     
-                if (trigger.classList.contains('sesam-hidden') == false) {
+                if (trigger.classList.contains('sesam-hidden') == false && trigger.classList.contains('sesam-show') == false) {
                     trigger.classList.add('sesam-hidden');
                 }
                 
@@ -20,13 +20,13 @@
                 }
             });
     
-            this.sesamTarget.forEach((item) => {
-                if (item.classList.contains('sesam') == false) {
-                    item.classList.add('sesam');
+            this.sesamTarget.forEach((target) => {
+                if (target.classList.contains('sesam-hidden') == false && target.classList.contains('sesam-show') == false) {
+                    target.classList.add('sesam-hidden');
                 }
-    
-                if (item.classList.contains('sesam-hidden') == false) {
-                    item.classList.add('sesam-hidden');
+                
+                if (target.classList.contains('sesam') == false) {
+                    target.classList.add('sesam');
                 }
             })
         },
