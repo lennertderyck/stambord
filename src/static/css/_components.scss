@@ -233,6 +233,14 @@ table.table {
         &:not(.hide) {
             display: flex;
         }
+        
+        .toast-content {
+            font-weight: 500;
+            
+            strong {
+                font-weight: 600;
+            }
+        }
     }
 }
 
