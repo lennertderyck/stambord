@@ -7,7 +7,7 @@
 ---
 
 ## Dependencies
-We hebben Stambord zo gemaakt dat je je geen zorgen hoeft te maken over dependencies. Omdat het de bedoeling is dat je de applicatie offline kan gebruiken is er geen gebruik gemaakt van externe resources.
+Stambord is gemaakt met webtechnologie en we hebben ervoor gezorgd dat je je geen zorgen hoeft te maken over dependencies. Omdat het de bedoeling is dat je de applicatie offline kan gebruiken is er geen gebruik gemaakt van externe resources.
 
 Stambord werd gemaakt met behulp van ...
 - [Bootstrap](https://getbootstrap.com/) - interface
