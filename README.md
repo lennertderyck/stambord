@@ -31,9 +31,7 @@ Er zal in de map die je gedownload hebt een nieuwe folder gemaakt worden genaamd
 ## Roadmap
 - Instellen of er items gekocht kunnen worden met een negatief tegoed.
 - Instellen hoeveel intrest er gevraagd wordt bij een negatief tegoed.
-
 - Eigen rekeningnummer opgeven
-- Eigen spotify-code opgeven
 
 ---
 
