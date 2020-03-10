@@ -1,3 +1,5 @@
+let toastIndex = 0;
+
 (() => {
     const app = {
         initialize() {
@@ -802,8 +804,6 @@ function errorText(element, content) {
     })
 }
 
-let toastIndex = 0;
-
 function createToast(title, message) {
     console.log(`%c[service] ${arguments.callee.name}()`, 'font-weight: bold');
     console.log(toastIndex);
@@ -850,4 +850,4 @@ function createToast(title, message) {
     document.querySelector('#toastContainer').appendChild(toast);
     feather.replace();
     $(`[data-toast="toastIndex${toastIndex}"]`).toast('show');
-}
+};
