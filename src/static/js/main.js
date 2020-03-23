@@ -289,7 +289,9 @@
                 credit: parseFloat(this.userPane.user.credit)
             });
             this.readyState();
-            this.alerts.noUsers.classList.remove('d-none');
+            this.alerts.noUsers.classList.remove('d-flex')
+            this.alerts.noUsers.classList.add('d-none');
+            
         },
 
         generateUsers() {
