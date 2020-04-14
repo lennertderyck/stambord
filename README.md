@@ -28,7 +28,7 @@ Wil je Bar Bord eigenhandig omzetten als Windows programma? Volg de stappen hier
   - Open Commandoprompt, plak de volgende code ```node -v``` en druk Enter
   - Als Node.js niet geïnstalleerd is download deze dan via https://nodejs.org/en/
   - Volg de stappen die op het scherm 
-- Installeer NPM ```npm install npm@latest -g```
+- Installeer Node packages ```npm install```
 - Installeer Electron Forge ```npm i -g @electron-forge/cli```
 
 #### 2. Omzetting
