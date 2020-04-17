@@ -303,7 +303,7 @@ let toastIndex = 0;
                     if (r.credit <= 0) {tr.classList.add('user-credit-neg')};
                     tr.innerHTML = `
                         <td>${r.name}</td>
-                        <td><span>€${r.credit.toFixed(2)}</span></td>
+                        <td><span>€${r.credit}</span></td>
                     `;
                     tr.addEventListener('click', () => {
                         if (tr.classList.contains('active')) {
@@ -482,7 +482,7 @@ let toastIndex = 0;
                     div.classList.add('flex-grid-item', 'pos-el');
                     div.innerHTML = `
                         <h3>${r.name}</h3>
-                        <small>€${r.credit.toFixed(2)}</small>
+                        <small>€${r.credit}</small>
                     `;
                     div.addEventListener('click', () => {
                         if (div.classList.contains('active')) {

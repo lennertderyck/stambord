@@ -1,9 +1,12 @@
+@import 'var';
+
+// panes
+@import 'pane/users';
+
 @import 'animate';
-@import 'grid';
 @import 'flex-card-grid';
 @import 'sesam';
 @import 'fonts';
-@import 'var';
 @import 'base';
 @import 'typography';
 @import 'navigation';

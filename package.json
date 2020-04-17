@@ -9,7 +9,7 @@
     "electron:make": "electron-forge make",
     "electron:publish": "electron-forge publish",
     "lint": "echo \"No linting configured\"",
-    "sass": "sass --watch src/static/css/main.scss:src/static/css/main.min.css --style compressed --sourcemap=none",
+    "sass": "sass --watch _sass/main.scss:src/static/css/main.min.css --style compressed --sourcemap=none",
     "serve": "cd src && browser-sync start -s -f . --no-notify --host $LOCAL_IP --port 9000"
   },
   "keywords": [],
@@ -46,6 +46,7 @@
     }
   },
   "dependencies": {
+    "dexie": "^2.0.4",
     "electron-squirrel-startup": "^1.0.0",
     "push.js": "^1.0.12"
   },

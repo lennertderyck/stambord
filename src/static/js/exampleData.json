@@ -1,0 +1,259 @@
+
+[{
+    "posLog": [
+        {
+    "timeUnix": 1583705062740,
+    "time": "23:04",
+    "date": "08/03/2020",
+    "user": "Lennert",
+    "item": "Cola",
+    "amount": 1,
+    "credit": 0.8
+}
+,{
+    "timeUnix": 1583705835051,
+    "time": "23:17",
+    "date": "08/03/2020",
+    "user": "Lennert",
+    "item": "Cola",
+    "amount": 1,
+    "credit": 0.8
+}
+,{
+    "timeUnix": 1586878704961,
+    "time": "17:38",
+    "date": "14/04/2020",
+    "user": "Lennert",
+    "item": "Cola",
+    "amount": 1,
+    "credit": 0.8
+}
+,{
+    "timeUnix": 1586878708048,
+    "time": "17:38",
+    "date": "14/04/2020",
+    "user": "Lennert",
+    "item": "Cola",
+    "amount": 1,
+    "credit": 0.8
+}
+,{
+    "timeUnix": 1586878710697,
+    "time": "17:38",
+    "date": "14/04/2020",
+    "user": "Lennert",
+    "item": "Cola",
+    "amount": 1,
+    "credit": 0.8
+}
+,{
+    "timeUnix": 1586878713859,
+    "time": "17:38",
+    "date": "14/04/2020",
+    "user": "Lennert",
+    "item": "Cola",
+    "amount": 1,
+    "credit": 0.8
+}
+,{
+    "timeUnix": 1586878716838,
+    "time": "17:38",
+    "date": "14/04/2020",
+    "user": "Lennert",
+    "item": "Cola",
+    "amount": 1,
+    "credit": 0.8
+}
+,{
+    "timeUnix": 1586878720042,
+    "time": "17:38",
+    "date": "14/04/2020",
+    "user": "Lennert",
+    "item": "Cola",
+    "amount": 1,
+    "credit": 0.8
+}
+,{
+    "timeUnix": 1586878722626,
+    "time": "17:38",
+    "date": "14/04/2020",
+    "user": "Lennert",
+    "item": "Cola",
+    "amount": 1,
+    "credit": 0.8
+}
+,{
+    "timeUnix": 1586878725424,
+    "time": "17:38",
+    "date": "14/04/2020",
+    "user": "Lennert",
+    "item": "Cola",
+    "amount": 1,
+    "credit": 0.8
+}
+,{
+    "timeUnix": 1586878727868,
+    "time": "17:38",
+    "date": "14/04/2020",
+    "user": "Lennert",
+    "item": "Cola",
+    "amount": 1,
+    "credit": 0.8
+}
+,{
+    "timeUnix": 1586878730592,
+    "time": "17:38",
+    "date": "14/04/2020",
+    "user": "Lennert",
+    "item": "Cola",
+    "amount": 1,
+    "credit": 0.8
+}
+,{
+    "timeUnix": 1587077869683,
+    "time": "00:57",
+    "date": "17/04/2020",
+    "user": "Stef",
+    "item": "Cola",
+    "amount": 1,
+    "credit": 0.8
+}
+,{
+    "timeUnix": 1587077873169,
+    "time": "00:57",
+    "date": "17/04/2020",
+    "user": "Louise",
+    "item": "Cara",
+    "amount": 1,
+    "credit": 0.2
+}
+,{
+    "timeUnix": 1587077876034,
+    "time": "00:57",
+    "date": "17/04/2020",
+    "user": "Louise",
+    "item": "Cara",
+    "amount": 1,
+    "credit": 0.2
+}
+,{
+    "timeUnix": 1587077881791,
+    "time": "00:58",
+    "date": "17/04/2020",
+    "user": "Anne",
+    "item": "Paprikanuts",
+    "amount": 1,
+    "credit": 0.6
+}
+,{
+    "timeUnix": 1587077886928,
+    "time": "00:58",
+    "date": "17/04/2020",
+    "user": "Uche",
+    "item": "Frivo",
+    "amount": 3,
+    "credit": 5.7
+}
+,{
+    "timeUnix": 1587077917851,
+    "time": "00:58",
+    "date": "17/04/2020",
+    "user": "Margot",
+    "item": "Frivo",
+    "amount": 3,
+    "credit": 6.84
+}],
+    "items": [
+        {
+    "name": "Cola",
+    "type": 1,
+    "price": [0.8,0,0]
+}
+,{
+    "name": "Paprikanuts",
+    "type": 5,
+    "price": [0.6,0,0]
+}
+,{
+    "name": "Cara",
+    "type": 1,
+    "price": [0.2,0,0]
+}
+,{
+    "name": "Frivo",
+    "type": 4,
+    "price": [2.1,4,5.7]
+}
+,{
+    "name": "Kruvel",
+    "type": 4,
+    "price": [1.8,4,5.7]
+}
+,{
+    "name": "Duvel",
+    "type": 4,
+    "price": [1.4,4,5.7]
+}],
+    "users": [
+        {
+    "name": "Stef",
+    "credit": 9.2
+}
+,{
+    "name": "Alvin",
+    "credit": 5.4
+}
+,{
+    "name": "Margot",
+    "credit": -2.6399999999999997
+}
+,{
+    "name": "Andreas",
+    "credit": 9
+}
+,{
+    "name": "Timon",
+    "credit": 10
+}
+,{
+    "name": "Jade",
+    "credit": 12.3
+}
+,{
+    "name": "Uche",
+    "credit": 2.999999999999999
+}
+,{
+    "name": "Pepijn",
+    "credit": 6.9
+}
+,{
+    "name": "Louise",
+    "credit": 1.6
+}
+,{
+    "name": "Anne",
+    "credit": 2.8
+}
+,{
+    "name": "Annabel",
+    "credit": 8.6
+}
+,{
+    "name": "Laura",
+    "credit": 14.5
+}
+,{
+    "name": "Lennert",
+    "credit": 10.3
+}
+,{
+    "name": "Stijn S.",
+    "credit": 3.5
+}
+,{
+    "name": "Lore",
+    "credit": 7.4
+}]
+}]
+            

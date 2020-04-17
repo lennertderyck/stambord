@@ -29,12 +29,13 @@
     <!-- <script src="https://ce.lennertderyck.be/library/elements.js"></script> -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://unpkg.com/dexie@latest/dist/dexie.js"></script>
     
     <!-- local assets -->
     <link rel="stylesheet" href="./static/css/bootstrap-toggle.min.css">
     <link rel="stylesheet" href="./static/css/main.min.css">
 </head>
-<body data-sudo-mode="false" dark-mode="true">
+<body data-sudo-mode="false" dark-mode="false">
     <div id="toastContainer" aria-live="polite" aria-atomic="true"></div>
     <header></header>
     <main class="">
@@ -110,90 +111,68 @@
                                 <p class="mb-0">We vonden geen leiding, begin met hier iemand toe te voegen.</p>
                             </div>
                         </div>
-                        <div id="carouselPosSteps" class="carousel slide" data-ride="carousel" data-interval="false">
-                            <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <div class="flex-grid-wrapper p-4">
-                                        <div class="flex-grid" data-label="posUsers">
-                                            <div class="flex-grid-item">item</div>
-                                            <div class="flex-grid-item">item</div>
-                                            <div class="flex-grid-item">item</div>
-                                            <div class="flex-grid-item">item</div>
-                                            <div class="flex-grid-item">item</div>
-                                            <div class="flex-grid-item">item</div>
+                        <form id="posCheckout">
+                            <div id="carouselPosSteps" class="carousel slide" data-ride="carousel" data-interval="false">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <div class="flex-grid-wrapper p-4">
+                                            <div class="flex-grid" data-label="posUsers">
+                                                <input type="radio" id="checkoutItem_${i.id}" name="checkoutItems" value="${i.id}"><label for="checkoutItem_${i.id}" class="flex-grid-item pos-el">
+                                                    <h3>Uche</h3>
+                                                    <small>€3.00</small>
+                                                </label>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="carousel-item">
-                                    <div class="mx-4 mt-4">
-                                        <button onclick="$('#carouselPosSteps').carousel('prev')" class="mb-0 text-modern d-flex align-items-center"><i data-feather="arrow-left"></i> <span class="ml-2">kies een andere gebruiker</span></button>
-                                    </div>
-                                    <div class="flex-grid-wrapper p-4">
-                                        <div class="flex-grid" data-label="posItems">
-                                            <div class="flex-grid-item">item</div>
-                                            <div class="flex-grid-item">item</div>
-                                            <div class="flex-grid-item">item</div>
-                                            <div class="flex-grid-item">item</div>
-                                            <div class="flex-grid-item">item</div>
-                                            <div class="flex-grid-item">item</div>
+                                    <div class="carousel-item">
+                                        <div class="mx-4 mt-4">
+                                            <button onclick="$('#carouselPosSteps').carousel('prev')" class="mb-0 text-modern d-flex align-items-center"><i data-feather="arrow-left"></i> <span class="ml-2">kies een andere gebruiker</span></button>
+                                        </div>
+                                        <div class="flex-grid-wrapper p-4">
+                                            <div class="flex-grid" data-label="posItems">
+                                                <div class="flex-grid-item">item</div>
+                                                <div class="flex-grid-item">item</div>
+                                                <div class="flex-grid-item">item</div>
+                                                <div class="flex-grid-item">item</div>
+                                                <div class="flex-grid-item">item</div>
+                                                <div class="flex-grid-item">item</div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="flex-grid-wrapper p-4 row-item-3 d-none" data-label="posAmount">
-                            <div class="flex-grid">
-                                <div class="flex-grid-item pos-el">
-                                    <h3>Enkel</h3>
-                                </div>
-                                <div class="flex-grid-item pos-el">
-                                    <h3>Dubbel</h3>
-                                </div>
-                                <div class="flex-grid-item pos-el">
-                                    <h3>Extra</h3>
+                            <div class="flex-grid-wrapper p-4 row-item-3 d-none" data-label="posAmount">
+                                <div class="flex-grid">
+                                    <div class="flex-grid-item pos-el">
+                                        <h3>Enkel</h3>
+                                    </div>
+                                    <div class="flex-grid-item pos-el">
+                                        <h3>Dubbel</h3>
+                                    </div>
+                                    <div class="flex-grid-item pos-el">
+                                        <h3>Extra</h3>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
                     <div class="tab-pane fade" id="nav-log" role="tabpanel" aria-labelledby="nav-log-tab">
                         <div class="tab-pane-title">
                             <h3>Logboek</h3>
                         </div>
-                        <table class="table">
-                            <thead>
-                              <tr>
-                                <th scope="col" class="pl-4">Tijd</th>
-                                <th scope="col">Persoon</th>
-                                <th scope="col">Item</th>
-                                <th scope="col" class="pr-4">Bedrag</th>
-                              </tr>
-                            </thead>
-                            <tbody data-label="posLog">
-                              <tr>
-                                <td class="pl-4 fontw-400">
-                                    23:46<br>
-                                    <small>01/02/2019</small>
-                                </td>
-                                <td>Mark</td>
-                                <td>Fanta</td>
-                                <td class="pr-4">€2,00</td>
-                                <td><i data-feather="more-horizontal"></i></td>
-                              </tr>
-                              <tr>
-                                <td class="pl-4 fontw-400">
-                                    23:50<br>
-                                    <small>01/02/2019</small>
-                                </td>
-                                <td>Jull</td>
-                                <td>
-                                    Frivo<br>
-                                    <small>dubbel</small>
-                                </td>
-                                <td class="pr-4">€2,00</td>
-                                <td><i data-feather="more-horizontal"></i></td>
-                              </tr>
-                            </tbody>
-                        </table>
+
+                        <div class="table">
+                            <div class="container-fluid">
+                                <div class="row table-head py-3">
+                                    <div class="col text-modern"><strong>Tijd</strong></div>
+                                    <div class="col text-modern"><strong>Persoon</strong></div>
+                                    <div class="col text-modern"><strong>Item</strong></div>
+                                    <div class="col text-modern"><strong>Bedrag</strong></div>
+                                </div>
+                            </div>
+                            <div class="table-data" data-label="logs">
+                            </div>
+                        </div>
                     </div>
                     <div class="tab-pane fade" id="nav-items" role="tabpanel" aria-labelledby="nav-items-tab">
                         <div class="tab-pane-title d-flex align-items-center justify-content-between">
@@ -208,17 +187,31 @@
                             </div>
                         </div>
                         
-                        <table class="table">
-                            <thead>
-                              <tr>
-                                <th scope="col" class="pl-4">Item</th>
-                                <th scope="col">Type</th>
-                                <th scope="col">Prijs</th>
-                              </tr>
-                            </thead>
-                            <tbody data-label="itemRecords">
-                            </tbody>
-                        </table>
+                        <div class="table">
+                            <div class="container-fluid">
+                                <div class="row table-head py-3">
+                                    <div class="col text-modern"><strong>Item</strong></div>
+                                    <div class="col text-modern"><strong>Soort</strong></div>
+                                    <div class="col text-modern"><strong>Prijs</strong></div>
+                                </div>
+                            </div>
+                            <div class="table-data" data-label="listedItems">
+                                <div class="table-item container-fluid">
+                                    <input type="radio" id="user_user43552539" name="users" value="user43552539"><label for="user_user43552539" class="row">
+                                        <div class="col">
+                                            <span>Cara</span>
+                                        </div>
+                                        <div class="col">
+                                            <span>Bier/Fris</span>
+                                        </div>
+                                        <div class="col">
+                                            <span class="d-block">€0,20</span>
+                                            <small><span class="text-modern">dubbel</span> €0,40 &nbsp; – &nbsp; <span class="text-modern">extra</span> €0,60</small>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="tab-pane fade" id="nav-users" role="tabpanel" aria-labelledby="nav-users-tab">
                         <div class="tab-pane-title d-flex align-items-center justify-content-between">
@@ -235,16 +228,17 @@
                                 </button>
                             </div>
                         </div>
-                        <table class="table">
-                            <thead>
-                              <tr>
-                                <th scope="col" class="pl-4">Naam</th>
-                                <th scope="col">Tegoed</th>
-                              </tr>
-                            </thead>
-                            <tbody data-label="userRecords">
-                            </tbody>
-                        </table>
+                        <div class="table">
+                            <div class="container-fluid">
+                                <div class="row table-head py-3">
+                                    <div class="col text-modern"><strong>Naam</strong></div>
+                                    <div class="col text-modern"><strong>Tegoed</strong></div>
+                                </div>
+                            </div>
+                            <div class="table-data" data-label="listedUsers">
+                                
+                            </div>
+                        </div>
                     </div>
                     <div class="tab-pane fade" id="nav-settings" role="tabpanel" aria-labelledby="nav-settings-tab">
                         <div class="tab-pane-title d-flex align-items-center justify-content-between">
@@ -367,20 +361,22 @@
                         <span aria-hidden="true"><i data-feather="x"></i></span>
                     </button>
                 </div>
-                <div class="modal-body">
-                    <div class="input-group mb-3 floating-label">
-                        <input type="text" id="addUser-name" class="form-control" required>
-                        <label for="addUser-name">naam</label>
+                <form id="addUser">
+                    <div class="modal-body">
+                        <div class="input-group mb-3 floating-label">
+                            <input type="text" id="addUser-name" class="form-control" name="name" required>
+                            <label for="addUser-name">naam</label>
+                        </div>
+                        <div class="input-group floating-label">
+                            <input type="number" id="addUser-credit" class="form-control" name="credit" required>
+                            <label for="addUser-credit">tegoed</label>
+                        </div>
                     </div>
-                    <div class="input-group floating-label">
-                        <input type="number" id="addUser-credit" class="form-control" required>
-                        <label for="addUser-credit">tegoed</label>
+                    <div class="modal-footer">
+                        <button type="button" class="btn" data-dismiss="modal"><i data-feather="x"></i>annuleren</button>
+                        <button type="submit" data-label="addUser" class="btn btn-blue"><i data-feather="plus"></i>toevoegen</button>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn" data-dismiss="modal"><i data-feather="x"></i>annuleren</button>
-                    <button type="button" data-label="addUser" class="btn btn-blue" data-dismiss="modal"><i data-feather="plus"></i>toevoegen</button>
-                </div>
+                </form>
             </div>
         </div>
     </div>
@@ -393,43 +389,45 @@
                         <span aria-hidden="true"><i data-feather="x"></i></span>
                     </button>
                 </div>
-                <div class="modal-body">
-                    <div class="d-flex mb-3">
-                        <div class="input-group floating-label mr-3">
-                            <input type="text" id="AddItem-name" class="form-control" required>
-                            <label for="AddItem-name">naam item</label>
+                <form id="addItem">
+                    <div class="modal-body">
+                        <div class="d-flex mb-3">
+                            <div class="input-group floating-label mr-3">
+                                <input type="text" id="AddItem-name" name="name" class="form-control" required>
+                                <label for="AddItem-name">naam item</label>
+                            </div>
+                            <div class="input-group floating-label">
+                                <input type="text" id="AddItem-profit" name="profit" class="form-control" value="0.10" required>
+                                <label for="AddItem-profit">winst</label>
+                            </div>
                         </div>
-                        <div class="input-group floating-label">
-                            <input type="number" id="AddItem-profit" class="form-control" value="0.10" required>
-                            <label for="AddItem-profit">winst</label>
+                        <div class="input-group d-flex align-items-center mb-4">
+                            <input class="mr-2" type="radio" name="itemType" id="itemType-1" value="1" checked><label for="itemType-1" class="mb-0 mr-3 text-modern">Fris / Bier</label>
+                            <input class="mr-2" type="radio" name="itemType" id="itemType-2" value="2"><label for="itemType-2" class="mb-0 mr-3 text-modern">Shotje</label>
+                            <input class="mr-2" type="radio" name="itemType" id="itemType-3" value="3"><label for="itemType-3" class="mb-0 mr-3 text-modern">Sterk</label>
+                            <input class="mr-2" type="radio" name="itemType" id="itemType-4" value="4"><label for="itemType-4" class="mb-0 mr-3 text-modern">Cocktail</label>
+                            <input class="mr-2" type="radio" name="itemType" id="itemType-5" value="5"><label for="itemType-5" class="mb-0 mr-3 text-modern">Snack</label>
+                        </div>
+                        <div class="d-flex">
+                            <div class="input-group mb-3 floating-label mr-3">
+                                <input type="text" id="AddItem-priceSingle" name="priceSingle" class="form-control" value="0" required>
+                                <label for="AddItem-priceSingle">prijs</label>
+                            </div>
+                            <div class="input-group mb-3 floating-label mr-3">
+                                <input type="text" id="AddItem-priceDouble" name="priceDouble" class="form-control" value="0" required>
+                                <label for="AddItem-priceDouble">prijs dubbel</label>
+                            </div>
+                            <div class="input-group mb-3 floating-label">
+                                <input type="text" id="AddItem-priceExtra" name="priceExtra" class="form-control" value="0" required>
+                                <label for="AddItem-priceExtra">prijs extra</label>
+                            </div>
                         </div>
                     </div>
-                    <div class="input-group d-flex align-items-center mb-4">
-                        <input class="mr-2" type="radio" name="itemType" id="itemType-1" value="1" checked><label for="itemType-1" class="mb-0 mr-3 text-modern">Fris / Bier</label>
-                        <input class="mr-2" type="radio" name="itemType" id="itemType-2" value="2"><label for="itemType-2" class="mb-0 mr-3 text-modern">Shotje</label>
-                        <input class="mr-2" type="radio" name="itemType" id="itemType-3" value="3"><label for="itemType-3" class="mb-0 mr-3 text-modern">Sterk</label>
-                        <input class="mr-2" type="radio" name="itemType" id="itemType-4" value="4"><label for="itemType-4" class="mb-0 mr-3 text-modern">Cocktail</label>
-                        <input class="mr-2" type="radio" name="itemType" id="itemType-5" value="5"><label for="itemType-5" class="mb-0 mr-3 text-modern">Snack</label>
+                    <div class="modal-footer">
+                        <button type="button" class="btn" data-dismiss="modal"><i data-feather="x"></i>annuleren</button>
+                        <button type="submit" data-label="AddItem" class="btn btn-blue"><i data-feather="plus"></i>toevoegen</button>
                     </div>
-                    <div class="d-flex">
-                        <div class="input-group mb-3 floating-label mr-3">
-                            <input type="number" id="AddItem-priceSingle" class="form-control" required>
-                            <label for="AddItem-priceSingle">prijs</label>
-                        </div>
-                        <div class="input-group mb-3 floating-label mr-3">
-                            <input type="number" id="AddItem-priceDouble" class="form-control" value="0" required>
-                            <label for="AddItem-priceDouble">prijs dubbel</label>
-                        </div>
-                        <div class="input-group mb-3 floating-label">
-                            <input type="number" id="AddItem-priceExtra" class="form-control" value="0" required>
-                            <label for="AddItem-priceExtra">prijs extra</label>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn" data-dismiss="modal"><i data-feather="x"></i>annuleren</button>
-                    <button type="button" data-label="AddItem" class="btn btn-blue" data-dismiss="modal"><i data-feather="plus"></i>toevoegen</button>
-                </div>
+                </form>
             </div>
         </div>
     </div>
@@ -494,17 +492,19 @@
                         <span aria-hidden="true"><i data-feather="x"></i></span>
                     </button>
                 </div>
-                <div class="modal-body">
-                    <div class="input-group floating-label mb-3">
-                        <input type="password" id="sudo-password" class="form-control" required>
-                        <label for="sudo-password">wachtwoord</label>
+                <form id="adminSignIn">  
+                    <div class="modal-body">
+                        <div class="input-group floating-label mb-3">
+                            <input type="password" id="sudo-password" name="password" class="form-control" required>
+                            <label for="sudo-password">wachtwoord</label>
+                        </div>
+                        <p data-error="sudoFalse"></p>
                     </div>
-                    <p data-error="sudoFalse"></p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn" data-dismiss="modal"><i data-feather="x"></i>sluiten</button>
-                    <button type="button" data-label="goSudo" class="btn btn-blue"><i data-feather="key"></i>Go sudo</button>
-                </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn" data-dismiss="modal"><i data-feather="x"></i>sluiten</button>
+                        <button type="submit" data-label="goSudo" class="btn btn-blue"><i data-feather="key"></i>Go sudo</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -566,16 +566,17 @@
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    <script src="./static/js/bootstrap-toggle.min.js"></script>
     
     
     <!-- scripts -->
-    <script src="./static/js/cookies.js"></script>
-    <script src="./static/js/filesaver.js"></script>
-    <script src="./static/js/taffy.js"></script>
-    <script src="./static/js/sha256.min.js"></script>
-    <script src="./static/js/sesam.js"></script>
-    <script src="./static/js/main.js"></script>
+    <script src="./static/js/plugins/moment-with-locales.min.js"></script>
+    <script src="./static/js/plugins/bootstrap-toggle.min.js"></script>
+    <script src="./static/js/plugins/cookies.js"></script>
+    <script src="./static/js/plugins/filesaver.js"></script>
+    <script src="./static/js/plugins/taffy.js"></script>
+    <script src="./static/js/plugins/sha256.min.js"></script>
+    <!-- <script src="./static/js/main.js"></script> -->
+    <script type="module" src="./static/js/app.js"></script>
     <script>
         /* Initialize feather icons */
         /* more info on https://feathericons.com/ and https://github.com/feathericons/feather#feather */
