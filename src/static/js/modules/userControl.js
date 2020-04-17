@@ -50,8 +50,10 @@ export const userControl = {
     },
     
     renderUsers() {
-        this.posUsers.innerHTML = '';
         logStatus('renderUsersForPos');
+        
+        this.posUsers.innerHTML = '';
+        this.posCheckout.innerHTML = '';
         
         app.db.users.each(i => {
             const user = document.createElement('div');
@@ -68,11 +70,11 @@ export const userControl = {
             posCheckoutItem.classList.add('flex-grid-item');
             posCheckoutItem.innerHTML = `
                 <input type="radio" id="checkoutItem_${i.id}" name="checkoutItems" value="${i.id}"><label for="checkoutItem_${i.id}" class="pos-el">
-                    <h3>Uche</h3>
-                    <small>€3.00</small>
+                    <h3>${i.name}</h3>
+                    <small>€${i.credit}</small>
                 </label>
             `;
-            this.posItems.appendChild(posCheckoutItem);
+            this.posCheckout.appendChild(posCheckoutItem);
         })
     }
 }

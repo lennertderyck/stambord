@@ -117,25 +117,17 @@
                                     <div class="carousel-item active">
                                         <div class="flex-grid-wrapper p-4">
                                             <div class="flex-grid" data-label="posUsers">
-                                                <input type="radio" id="checkoutItem_${i.id}" name="checkoutItems" value="${i.id}"><label for="checkoutItem_${i.id}" class="flex-grid-item pos-el">
-                                                    <h3>Uche</h3>
-                                                    <small>€3.00</small>
-                                                </label>
+                                                
                                             </div>
                                         </div>
                                     </div>
                                     <div class="carousel-item">
                                         <div class="mx-4 mt-4">
-                                            <button onclick="$('#carouselPosSteps').carousel('prev')" class="mb-0 text-modern d-flex align-items-center"><i data-feather="arrow-left"></i> <span class="ml-2">kies een andere gebruiker</span></button>
+                                            <button type="button" onclick="$('#carouselPosSteps').carousel('prev')" class="mb-0 text-modern d-flex align-items-center"><i data-feather="arrow-left"></i> <span class="ml-2">kies een andere gebruiker</span></button>
                                         </div>
                                         <div class="flex-grid-wrapper p-4">
                                             <div class="flex-grid" data-label="posItems">
-                                                <div class="flex-grid-item">item</div>
-                                                <div class="flex-grid-item">item</div>
-                                                <div class="flex-grid-item">item</div>
-                                                <div class="flex-grid-item">item</div>
-                                                <div class="flex-grid-item">item</div>
-                                                <div class="flex-grid-item">item</div>
+
                                             </div>
                                         </div>
                                     </div>
@@ -143,14 +135,20 @@
                             </div>
                             <div class="flex-grid-wrapper p-4 row-item-3 d-none" data-label="posAmount">
                                 <div class="flex-grid">
-                                    <div class="flex-grid-item pos-el">
-                                        <h3>Enkel</h3>
+                                    <div class="flex-grid-item">
+                                        <input type="radio" id="checkoutAmount_single" name="checkoutAmount" value="0"><label for="checkoutAmount_single" class="pos-el">
+                                            <h3>Enkel</h3>
+                                        </label>
                                     </div>
-                                    <div class="flex-grid-item pos-el">
-                                        <h3>Dubbel</h3>
+                                    <div class="flex-grid-item">
+                                        <input type="radio" id="checkoutAmount_double" name="checkoutAmount" value="1"><label for="checkoutAmount_double" class="pos-el">
+                                            <h3>Dubbel</h3>
+                                        </label>
                                     </div>
-                                    <div class="flex-grid-item pos-el">
-                                        <h3>Extra</h3>
+                                    <div class="flex-grid-item">
+                                        <input type="radio" id="checkoutAmount_extra" name="checkoutAmount" value="2"><label for="checkoutAmount_extra" class="pos-el">
+                                            <h3>Extra</h3>
+                                        </label>
                                     </div>
                                 </div>
                             </div>
@@ -439,20 +437,20 @@
                     <button type="button" class="close d-none" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true"><i data-feather="x"></i></span>
                     </button>
-                </div>
+                </div>                
                 <div class="modal-body">
-                    <div class="alert alert-danger pt-0 pb-4 px-0 mb-4" role="alert" data-label="alertCredit">
+                    <!-- <div class="alert alert-danger pt-0 pb-4 px-0 mb-4" role="alert" data-label="alertCredit">
                         <strong class="d-block">Opgelet!</strong>
                         <p class="mb-0">Je hebt niet voldoende tegoed om dit te kopen. Hierdoor zal je intrest betalen.</p>
                     </div>
                     <div class="row">
                         <div class="col" data-label="posCalulateArea">
                             <h4 class="text-left mb-0">Fanta</h4>
-                            <p class="mb-0 text-left "><span class="fontw-500">0,80</span>€ + 20% intrest</p>
+                            <p class="mb-0 text-left"><span class="fontw-500">0,80</span>€ + 20% intrest</p>
                             <hr>
                             <p class="text-right text-modern">totaal <span class="fontw-500">€0,96</span></p>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="modal-footer">
                     <button type="button" data-label="posCancel" class="btn" data-dismiss="modal"><i data-feather="x"></i>annuleren</button>

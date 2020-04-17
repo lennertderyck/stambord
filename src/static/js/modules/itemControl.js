@@ -14,6 +14,7 @@ export const itemControl = {
         
         this.posItems = document.querySelector('[data-label="listedItems"]');
         this.addItemForm = document.querySelector('#addItem');
+        this.posCheckout = document.querySelector('[data-label="posItems"]');
     },
     
     addListeners() {
@@ -72,8 +73,10 @@ export const itemControl = {
     },
     
     renderItems() {
-        this.posItems.innerHTML = '';
         logStatus('renderUsersForPos');
+        
+        this.posItems.innerHTML = '';
+        this.posCheckout.innerHTML = '';
         
         app.db.items.each(i => {
             const item = document.createElement('div');
@@ -94,7 +97,15 @@ export const itemControl = {
             `
             this.posItems.appendChild(item);
             
-
+            const posCheckoutUser = document.createElement('div');
+            posCheckoutUser.classList.add('flex-grid-item');
+            posCheckoutUser.innerHTML = `
+                <input type="radio" id="checkoutItem_${i.id}" name="checkoutItems" value="${i.id}"><label for="checkoutItem_${i.id}" class="pos-el">
+                    <h3>${i.name}</h3>
+                    <small>€${i.price}</small>
+                </label>
+            `;
+            this.posCheckout.appendChild(posCheckoutUser);
         })
     }
 }

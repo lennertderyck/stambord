@@ -1,0 +1,20 @@
+#posCheckout {
+    input {
+        display: none;
+        
+        &:checked + label {
+            background-color: var(--blue300);
+        }
+    }
+    
+    .pos-el {
+        width: 100%;
+        margin-bottom: 0px;
+        background-color: #b1d3f261;
+        
+        h3 {
+            text-transform: none;
+            letter-spacing: 0px;
+        }
+    }
+}
