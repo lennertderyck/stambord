@@ -1,0 +1,30 @@
+:root {
+    --blue600: #25496E;
+    --blue500: #35689D;
+    --blue300: #B1D3F2;
+    --blue200: #f5f5f5;
+    --info: #17a2b8;
+    --blue200: #f5f5f5;
+    --danger300: #D26B68;
+    --danger600: #7B2522;
+    
+    --tabpaneBackground: white;
+    --textColorMain: #212529;
+    --asideBackground: #35689d;
+    --tableBorders: #dee2e6;
+    
+    [dark-mode="true"] {
+        --blue600: #25496E;
+        --blue500: #35689D;
+        --blue300: #344b60;
+        --blue200: #0c0c0c;
+        --info: #17a2b8;
+        --danger300: #D26B68;
+        --danger600: rgb(126, 107, 106);
+        
+        --tabpaneBackground: #212121;
+        --textColorMain: #bad1e7;
+        --asideBackground: #1b344e;
+        --tableBorders: #4b4d4e;
+    }
+}

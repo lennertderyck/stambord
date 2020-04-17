@@ -4,12 +4,13 @@
   "description": "Beheer de bar van je vereniging",
   "main": "src/index.js",
   "scripts": {
-    "start": "electron-forge start",
-    "package": "electron-forge package",
-    "make": "electron-forge make",
-    "publish": "electron-forge publish",
+    "electron:start": "electron-forge start",
+    "electron:package": "electron-forge package",
+    "electron:make": "electron-forge make",
+    "electron:publish": "electron-forge publish",
     "lint": "echo \"No linting configured\"",
-    "sass": "sass --watch src/static/css/main.scss:src/static/css/main.css --style compressed"
+    "sass": "sass --watch src/static/css/main.scss:src/static/css/main.min.css --style compressed --sourcemap=none",
+    "serve": "cd src && browser-sync start -s -f . --no-notify --host $LOCAL_IP --port 9000"
   },
   "keywords": [],
   "author": {

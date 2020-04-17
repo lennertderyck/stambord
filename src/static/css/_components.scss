@@ -24,7 +24,7 @@
     &.alert-danger {
         border-bottom-color: #CB4039;
         
-        * {color: #7B2522;}
+        * {color: var(--danger600);}
 
         .alert-icon {
             border: 5px solid #CB4039;
@@ -72,7 +72,7 @@
         }
 
         .btn-danger {
-            background-color: #7B2522;
+            background-color: var(--danger600);
         }
 
         .alert[data-label="alertCredit"] {
@@ -138,9 +138,15 @@ label {
 
 // Table
 table.table {
+    color: var(--textColorMain);
+    
+    td, th {
+        border-color: var(--tableBorders)
+    }
+    
     tbody tr {
         &.active {
-            background-color: #B1D3F2;
+            background-color: var(--blue300);
         }
 
         &.user-credit-neg {
@@ -175,7 +181,7 @@ table.table {
     .pos-el {
         padding: 1.5rem;
         text-align: center;
-        background: #b1d3f261;
+        background: var(--blue300);
         border-radius: 9px;
         user-select: none;
 
@@ -188,7 +194,7 @@ table.table {
         }
 
         &.active {
-            background: #B1D3F2;
+            background: var(--blue300);
         }
     }
 }
@@ -247,7 +253,7 @@ table.table {
 // Backup import input
 [data-label="backupDragDrop"] {
     position: relative;
-    background-color: #B1D3F2;
+    background-color: var(--blue300);
     border-radius: 9px;
 
     [data-label="fileinput"] {
@@ -304,7 +310,7 @@ table.table {
             width: 100px;
             height: 100px;
             border-radius: 100%;
-            background-color: #B1D3F2;
+            background-color: var(--blue300);
             transform: scale(0);
             transform-origin: center;
             transition: all .2s ease;
@@ -312,7 +318,7 @@ table.table {
 
             small.text-modern {
                 display: block;
-                color: #35689D;
+                color: var(--blue500);
                 font-weight: 600;
             }
             
@@ -322,7 +328,7 @@ table.table {
                 height: unset;
 
                 path {
-                	stroke: #35689D;
+                	stroke: var(--blue500);
                 }
             }
         }
