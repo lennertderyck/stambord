@@ -14,7 +14,10 @@ export const userControl = {
         
         this.posUsers = document.querySelector('[data-label="listedUsers"]');
         this.addUserForm = document.querySelector('#addUser');
+        this.topUpForm = document.querySelector('#topUp');
         this.posCheckout = document.querySelector('[data-label="posUsers"]');
+        this.tabFunctions = document.querySelector('#nav-users [data-label="tabFunctions"]');
+        
     },
     
     addListeners() {
@@ -26,6 +29,29 @@ export const userControl = {
             
             const formData = new FormData(this.addUserForm);
             this.addUser(formData.get('name'), formData.get('credit'));
+        })
+        
+        this.topUpForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            console.log('\tcredit is being added to user')
+            
+            const selectedItem = document.querySelector('#nav-users [data-label="listedUsers"] input:checked').value;
+            const formData = new FormData(this.topUpForm);
+            this.topUp(selectedItem, formData.get('credit'));
+        })
+        
+        this.tabFunctions.addEventListener('click', (event) => {
+            const targetBtn = event.target.closest('button').dataset.label;
+            const selectedItem = document.querySelector('#nav-users [data-label="listedUsers"] input:checked').value;
+            
+            switch (targetBtn) {
+                case 'removeUser':
+                    this.deleteItem(selectedItem);
+                    break;
+                default:
+                    console.log('\tyou didn\'t hit an available button')
+                    break;
+            }
         })
     },
     
@@ -43,19 +69,20 @@ export const userControl = {
         app.db.users.put({
             id: `user${generateID()}`,
             name: name,
-            credit: credit
+            credit: parseFloat(credit)
         });
         
         this.renderUsers();
     },
     
     renderUsers() {
-        logStatus('renderUsersForPos');
+        logStatus('renderUsers');
         
         this.posUsers.innerHTML = '';
         this.posCheckout.innerHTML = '';
         
         app.db.users.each(i => {
+            i.price = parseFloat(i.price).toFixed(2)
             const user = document.createElement('div');
             user.classList.add('table-item', 'container-fluid');
             user.innerHTML = `
@@ -76,6 +103,34 @@ export const userControl = {
             `;
             this.posCheckout.appendChild(posCheckoutItem);
         })
+    },
+    
+    deleteItem(entry) {
+        console.log(entry)
+            
+        app.db.users
+            .where({id: entry})
+            .delete()
+            .then(function (item) {
+                console.log( "Deleted " + item);
+            });
+        
+        this.renderUsers();
+    },
+    
+    async topUp(entry, credit) {
+        console.log(`\t${entry}, ${credit}`);
+        
+        const userData = await app.db.users.get(entry);
+        
+        const newCredit = parseFloat(credit) + userData.credit
+        app.db.users.update(entry, {credit: newCredit}).then(function (updated) {
+            if (updated)
+                console.log('succes')
+            else
+              console.log ("Nothing was updated - there were no friend with primary key: 2");
+        });
+        this.renderUsers();
     }
 }
 

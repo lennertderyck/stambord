@@ -4,6 +4,8 @@ import {app} from '../app.js';
 export const datalog = {
     initialize() {
         logStatus('initialize', 'datalog.js');
+        
+        this.cache();
     },
     
     cache() {
@@ -13,9 +15,9 @@ export const datalog = {
     },
     
     addLog(entry) {
-        console.log('\tthis item will be added ' + entry.name)
-        app.db.items.put({
-            date: new Date(),
+        console.log('\tthis item will be logged ' + entry.item)
+        app.db.logs.put({
+            date: new Date().getTime(),
             user: {
                 id: entry.user.id,
                 name: entry.user.name
@@ -24,41 +26,55 @@ export const datalog = {
             amount: entry.amount,
             price: entry.price
         });
-        
-        this.renderItems();
     },
     
-    renderItems() {
-        this.posItems.innerHTML = '';
-        logStatus('renderUsersForPos');
+    itemAmount(input) {
+        switch (input) {
+            case 0:
+                input = 'Enkel';
+                break;
         
-        app.db.logs.each(i => {
+            case 1:
+                input = 'Dubbem';
+                break;
+        
+            case 2:
+                input = 'Extra';
+                break;
+        }
+        return input;
+    },
+    
+    renderData() {
+        logStatus('renderData');
+        
+        this.posItems.innerHTML = '';
+        console.log('\tlogs cleaned out')
+
+        app.db.logs.each(i => {           
             const item = document.createElement('div');
             item.classList.add('table-item', 'container-fluid');
             item.innerHTML = `
-                <input type="radio" id="log_${i.date}" name="logs" value="${i.date}"><label for="log_${i.data}" class="row">
+                <input type="radio" id="log_${i.date}" name="logs" value="${i.date}"><label for="log_${i.date}" class="row">
                     <div class="col">
-                        <span class="d-block">23:46</span>
+                        <span class="d-block">${moment(i.date).format("hh:mm")}</span>
                         <small class="text-modern">18/04/2020</small>
                     </div>
                     <div class="col">
-                        <span class="d-block">Mark</span>
+                        <span class="d-block">${i.user.name}</span>
                     </div>
                     <div class="col">
-                        <span>Frivo</span>
-                        <small class="text-modern">dubbel</small>
+                        <span>${i.item}</span>
+                        <small class="text-modern">${this.itemAmount(i.amount)}</small>
                     </div>
                     <div class="col">
-                        <span class="d-block">€2,4</span>
+                        <span class="d-block">€${i.price}</span>
                     </div>
                 </label>
-                
-                // date
-                // user id + name
-                // amount
-                // price
             `
-            this.posItems.appendChild(item);
+            this.posItems.prepend(item);
         })
     }
 }
+
+datalog.initialize();

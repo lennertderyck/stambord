@@ -73,7 +73,7 @@ export const itemControl = {
     },
     
     renderItems() {
-        logStatus('renderUsersForPos');
+        logStatus('renderItems');
         
         this.posItems.innerHTML = '';
         this.posCheckout.innerHTML = '';
@@ -91,7 +91,7 @@ export const itemControl = {
                     </div>
                     <div class="col">
                         <span class="d-block">€${i.price[0]}</span>
-                        <small><span class="text-modern">dubbel</span> €${i.price[1]} &nbsp; – &nbsp; <span class="text-modern">extra</span> €${i.price[2]}</small>
+                        <small><span class="text-modern">dubbel</span> €${i.price[1].toFixed(2)} &nbsp; – &nbsp; <span class="text-modern">extra</span> €${i.price[2].toFixed(2)}</small>
                     </div>
                 </label>
             `

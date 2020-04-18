@@ -1,5 +1,6 @@
 import {sesamCollapse, sesam} from 'https://unpkg.com/sesam-collapse@4.0.0';
 import {test, logStatus, generateID} from './modules/functions.js';
+import {datalog} from './modules/datalog.js';
 import {posCheckout} from './modules/posCheckout.js';
 import {userControl} from './modules/userControl.js';
 import {itemControl} from './modules/itemControl.js';
@@ -21,7 +22,8 @@ export const app = {
     readyState() {
         $('#carouselPosSteps').carousel(0);
         userControl.renderUsers();
-        itemControl.renderItems()
+        itemControl.renderItems();
+        datalog.renderData();
     },
     
     dexie() {
