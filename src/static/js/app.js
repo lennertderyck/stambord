@@ -15,7 +15,6 @@ export const app = {
         this.addListeners();
         
         settings.addListeners();
-
         this.readyState();
     },
     
