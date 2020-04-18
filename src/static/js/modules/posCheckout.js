@@ -1,5 +1,6 @@
 import {test, logStatus, fetchAPI, generateID} from './functions.js';
 import {app} from '../app.js';
+import {datalog} from './datalog.js';
 
 export const posCheckout = {
     initialize() {
@@ -31,13 +32,11 @@ export const posCheckout = {
         this.checkoutItemData = await app.db.items.get(app.checkoutItem);
         this.checkoutUserData = await app.db.users.get(app.checkoutUser);
         
-        console.log(this.checkoutItemData);
-        console.log(this.checkoutUserData);
-        
         if (this.checkoutItemData.type == 2 || this.checkoutItemData.type == 3 || this.checkoutItemData.type == 4){
             this.showAmountSelector();
         } else {
             this.checkoutItemData.price = this.checkoutItemData.price[0]
+            this.amount = 0;
             this.calculateNewCredit()
             this.renderCheckoutDisplay(this.checkoutItemData);
         }
@@ -72,10 +71,10 @@ export const posCheckout = {
     calculatePrice(amount) {
         logStatus('calculatePrice')
         
-        amount = parseFloat(amount);
+        this.amount = parseFloat(amount);
         
-        console.log('\t' + this.checkoutItemData.price[amount]);
-        this.checkoutItemData.price = this.checkoutItemData.price[amount];
+        console.log('\t' + this.checkoutItemData.price[this.amount]);
+        this.checkoutItemData.price = this.checkoutItemData.price[this.amount];
         
         this.calculateNewCredit()
         this.renderCheckoutDisplay();
@@ -93,6 +92,19 @@ export const posCheckout = {
               console.log ("Nothing was updated - there were no friend with primary key: 2");
         });
         $('#carouselPosSteps').carousel(0);
+        
+        console.log(this.amount);
+        
+        datalog.addLog({
+            user: {
+                id: this.checkoutUserData.id,
+                name: this.checkoutUserData.name
+            },
+            item: this.checkoutItemData.name,
+            amount: this.amount,
+            price: this.checkoutItemData.price
+        })
+        
         app.readyState();
     }
 }
