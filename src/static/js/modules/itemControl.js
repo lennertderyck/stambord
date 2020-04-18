@@ -15,6 +15,7 @@ export const itemControl = {
         this.posItems = document.querySelector('[data-label="listedItems"]');
         this.addItemForm = document.querySelector('#addItem');
         this.posCheckout = document.querySelector('[data-label="posItems"]');
+        this.tabFunctions = document.querySelector('#nav-items [data-label="tabFunctions"]');
     },
     
     addListeners() {
@@ -31,6 +32,20 @@ export const itemControl = {
                 type: formData.get('itemType'),
                 price: [parseFloat(formData.get('priceSingle')), parseFloat(formData.get('priceDouble')), parseFloat(formData.get('priceExtra'))],
             });
+        })
+        
+        this.tabFunctions.addEventListener('click', (event) => {
+            const targetBtn = event.target.closest('button').dataset.label;
+            const selectedItem = document.querySelector('#nav-items [data-label="listedItems"] input:checked').value;
+            
+            switch (targetBtn) {
+                case 'removeItem':
+                    this.delete(selectedItem);
+                    break;
+                default:
+                    console.log('\tyou didn\'t hit an available button')
+                    break;
+            }
         })
     },
     
@@ -107,6 +122,19 @@ export const itemControl = {
             `;
             this.posCheckout.appendChild(posCheckoutUser);
         })
+    },
+    
+    delete(entry) {
+        console.log(entry)
+            
+        app.db.items
+            .where({id: entry})
+            .delete()
+            .then(function (item) {
+                console.log( "Deleted " + item);
+            });
+        
+        this.renderItems();
     }
 }
 

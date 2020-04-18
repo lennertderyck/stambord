@@ -46,7 +46,7 @@ export const userControl = {
             
             switch (targetBtn) {
                 case 'removeUser':
-                    this.deleteItem(selectedItem);
+                    this.delete(selectedItem);
                     break;
                 default:
                     console.log('\tyou didn\'t hit an available button')
@@ -88,7 +88,7 @@ export const userControl = {
             user.innerHTML = `
                 <input type="radio" id="user_${i.id}" name="users" value="${i.id}"><label for="user_${i.id}" class="row">
                     <div class="col">${i.name}</div>
-                    <div class="col">€${i.credit}</div>
+                    <div class="col">€${i.credit.toFixed(2)}</div>
                 </label>
             `
             this.posUsers.appendChild(user);
@@ -98,14 +98,14 @@ export const userControl = {
             posCheckoutItem.innerHTML = `
                 <input type="radio" id="checkoutItem_${i.id}" name="checkoutItems" value="${i.id}"><label for="checkoutItem_${i.id}" class="pos-el">
                     <h3>${i.name}</h3>
-                    <small>€${i.credit}</small>
+                    <small>€${i.credit.toFixed(2)}</small>
                 </label>
             `;
             this.posCheckout.appendChild(posCheckoutItem);
         })
     },
     
-    deleteItem(entry) {
+    delete(entry) {
         console.log(entry)
             
         app.db.users
