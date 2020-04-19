@@ -345,3 +345,48 @@ table.table {
     }
 }
 
+.collapse-menu {
+    position: relative;
+    
+    [data-sesam-trigger="collapseMenuSettings"] {
+        height: 100%;
+    }
+    
+    .collapse-menu-content {
+        position: absolute;
+        top: calc(100% + 1rem);
+        right: 0px;
+        display: none;
+        width: fit-content;
+        background: #dadada;
+        padding: 0px;
+        border-radius: 9px;
+        z-index: 100;
+        
+        .btn, button {
+            width: 100%;
+            padding: 10px 11px;
+            border-radius: 0px;
+            
+            &:first-child {
+                border-radius: 9px 9px 0px 0px;
+            }
+            
+            &:last-child {
+                border-radius: 0px 0px 9px 9px;
+                
+                &:first-child {
+                    border-radius: 9px;
+                }
+            }
+        }
+    }
+    
+    &.sesam-show {
+        
+        .collapse-menu-content {
+            display: flex;
+        }
+    }
+}
+

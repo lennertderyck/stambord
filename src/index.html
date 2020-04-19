@@ -176,12 +176,18 @@
                         <div class="tab-pane-title d-flex align-items-center justify-content-between">
                             <h3>Verkoop</h3>
                             <div class="d-flex" data-label="tabFunctions">
-                                <button class="btn-blue" data-toggle="modal" data-target="#modalAddItem">
+                                <button class="btn-blue mr-3" data-toggle="modal" data-target="#modalAddItem">
                                     <i data-feather="plus"></i> nieuw item
                                 </button>
-                                <button data-label="removeItem" class="ml-3 item-select-control">
-                                    <i data-feather="trash"></i> verwijder
-                                </button>
+                                
+                                <div class="collapse-menu" data-sesam-target="collapseMenuItems">
+                                    <button class="btn-icon" data-sesam-trigger="collapseMenuItems"><i data-feather="more-vertical"></i></button>
+                                    <div class="collapse-menu-content flex-column align-items-end">
+                                        <button data-label="removeItem" class="ml-3 item-select-control btn-danger">
+                                            <i data-feather="trash"></i> verwijder
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         
@@ -218,12 +224,18 @@
                                 <button class="btn-blue" data-label="addUserPort" data-toggle="modal" data-target="#modalAddUser">
                                     <i data-feather="plus"></i> nieuwe gebruiker
                                 </button>
-                                <button class="ml-3 btn-accent item-select-control" data-label="topUp" data-toggle="modal" data-target="#modalTopUp">
+                                <button class="ml-3 mr-3 btn-accent item-select-control" data-label="topUp" data-toggle="modal" data-target="#modalTopUp">
                                     <i data-feather="arrow-up"></i> topup
                                 </button>
-                                <button data-label="removeUser" class="ml-3 item-select-control">
-                                    <i data-feather="trash"></i> verwijder
-                                </button>
+                                
+                                <div class="collapse-menu" data-sesam-target="collapseMenuUsers">
+                                    <button class="btn-icon" data-sesam-trigger="collapseMenuUsers"><span class="mr-2">meer</span><i data-feather="more-horizontal"></i></button>
+                                    <div class="collapse-menu-content flex-column align-items-end">
+                                        <button data-label="removeUser" class="ml-3 item-select-control btn-danger">
+                                            <i data-feather="trash"></i> verwijder
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="table">
@@ -245,19 +257,26 @@
                                 <div class="sudo-hide">
                                     <button class="btn-blue" data-toggle="modal" data-target="#modalGoSudo"><i data-feather="key"></i> Aanmelden</button>
                                 </div>
-                                <div class="sudo-show">
+                                <div class="sudo-show" data-label="tabFunctions">
                                     <div class="d-flex">
                                         <button data-label="noSudo" class="btn-blue mr-3"><i data-feather="key"></i> Afmelden</button>
-                                        <button class="btn-danger" data-toggle="modal" data-target="#modalDataRemove"><i data-feather="trash-2"></i> Gegevens verwijderen</button>
+                                        
+                                        <div class="collapse-menu" data-sesam-target="collapseMenuSettings">
+                                            <button class="btn-icon" data-sesam-trigger="collapseMenuSettings"><i data-feather="more-vertical"></i></button>
+                                            <div class="collapse-menu-content flex-column align-items-end">
+                                                <button class="btn-danger" data-toggle="modal" data-target="#modalDataRemove"><i data-feather="trash-2"></i> Gegevens verwijderen</button>
+                                                <button class="btn-light" data-label="dataReload">
+                                                    <i data-feather="refresh-cw"></i> herladen
+                                                </button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <button class="ml-3" data-label="dataReload">
-                                    <i data-feather="refresh-cw"></i> herladen
-                                </button>
+                                
                             </div>
                         </div>
                         <div class="p-5">
-                            <div class="row mb-5">
+                            <div class="row mb-5 d-none">
                                 <div class="col-12 d-flex flex-column align-items-center justify-content-center">
                                     <h2 class="text-center mb-4">Goals</h2>
                                     <div data-label="progress-goals">
@@ -298,20 +317,25 @@
                                 </div>
                             </div>
                             <div class="row mb-5">
+                                <div id="chart_div"></div>
+                            </div>
+                            <div class="row mb-5">
                                 <div class="col-12 col-lg mb-4 mb-lg-0">
-                                	<h5>Backup</h5>
-                                	<p>Gegevens opslaan of terugzetten</p>
-                                	<div class="d-flex">
+                                	<h5 class="text-modern">Gegevens</h5>
+                                	<p class="text-modern">Backup</p>
+                                	<div class="d-flex mb-4">
                                         <button class="btn-blue mr-3" data-label="exportBackup"><i data-feather="download-cloud"></i>exporteren</button>
                                         <div class="sudo-show">
                                             <button class="btn-blue" data-toggle="modal" data-target="#modalDataImport"><i data-feather="upload-cloud"></i>importeren</button>
                                         </div>
-                                	</div>
+                                    </div>
                                 </div>
                                 <div class="col-12 col-lg-6">
                                     <div class="sudo-show">
-                                        <h5 class="mb-3">Wachtwoord wijzigen</h5>
-                                        <div class="row">
+                                        <h5 class="text-modern">Beheer</h5>
+                                        <p class="text-modern">wachtwoord</p>
+                                        <button class="btn-blue" data-toggle="modal" data-target="#modalChangePassword"><i data-feather="edit-3"></i>wijzigen</button>
+                                        <div class="row d-none">
                                             <div class="col-12 col-xl pr-xl-0">
                                                 <div class="input-group floating-label mb-2">
                                                     <input type="password" id="setting-passwordCurrent" class="form-control" required>
@@ -325,7 +349,6 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <button class="btn-blue mt-2"><i data-feather="check"></i>bevestigen</button>
                                     </div>
                                 </div>
                             </div>
@@ -502,7 +525,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn" data-dismiss="modal"><i data-feather="x"></i>sluiten</button>
-                        <button type="submit" data-label="goSudo" class="btn btn-blue"><i data-feather="key"></i>Go sudo</button>
+                        <button type="submit" data-label="goSudo" class="btn btn-blue"><i data-feather="key"></i>aanmelden</button>
                     </div>
                 </form>
             </div>
@@ -552,12 +575,45 @@
                         <input class="mr-2" type="checkbox" name="removeData" id="removeData-items"><label for="removeData-items" class="mb-0 mr-3 text-modern">Verkoopitems</label>
                         <input class="mr-2" type="checkbox" name="removeData" id="removeData-posLog"><label for="removeData-posLog" class="mb-0 mr-3 text-modern">Logboek</label>
                     </div>
-                    
+                    <hr>
+                    <div class="d-flex align-items-center">
+                        <input class="mr-3" type="checkbox" name="optionBackup" id="optionBackup" checked>
+                        <label for="optionBackup" class="mb-0 mr-3 text-modern">Maak eerst een backup</label>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn" data-dismiss="modal"><i data-feather="x"></i>annuleren</button>
                     <button class="btn-danger" data-label="removeData"><i data-feather="trash-2"></i>gegevens verwijderen</button>
                 </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="modalChangePassword" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="modalChangePasswordLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalChangePasswordLabel">Aanmelden</h5>
+                    <button type="button" class="close d-none" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><i data-feather="x"></i></span>
+                    </button>
+                </div>
+                <form id="adminChangePassword">  
+                    <div class="modal-body">
+                        <div class="input-group floating-label mb-3">
+                            <input type="password" id="settings-currentPassword" name="currentPassword" class="form-control" required>
+                            <label for="settings-currentPassword">wachtwoord</label>
+                        </div>
+                        <div class="input-group floating-label mb-3">
+                            <input type="password" id="settings-oldPassword" name="oldPassword" class="form-control" required>
+                            <label for="settings-oldPassword">nieuw wachtwoord</label>
+                        </div>
+                        <p data-error="sudoFalse"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn" data-dismiss="modal"><i data-feather="x"></i>sluiten</button>
+                        <button type="submit" data-label="goSudo" class="btn btn-blue"><i data-feather="key"></i>aanmelden</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -571,6 +627,7 @@
     <!-- scripts -->
     <script src="./static/js/plugins/moment-with-locales.min.js"></script>
     <!-- <script src="./static/js/plugins/bootstrap-toggle.min.js"></script> -->
+    <script src="./static/js/plugins/g-charts-loader.js"></script>
     <script src="./static/js/plugins/cookies.js"></script>
     <script src="./static/js/plugins/filesaver.js"></script>
     <script src="./static/js/plugins/taffy.js"></script>

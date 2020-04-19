@@ -21,6 +21,10 @@ export const itemControl = {
     addListeners() {
         logStatus('addListeners');
         
+        this.posItems.addEventListener('click', () => {
+            const targetBtn = event.target.closest('button').dataset.label;
+        })
+        
         this.addItemForm.addEventListener('submit', (event) => {
             event.preventDefault();
             console.log('\tuser is being added')

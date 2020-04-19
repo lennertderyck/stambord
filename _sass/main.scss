@@ -4,7 +4,9 @@
 @import 'pane/users';
 @import 'pane/checkout';
 
-@import 'animate';
+@import 'plugins/animate';
+@import 'plugins/chart.min';
+
 @import 'flex-card-grid';
 @import 'sesam';
 @import 'fonts';

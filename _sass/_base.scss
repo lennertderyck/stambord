@@ -74,6 +74,7 @@ button, .btn {
     border-radius: 9px;
     font-size: 0.9rem;
     font-weight: 500;
+    white-space: nowrap;
 
     svg.feather {
         width: 17px;
@@ -85,8 +86,8 @@ button, .btn {
     @extend .text-modern;
 
     &:focus, &:focus-within {
-        outline: none;
-        box-shadow: none;
+        outline: none !important;
+        box-shadow: none !important;
     }
 
     &.btn-blue {
@@ -109,6 +110,16 @@ button, .btn {
     &.btn-accent {
         background-color: var(--info);
         color: white;
+    }
+    
+    &.btn-icon {
+        svg {
+            margin-right: 0px;
+        }
+    }
+    
+    &.btn-light {
+        background-color: #e2e6ea;
     }
 }
 
