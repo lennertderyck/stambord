@@ -27,7 +27,7 @@ jobs:
       run: npm install
     
     - name: Build Windows-app
-      run: npm run electron:package
+      run: electron-forge package
 
     # Runs a single command using the runners shell
     - name: Run a one-line script
