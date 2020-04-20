@@ -29,7 +29,8 @@
     <!-- <script src="https://ce.lennertderyck.be/library/elements.js"></script> -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="https://unpkg.com/feather-icons"></script>
-    <script src="https://unpkg.com/dexie@latest/dist/dexie.js"></script>
+    <script src="./static/js/plugins/dexie.js"></script>
+    <script src="./static/js/plugins/moment-with-locales.min.js"></script>
     
     <!-- local assets -->
     <!-- <link rel="stylesheet" href="./static/css/bootstrap-toggle.min.css"> -->
@@ -338,13 +339,13 @@
                                         <div class="row d-none">
                                             <div class="col-12 col-xl pr-xl-0">
                                                 <div class="input-group floating-label mb-2">
-                                                    <input type="password" id="setting-passwordCurrent" class="form-control" required>
+                                                    <input type="password"data-clear-field id="setting-passwordCurrent" class="form-control" required>
                                                     <label for="setting-passwordCurrent">huidig wachtwoord</label>
                                                 </div>
                                             </div>
                                             <div class="col-12 col-xl pl-xl-3">
                                                 <div class="input-group floating-label">
-                                                    <input type="password" id="setting-passwordNew" class="form-control" required>
+                                                    <input type="password" data-clear-field id="setting-passwordNew" class="form-control" required>
                                                     <label for="setting-passwordNew">nieuw wachtwoord</label>
                                                 </div>
                                             </div>
@@ -385,11 +386,11 @@
                 <form id="addUser">
                     <div class="modal-body">
                         <div class="input-group mb-3 floating-label">
-                            <input type="text" id="addUser-name" class="form-control" name="name" required>
+                            <input type="text" data-clear-field id="addUser-name" class="form-control" name="name" required>
                             <label for="addUser-name">naam</label>
                         </div>
                         <div class="input-group floating-label">
-                            <input type="number" id="addUser-credit" class="form-control" name="credit" required>
+                            <input type="number"data-clear-field id="addUser-credit" class="form-control" name="credit" required>
                             <label for="addUser-credit">tegoed</label>
                         </div>
                     </div>
@@ -414,11 +415,11 @@
                     <div class="modal-body">
                         <div class="d-flex mb-3">
                             <div class="input-group floating-label mr-3">
-                                <input type="text" id="AddItem-name" name="name" class="form-control" required>
+                                <input type="text" data-clear-field id="AddItem-name" name="name" class="form-control" required>
                                 <label for="AddItem-name">naam item</label>
                             </div>
                             <div class="input-group floating-label">
-                                <input type="text" id="AddItem-profit" name="profit" class="form-control" value="0.10" required>
+                                <input type="text" data-clear-field id="AddItem-profit" name="profit" class="form-control" value="0.10" required>
                                 <label for="AddItem-profit">winst</label>
                             </div>
                         </div>
@@ -431,15 +432,15 @@
                         </div>
                         <div class="d-flex">
                             <div class="input-group mb-3 floating-label mr-3">
-                                <input type="text" id="AddItem-priceSingle" name="priceSingle" class="form-control" value="0" required>
+                                <input type="text" data-clear-field id="AddItem-priceSingle" name="priceSingle" class="form-control" value="0" required>
                                 <label for="AddItem-priceSingle">prijs</label>
                             </div>
                             <div class="input-group mb-3 floating-label mr-3">
-                                <input type="text" id="AddItem-priceDouble" name="priceDouble" class="form-control" value="0" required>
+                                <input type="text" data-clear-field id="AddItem-priceDouble" name="priceDouble" class="form-control" value="0" required>
                                 <label for="AddItem-priceDouble">prijs dubbel</label>
                             </div>
                             <div class="input-group mb-3 floating-label">
-                                <input type="text" id="AddItem-priceExtra" name="priceExtra" class="form-control" value="0" required>
+                                <input type="text" data-clear-field id="AddItem-priceExtra" name="priceExtra" class="form-control" value="0" required>
                                 <label for="AddItem-priceExtra">prijs extra</label>
                             </div>
                         </div>
@@ -494,7 +495,7 @@
                 <form id="topUp">
                     <div class="modal-body">
                         <div class="input-group floating-label">
-                            <input type="number" id="topUp-credit" name="credit" class="form-control" required>
+                            <input type="number" data-clear-field id="topUp-credit" name="credit" class="form-control" required>
                             <label for="topUp-credit">tegoed</label>
                         </div>
                     </div>
@@ -518,7 +519,7 @@
                 <form id="adminSignIn">  
                     <div class="modal-body">
                         <div class="input-group floating-label mb-3">
-                            <input type="password" id="sudo-password" name="password" class="form-control" required>
+                            <input type="password" data-clear-field id="sudo-password" name="password" class="form-control" required>
                             <label for="sudo-password">wachtwoord</label>
                         </div>
                         <p data-error="sudoFalse"></p>
@@ -551,10 +552,11 @@
                     	</div>
                     	<input type="file" data-label="fileinput">
                     </div>
+                    <p class="mb-0 mt-3" data-error="importFileType"></p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn" data-dismiss="modal"><i data-feather="x"></i>annuleren</button>
-                    <button class="btn-blue" data-label="importBackup"><i data-feather="upload-cloud"></i>backup
+                    <button class="btn-blue" disabled data-label="importBackup"><i data-feather="upload-cloud"></i>backup
                     	importeren</button>
                 </div>
             </div>
@@ -569,22 +571,24 @@
                         <span aria-hidden="true"><i data-feather="x"></i></span>
                     </button>
                 </div>
-                <div class="modal-body">
-                    <div class="input-group d-flex align-items-center">
-                        <input class="mr-2" type="checkbox" name="removeData" id="removeData-users"><label for="removeData-users" class="mb-0 mr-3 text-modern">Gebruikers</label>
-                        <input class="mr-2" type="checkbox" name="removeData" id="removeData-items"><label for="removeData-items" class="mb-0 mr-3 text-modern">Verkoopitems</label>
-                        <input class="mr-2" type="checkbox" name="removeData" id="removeData-posLog"><label for="removeData-posLog" class="mb-0 mr-3 text-modern">Logboek</label>
+                <form id="dataRemoveForm">
+                    <div class="modal-body">
+                        <div class="input-group d-flex align-items-center">
+                            <input class="mr-2" type="checkbox" name="optionRemoveData-users" id="removeData-users" value="true"><label for="removeData-users" class="mb-0 mr-3 text-modern">Gebruikers</label>
+                            <input class="mr-2" type="checkbox" name="optionRemoveData-items" id="removeData-items" value="true"><label for="removeData-items" class="mb-0 mr-3 text-modern">Verkoopitems</label>
+                            <input class="mr-2" type="checkbox" name="optionRemoveData-posLog" id="removeData-posLog" value="true"><label for="removeData-posLog" class="mb-0 mr-3 text-modern">Logboek</label>
+                        </div>
+                        <hr>
+                        <div class="d-flex align-items-center">
+                            <input class="mr-3" type="checkbox" name="optionBackup" id="optionBackup" value="true" checked>
+                            <label for="optionBackup" class="mb-0 mr-3 text-modern">Maak eerst een backup</label>
+                        </div>
                     </div>
-                    <hr>
-                    <div class="d-flex align-items-center">
-                        <input class="mr-3" type="checkbox" name="optionBackup" id="optionBackup" checked>
-                        <label for="optionBackup" class="mb-0 mr-3 text-modern">Maak eerst een backup</label>
+                    <div class="modal-footer">
+                        <button type="button" class="btn" data-dismiss="modal"><i data-feather="x"></i>annuleren</button>
+                        <button type="submit" class="btn-danger"><i data-feather="trash-2"></i>gegevens verwijderen</button>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn" data-dismiss="modal"><i data-feather="x"></i>annuleren</button>
-                    <button class="btn-danger" data-label="removeData"><i data-feather="trash-2"></i>gegevens verwijderen</button>
-                </div>
+                </form>
             </div>
         </div>
     </div>
@@ -600,14 +604,17 @@
                 <form id="adminChangePassword">  
                     <div class="modal-body">
                         <div class="input-group floating-label mb-3">
-                            <input type="password" id="settings-currentPassword" name="currentPassword" class="form-control" required>
-                            <label for="settings-currentPassword">wachtwoord</label>
+                            <input data-clear-field type="password" id="settings-currentPassword" name="currentPassword" class="form-control" required>
+                            <label for="settings-currentPassword">huidig wachtwoord</label>
                         </div>
                         <div class="input-group floating-label mb-3">
-                            <input type="password" id="settings-oldPassword" name="oldPassword" class="form-control" required>
-                            <label for="settings-oldPassword">nieuw wachtwoord</label>
+                            <input data-clear-field type="password" id="settings-newPassword" name="newPassword" class="form-control" required>
+                            <label for="settings-newPassword">nieuw wachtwoord</label>
                         </div>
+                        <p data-error="currentPassword"></p>
                         <p data-error="sudoFalse"></p>
+                        <hr>
+                        Na het wijzigen van het wachtwoord zal je worden afgemeld en kan je opnieuw aanmelden
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn" data-dismiss="modal"><i data-feather="x"></i>sluiten</button>
@@ -617,6 +624,17 @@
             </div>
         </div>
     </div>
+    
+    <!-- <script>
+        function getFuncName() {
+            return getFuncName.caller.name
+        }
+        function foo() { 
+            console.log(getFuncName())
+        }
+
+        foo() 
+    </script> -->
 
     <!-- bootstrap scripts -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

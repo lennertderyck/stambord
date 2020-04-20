@@ -75,6 +75,7 @@ button, .btn {
     font-size: 0.9rem;
     font-weight: 500;
     white-space: nowrap;
+    @extend .text-modern;
 
     svg.feather {
         width: 17px;
@@ -83,7 +84,9 @@ button, .btn {
         stroke-linecap: square;
     }
 
-    @extend .text-modern;
+    &:disabled {
+        opacity: 0.6;
+    }
 
     &:focus, &:focus-within {
         outline: none !important;
@@ -135,6 +138,7 @@ svg.feather {
 }
 
 [data-error] {
+    // display: none;
     font-size: 80%;
     color: red;
 }

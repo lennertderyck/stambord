@@ -1,23 +1,31 @@
-import {test, logStatus, fetchAPI, generateID} from './functions.js';
+import {test, fetchAPI, generateID, callerName} from './functions.js';
 import {app} from '../app.js';
+
+const status = new callerName('datalog');
+
+moment.locale('nl-be');
 
 export const datalog = {
     initialize() {
-        logStatus('initialize', 'datalog.js');
+        status.init();
         
         this.cache();
     },
     
     cache() {
-        logStatus('cache');
+        status.add('cache');
         
         this.posItems = document.querySelector('[data-label="logs"]');
     },
     
     addLog(entry) {
-        console.log('\tthis item will be logged ' + entry.item)
+        status.log('this item will be logged ' + entry.item)
+        
+        console.log(entry);
+        if (entry.date == undefined) {entry.date = new Date().getTime()}
+        console.log(entry);
         app.db.logs.put({
-            date: new Date().getTime(),
+            date: entry.date,
             user: {
                 id: entry.user.id,
                 name: entry.user.name
@@ -46,19 +54,21 @@ export const datalog = {
     },
     
     renderData() {
-        logStatus('renderData');
+        status.add('renderData');
         
         this.posItems.innerHTML = '';
-        console.log('\tlogs cleaned out')
+        status.log('logs cleaned out')
 
-        app.db.logs.each(i => {           
+        app.db.logs.each(i => {
+            const time = moment(i.date);
+               
             const item = document.createElement('div');
             item.classList.add('table-item', 'container-fluid');
             item.innerHTML = `
                 <input type="radio" id="log_${i.date}" name="logs" value="${i.date}"><label for="log_${i.date}" class="row">
                     <div class="col">
-                        <span class="d-block">${moment(i.date).format("hh:mm")}</span>
-                        <small class="text-modern">18/04/2020</small>
+                        <span class="d-block">${time.fromNow()}</span>
+                        <small class="text-modern">${time.format("HH:MM")} – ${time.format("L")}</small>
                     </div>
                     <div class="col">
                         <span class="d-block">${i.user.name}</span>

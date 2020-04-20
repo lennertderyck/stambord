@@ -1,16 +1,18 @@
-import {test, logStatus, fetchAPI, generateID} from './functions.js';
+import {test, fetchAPI, generateID, callerName} from './functions.js';
 import {app} from '../app.js';
+
+const status = new callerName('userControl');
 
 export const userControl = {
     initialize() {
-        logStatus('initialize', 'userControl.js');
+        status.init();
         
         this.cache();
         this.addListeners()
     },
     
     cache() {
-        logStatus('cache');
+        status.add('cache');
         
         this.posUsers = document.querySelector('[data-label="listedUsers"]');
         this.addUserForm = document.querySelector('#addUser');
@@ -21,19 +23,22 @@ export const userControl = {
     },
     
     addListeners() {
-        logStatus('addListeners');
+        status.add('addListeners');
         
         this.addUserForm.addEventListener('submit', (event) => {
             event.preventDefault();
-            console.log('\tuser is being added')
+            status.log('user is being added')
             
             const formData = new FormData(this.addUserForm);
-            this.addUser(formData.get('name'), formData.get('credit'));
+            this.addUser({
+                name: formData.get('name'), 
+                credit: formData.get('credit')
+            });
         })
         
         this.topUpForm.addEventListener('submit', (event) => {
             event.preventDefault();
-            console.log('\tcredit is being added to user')
+            status.log('credit is being added to user')
             
             const selectedItem = document.querySelector('#nav-users [data-label="listedUsers"] input:checked').value;
             const formData = new FormData(this.topUpForm);
@@ -49,34 +54,37 @@ export const userControl = {
                     this.delete(selectedItem);
                     break;
                 default:
-                    console.log('\tyou didn\'t hit an available button')
+                    status.log('you didn\'t hit an available button')
                     break;
             }
         })
     },
     
     getExampleData() {
-        logStatus('getData');
+        status.add('getData');
+        
         fetch('./static/js/exampleData.json')
         .then(response => response.json())
         .then (data => {
-            console.log(data[0].users);
+            status.log(data[0].users);
             this.renderUsers(data[0].users);
         });
     },
     
-    addUser(name, credit) {
+    addUser(entry) {
+        status.add('addUser');
+        if (entry.id == undefined) {entry.id = `user${generateID()}`}
         app.db.users.put({
-            id: `user${generateID()}`,
-            name: name,
-            credit: parseFloat(credit)
+            id: entry.id,
+            name: entry.name,
+            credit: parseFloat(entry.credit)
         });
         
         this.renderUsers();
     },
     
     renderUsers() {
-        logStatus('renderUsers');
+        status.add('renderUsers');
         
         this.posUsers.innerHTML = '';
         this.posCheckout.innerHTML = '';
@@ -106,29 +114,29 @@ export const userControl = {
     },
     
     delete(entry) {
-        console.log(entry)
+        status.add('delete');
             
         app.db.users
             .where({id: entry})
             .delete()
             .then(function (item) {
-                console.log( "Deleted " + item);
+                status.log( "Deleted " + item);
             });
         
         this.renderUsers();
     },
     
     async topUp(entry, credit) {
-        console.log(`\t${entry}, ${credit}`);
+        status.add('delete');
         
         const userData = await app.db.users.get(entry);
         
         const newCredit = parseFloat(credit) + userData.credit
         app.db.users.update(entry, {credit: newCredit}).then(function (updated) {
             if (updated)
-                console.log('succes')
+                status.log('succes')
             else
-              console.log ("Nothing was updated - there were no friend with primary key: 2");
+              status.log ("Nothing was updated - there were no friend with primary key: 2");
         });
         this.renderUsers();
     }

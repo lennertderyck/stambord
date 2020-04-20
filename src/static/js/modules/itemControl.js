@@ -1,16 +1,18 @@
-import {test, logStatus, fetchAPI, generateID} from './functions.js';
+import {test, fetchAPI, generateID, callerName} from './functions.js';
 import {app} from '../app.js';
+
+const status = new callerName('itemControl');
 
 export const itemControl = {
     initialize() {
-        logStatus('initialize', 'userControl.js');
+        status.init();
         
         this.cache();
         this.addListeners()
     },
     
     cache() {
-        logStatus('cache');
+        status.add('cache');
         
         this.posItems = document.querySelector('[data-label="listedItems"]');
         this.addItemForm = document.querySelector('#addItem');
@@ -19,7 +21,7 @@ export const itemControl = {
     },
     
     addListeners() {
-        logStatus('addListeners');
+        status.add('addListeners');
         
         this.posItems.addEventListener('click', () => {
             const targetBtn = event.target.closest('button').dataset.label;
@@ -27,7 +29,7 @@ export const itemControl = {
         
         this.addItemForm.addEventListener('submit', (event) => {
             event.preventDefault();
-            console.log('\tuser is being added')
+            status.log('user is being added')
             
             const formData = new FormData(this.addItemForm);
             this.addItem({
@@ -47,7 +49,7 @@ export const itemControl = {
                     this.delete(selectedItem);
                     break;
                 default:
-                    console.log('\tyou didn\'t hit an available button')
+                    status.log('you didn\'t hit an available button')
                     break;
             }
         })
@@ -79,9 +81,10 @@ export const itemControl = {
     },
     
     addItem(entry) {
-        console.log('\tthis item will be added ' + entry.name)
+        status.log('this item will be added ' + entry.name)
+        if (entry.id == undefined) {entry.id = `item${generateID()}`}
         app.db.items.put({
-            id: `item${generateID()}`,
+            id: entry.id,
             name: entry.name,
             profit: entry.profit,
             type: entry.type,
@@ -92,7 +95,7 @@ export const itemControl = {
     },
     
     renderItems() {
-        logStatus('renderItems');
+        status.add('renderItems');
         
         this.posItems.innerHTML = '';
         this.posCheckout.innerHTML = '';
@@ -119,9 +122,9 @@ export const itemControl = {
             const posCheckoutUser = document.createElement('div');
             posCheckoutUser.classList.add('flex-grid-item');
             posCheckoutUser.innerHTML = `
-                <input type="radio" id="checkoutItem_${i.id}" name="checkoutItems" value="${i.id}"><label for="checkoutItem_${i.id}" class="pos-el">
+                <input type="radio" id="checkoutItem_${i.id}" name="checkoutItems" value="${i.id}"><label for="checkoutItem_${i.id}" class="pos-el" >
                     <h3>${i.name}</h3>
-                    <small>€${i.price}</small>
+                    <small class="item-prices"><span>enkel <strong>€${i.price[0]}</strong></span><span> – dubbel <strong>€${i.price[1]}</strong></span><span> – extra <strong>€${i.price[2]}</strong></span></small>
                 </label>
             `;
             this.posCheckout.appendChild(posCheckoutUser);

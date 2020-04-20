@@ -1,11 +1,13 @@
-const logStatus = (functionName, file) => {
-    if (file != undefined) {console.log('\n' + `%c[service] ${file} ${functionName}() running! \n` + ' ', 'color: #00d400; font-weight: bold')}
-    console.log(`%c[service] ${functionName}()`, 'font-weight: bold');
-}
+import {test, fetchAPI, generateID, callerName} from './functions.js';
+import {app} from '../app.js';
+import { dataExport } from './dataExport.js';
+
+const status = new callerName('settings');
 
 export const settings = {
     initialize() {
-        logStatus('initialize', 'settings.js');
+        status.init();
+        
         this.cache();
         
         if (getCookie('sudo') == 'true') {
@@ -16,79 +18,116 @@ export const settings = {
     },
     
     cache() {
-        logStatus('cache');
+        status.add('cache');
+        
         this.signInForm = document.querySelector('#adminSignIn');
+        this.changePasswordForm = document.querySelector('#adminChangePassword');
         this.tabFunctions = document.querySelector('#nav-settings [data-label="tabFunctions"]');
+        this.dataRemoveForm = document.querySelector('#dataRemoveForm');
     },
     
     addListeners() {
-        logStatus('addListeners', 'settings.js');
+        status.add('addListeners');
         
         this.signInForm.addEventListener('submit', (event) => {
             event.preventDefault();
-            console.log('\tsombody tried to login')
+            status.log('sombody tried to login')
             
-            this.checkPassword()
+            let formData = new FormData(this.signInForm);
+            const password = formData.get('password')
+            
+            this.checkPassword(password);
         })
         
         this.tabFunctions.addEventListener('click', (event) => {
             const targetBtn = event.target.closest('button').dataset.label;
-                        
+            
             switch (targetBtn) {
                 case 'noSudo':
                     this.signOut();
                     break;
                 default:
-                    console.log('\tyou didn\'t hit an available button')
+                    status.log('you didn\'t hit an available button')
                     break;
             }
+        })
+         
+        this.changePasswordForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            
+            const formData = new FormData(this.changePasswordForm);
+            // formData.get('newPassword')
+            
+            if (readCookie('password') == null && formData.get('currentPassword') == 'stamvader') {
+                // als password niet ingesteld is
+                status.log(`passwoord (${formData.get('currentPassword')}) is juist, kan veranderen`);
+                this.changePassword(formData.get('newPassword'))
+            } else if (readCookie('password') !== null && a(formData.get('currentPassword')) == getCookie('password')) {
+                // als password ingesteld is
+                status.log(`passwoord (${formData.get('currentPassword')}) is juist, kan veranderen`)
+                this.changePassword(formData.get('newPassword'))
+            } else {
+                status.log('something went wrong')
+                app.errorText('currentPassword', 'Het huidige wachtwoord is niet correct, probeer opnieuw');
+            }
+        })
+        
+        this.dataRemoveForm.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            status.log('data will ben removed')
+            
+            await this.dataRemove();
         })
     },
     
     checkPassword(entry) {
-        logStatus('checkPassword', 'settings.js');
+        status.add('checkPassword');
         
-        console.log('\tchecking your password')
+        status.log('checking your password')
+        status.log(`this password was entered: ${a(entry)}`);
         
-        let formData = new FormData(this.signInForm);
-        const password = formData.get('password')
-        console.log(`\tthis password was entered: ${password}`);
-        
-        if (a(password) == a('stamvader')) {
-            console.log('\tthe entered password was correct');
+        if (readCookie('password') == null && entry == 'stamvader') {
+            status.log('the entered password was correct');
+            this.signIn()
+        } else if (readCookie('password') !== null && a(entry) == getCookie('password')) {
+            status.log('the entered password was correct');
             this.signIn()
         } else {
-            console.log('\tthe entered password is not correct');
-            
-            // errorText('sudoFalse', 'Het opgegeven wachtwoord was fout');
+            status.log('the entered password is not correct');
+            app.errorText('sudoFalse', 'Het opgegeven wachtwoord is niet juist');
         }
-        
-        // if (a(this.setPane.sudo.pw) == a('stamvader') || getCookie('sudo') == 'true') {
-        //     document.querySelector('#sudo-password').value = '';
-        //     document.body.setAttribute('data-sudo-mode', 'true');
-        //     createCookie('sudo', true)
-        //     errorText('sudoFalse', '');
-        //     $('#modalGoSudo').modal('hide');
-        //     createToast('sudo', 'Je bent nu aangemeld');
-        // } else {
-        //     errorText('sudoFalse', 'Het opgegeven wachtwoord was fout');
-        // }
     }, 
     
     signIn() { 
+        status.add('signIn');
+        
         document.body.setAttribute('data-sudo-mode', 'true');
         createCookie('sudo', true)
-        // errorText('sudoFalse', '');
+        
+        app.clearFields();
+        app.errorText('sudoFalse', '');
         $('#modalGoSudo').modal('hide');
-        // createToast('sudo', 'Je bent nu aangemeld');
+        app.createToast('sudo', 'Je bent nu aangemeld');
     },
     
     signOut() {
+        status.add('signOut');
+        
         createCookie('sudo', false, 0);
         document.body.setAttribute('data-sudo-mode', 'false');
     },
     
+    changePassword(entry) {
+        status.add('changePassword');
+        
+        createCookie('password', a(entry));
+        $('.modal').modal('hide');
+        $('#modalGoSudo').modal('show');
+        this.signOut();
+    },
+    
     chart() {
+        status.add('chart');
         // Load the Visualization API and the corechart package.
         google.charts.load('current', {'packages':['corechart']});
 
@@ -118,6 +157,24 @@ export const settings = {
             var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
             chart.draw(data, options);
         }
+    },
+    
+    async dataRemove() {
+        let formData = new FormData(await this.dataRemoveForm);
+        const options = {
+            users: formData.get('optionRemoveData-users'),
+            items: formData.get('optionRemoveData-items'),
+            poslog: formData.get('optionRemoveData-posLog'),
+            backup: formData.get('optionBackup')
+        }
+        
+        console.log(options);
+        
+        if (options.backup == 'true') await dataExport.export();
+        
+        if (options.users == 'true') await app.dexieDeleteUsers();
+        if (options.items == 'true') await app.dexieDeleteItems();
+        if (options.poslog == 'true') await app.dexieDeleteLogs();
     }
 }
 
