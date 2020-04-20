@@ -90,12 +90,16 @@ export const userControl = {
         this.posCheckout.innerHTML = '';
         
         app.db.users.each(i => {
-            i.price = parseFloat(i.price).toFixed(2)
+            let negativeCredit = false;
+            if (i.credit < 0) {
+                negativeCredit = true;
+                status.log(`credit from ${i.name} is lower than 0`)
+            }
             const user = document.createElement('div');
             user.classList.add('table-item', 'container-fluid');
             user.innerHTML = `
-                <input type="radio" id="user_${i.id}" name="users" value="${i.id}"><label for="user_${i.id}" class="row">
-                    <div class="col">${i.name}</div>
+                <input type="radio" id="user_${i.id}" name="users" value="${i.id}"><label for="user_${i.id}" class="row" data-user-negative="${negativeCredit}">
+                    <div class="col"><span>${i.name}</span></div>
                     <div class="col">€${i.credit.toFixed(2)}</div>
                 </label>
             `

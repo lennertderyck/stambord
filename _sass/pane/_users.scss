@@ -5,6 +5,10 @@
             
             &:checked + label {
                 background-color: var(--blue300);
+                
+                &[data-user-negative="true"] {
+                    background-color: var(--blue300);
+                }
             }
         }
         
@@ -34,6 +38,27 @@
                     color: #808080;
                     margin-top: 5px;
                 } 
+            }
+            
+            &[data-user-negative="true"] {
+                background-color: #b6383326;
+                
+                .col {
+                    position: relative;
+                    // color: red;
+                    
+                    // &:first-child span::after {
+                    //     --h: 10px
+                    //     content: ' ';
+                    //     position: absolute;
+                    //     top: calc(var(--h)/2);
+                    //     display: block;
+                    //     height: var(--h);
+                    //     width: 10px;
+                    //     border-radius: 120px;
+                    //     background-color: var(--danger600);
+                    // }
+                }
             }
         }
     }

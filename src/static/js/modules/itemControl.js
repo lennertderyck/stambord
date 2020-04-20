@@ -104,7 +104,7 @@ export const itemControl = {
             const item = document.createElement('div');
             item.classList.add('table-item', 'container-fluid');
             item.innerHTML = `
-                <input type="radio" id="item_${i.id}" name="items" value="${i.id}"><label for="item_${i.id}" class="row">
+                <input type="radio" id="item_${i.id}" name="items" value="${i.id}"><label for="item_${i.id}" class="row" data-item-type="${i.type}">
                     <div class="col">
                         <span>${i.name}</span>
                     </div>
@@ -113,7 +113,7 @@ export const itemControl = {
                     </div>
                     <div class="col">
                         <span class="d-block">€${i.price[0]}</span>
-                        <small><span class="text-modern">dubbel</span> €${i.price[1].toFixed(2)} &nbsp; – &nbsp; <span class="text-modern">extra</span> €${i.price[2].toFixed(2)}</small>
+                        <small class="item-type-prices"><span class="text-modern">dubbel</span> €${i.price[1].toFixed(2)} &nbsp; – &nbsp; <span class="text-modern">extra</span> €${i.price[2].toFixed(2)}</small>
                     </div>
                 </label>
             `
@@ -122,9 +122,9 @@ export const itemControl = {
             const posCheckoutUser = document.createElement('div');
             posCheckoutUser.classList.add('flex-grid-item');
             posCheckoutUser.innerHTML = `
-                <input type="radio" id="checkoutItem_${i.id}" name="checkoutItems" value="${i.id}"><label for="checkoutItem_${i.id}" class="pos-el" >
+                <input type="radio" id="checkoutItem_${i.id}" name="checkoutItems" value="${i.id}"><label for="checkoutItem_${i.id}" class="pos-el" data-item-type="${i.type}">
                     <h3>${i.name}</h3>
-                    <small class="item-prices"><span>enkel <strong>€${i.price[0]}</strong></span><span> – dubbel <strong>€${i.price[1]}</strong></span><span> – extra <strong>€${i.price[2]}</strong></span></small>
+                    <small><span>enkel <strong>€${i.price[0]}</strong></span><span class="item-type-prices"> – dubbel <strong>€${i.price[1]}</strong></span><span class="item-type-prices"> – extra <strong>€${i.price[2]}</strong></span></small>
                 </label>
             `;
             this.posCheckout.appendChild(posCheckoutUser);

@@ -205,6 +205,8 @@ table.table {
     bottom: 0px;
     left: 0px;
     right: 0px;
+    background-color: white;
+    
     .pos-el {
         flex-basis: calc(100% / 3 - 24px) !important;
     }
