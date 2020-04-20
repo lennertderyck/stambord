@@ -26,8 +26,11 @@ jobs:
     - name: Install Dependencies
       run: npm install
     
-    - name: Build Windows-app
-      run: electron-forge package
+    - name: Electron Builder Action
+      uses: samuelmeuli/action-electron-builder@v1.4.0
+      with:
+        # GitHub authentication token
+        github_token: ${{ secrets.GITHUB_TOKEN }}
 
     # Runs a single command using the runners shell
     - name: Run a one-line script
