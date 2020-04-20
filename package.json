@@ -1,7 +1,7 @@
 {
   "name": "bar-board",
   "productName": "bar-board",
-  "version": "v1.3-beta",
+  "version": "v1.4.0",
   "description": "Beheer de bar van je vereniging",
   "main": "src/index.js",
   "scripts": {
