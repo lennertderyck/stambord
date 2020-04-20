@@ -1,3 +1,5 @@
+![Electron build on Windows](https://github.com/lennertderyck/stambord/workflows/Electron%20build%20on%20Windows/badge.svg)
+
 ![bar bord banner](https://raw.githubusercontent.com/lennertderyck/stam-bord/master/branding/BANNER_BARBORD_SMALL_Tekengebied%201%20kopie%202.png)
 
 <br>
