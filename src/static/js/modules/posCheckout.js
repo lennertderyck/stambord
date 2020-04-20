@@ -29,6 +29,7 @@ export const posCheckout = {
         
         this.cancelCheckout.addEventListener('click', () => {
             app.readyState();
+            this.amountSelector.classList.add('d-none');
         })
     },
     
@@ -40,6 +41,8 @@ export const posCheckout = {
     
     async gatherData() {
         status.add('gatherData');
+        
+        this.intrest = 0.20;
         
         this.checkoutItemData = await app.db.items.get(app.checkoutItem);
         this.checkoutUserData = await app.db.users.get(app.checkoutUser);
@@ -71,14 +74,13 @@ export const posCheckout = {
         
         status.log('negativeCredit ' + this.negativeCredit)
         let intrestText = '+ 20% intrest'
-        let intrest = 0.20;
         
         if (this.negativeCredit == true) {
             document.querySelector('#modalPosConfirm .modal-content').classList.add('modal-danger');
         } else {
             document.querySelector('#modalPosConfirm .modal-content').classList.remove('modal-danger');
             intrestText = '';
-            intrest = 0;
+            this.intrest = 0;
         }
         
         const data = this.checkoutItemData;
@@ -93,7 +95,7 @@ export const posCheckout = {
                     <h4 class="text-left mb-0">${data.name}</h4>
                     <p class="mb-0 text-left">€${data.price} <span class="fontw-500">${intrestText}</span></p>
                     <hr>
-                    <p class="text-right text-modern">totaal <span class="fontw-500">€${(data.price + (data.price*intrest)).toFixed(2)}</span></p>
+                    <p class="text-right text-modern">totaal <span class="fontw-500">€${(data.price + (data.price*this.intrest)).toFixed(2)}</span></p>
                 </div>
             </div>
         `;
@@ -119,13 +121,11 @@ export const posCheckout = {
     calculateNewCredit() {
         status.add('calculateNewCredit');
         
-        let intrest = 0.20;
-        
         if (this.negativeCredit == false) {
-            intrest = 0;
+            this.intrest = 0;
         }
         
-        this.newCredit = this.checkoutUserData.credit - (this.checkoutItemData.price + (this.checkoutItemData.price * intrest));
+        this.newCredit = this.checkoutUserData.credit - (this.checkoutItemData.price + (this.checkoutItemData.price * this.intrest));
     },
     
     confirmCheckout() {
@@ -148,7 +148,7 @@ export const posCheckout = {
             },
             item: this.checkoutItemData.name,
             amount: this.amount,
-            price: this.checkoutItemData.price
+            price: this.checkoutItemData.price + (this.checkoutItemData.price*this.intrest)
         })
         
         this.amountSelector.classList.add('d-none')

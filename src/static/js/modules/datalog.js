@@ -43,7 +43,7 @@ export const datalog = {
                 break;
         
             case 1:
-                input = 'Dubbem';
+                input = 'Dubbel';
                 break;
         
             case 2:
@@ -78,7 +78,7 @@ export const datalog = {
                         <small class="text-modern">${this.itemAmount(i.amount)}</small>
                     </div>
                     <div class="col">
-                        <span class="d-block">€${i.price}</span>
+                        <span class="d-block">€${i.price.toFixed(2)}</span>
                     </div>
                 </label>
             `
