@@ -5,7 +5,7 @@
 ### [Software](#software) | [Roadmap](#roadmap) | [Help](#problemen-en-hulp) | [Demo](https://bar-bord.haegepoorters.be/src/) (wachtwoord: ```stamvader```)
 
 ---
-![Electron build on Windows](https://github.com/lennertderyck/stambord/workflows/Electron%20build%20on%20Windows/badge.svg)
+![Electron build](https://github.com/lennertderyck/stambord/workflows/Electron%20build/badge.svg)
 > Een nieuwe versie is onderweg ... [**Lees meer**](#de-volgende-versie-)
 
 ## Dependencies
