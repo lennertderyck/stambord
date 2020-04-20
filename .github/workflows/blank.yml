@@ -23,7 +23,10 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 10
-
+          
+      - name: Download electron
+        run: npm i electron-builder
+         
       - name: Build/release Electron app
         uses: samuelmeuli/action-electron-builder@v1
         with:
