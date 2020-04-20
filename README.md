@@ -1,5 +1,3 @@
-![Electron build on Windows](https://github.com/lennertderyck/stambord/workflows/Electron%20build%20on%20Windows/badge.svg)
-
 ![bar bord banner](https://raw.githubusercontent.com/lennertderyck/stam-bord/master/branding/BANNER_BARBORD_SMALL_Tekengebied%201%20kopie%202.png)
 
 <br>
@@ -7,6 +5,7 @@
 ### [Software](#software) | [Roadmap](#roadmap) | [Help](#problemen-en-hulp) | [Demo](https://bar-bord.haegepoorters.be/src/) (wachtwoord: ```stamvader```)
 
 ---
+![Electron build on Windows](https://github.com/lennertderyck/stambord/workflows/Electron%20build%20on%20Windows/badge.svg)
 > Een nieuwe versie is onderweg ... [**Lees meer**](#de-volgende-versie-)
 
 ## Dependencies
