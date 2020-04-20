@@ -102,7 +102,7 @@ export const itemControl = {
         
         app.checkRecordAmount()
         
-        app.db.items.each(i => {
+        app.db.items.orderBy('name').each(i => {
             const item = document.createElement('div');
             item.classList.add('table-item', 'container-fluid');
             item.innerHTML = `

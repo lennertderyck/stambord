@@ -91,7 +91,7 @@ export const userControl = {
         
         app.checkRecordAmount()
         
-        app.db.users.each(i => {
+        app.db.users.orderBy('name').each(i => {
             let negativeCredit = false;
             if (i.credit < 0) {
                 negativeCredit = true;
