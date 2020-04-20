@@ -15,6 +15,7 @@ export const app = {
     initialize() {
         status.init();
         
+        this.cache();
         this.dexie();
         this.addListeners();
         this.toastIndex = 0;
@@ -22,18 +23,67 @@ export const app = {
         dataExport.initialize();
         settings.addListeners();
         this.readyState();
+        
+        setInterval(() => {
+            datalog.renderData();
+        }, 1000 * 30);
     },
     
     readyState() {
         status.add('readyState');
         
+        $('.modal').modal('hide');
         $('#carouselPosSteps').carousel(0);
         userControl.renderUsers();
         itemControl.renderItems();
         datalog.renderData();
+        
+        this.checkRecordAmount();
+    },
+    
+    cache() {
+        this.alerts = {
+            users: document.querySelector('[data-label="alert-noUsers"]'),
+            items: document.querySelector('[data-label="alert-noItems"]')
+        }
+    },
+    
+    checkRecordAmount() {
+        status.add('checkRecordAmount');
+        
+        // console.log(app.db.users)
+        
+        app.db.users.count()
+            .then(response => {
+                if (response == 0) {
+                    status.log('no users')
+                    this.alerts.users.classList.remove('d-none');
+                } else if (response > 0) {
+                    status.log('users registered')
+                    this.alerts.users.classList.add('d-none'); 
+                }
+                console.log(response);
+            })
+            .catch(error => {
+                console.log(error)
+            });
+        app.db.items.count()
+            .then(response => {
+                if (response == 0) {
+                    this.alerts.items.classList.remove('d-none');
+                } else if (response > 0) {
+                    this.alerts.items.classList.add('d-none'); 
+                }
+                console.log(response);
+            })
+            .catch(error => {
+                console.log(error)
+            });
     },
     
     emptyDomLists() {
+        status.add('emptyDomLists');
+        
         itemControl.posItems.innerHTML = '';
         userControl.posUsers.innerHTML = '';
     },

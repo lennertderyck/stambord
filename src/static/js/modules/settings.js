@@ -175,6 +175,8 @@ export const settings = {
         if (options.users == 'true') await app.dexieDeleteUsers();
         if (options.items == 'true') await app.dexieDeleteItems();
         if (options.poslog == 'true') await app.dexieDeleteLogs();
+        
+        app.readyState();
     }
 }
 

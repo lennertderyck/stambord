@@ -89,6 +89,8 @@ export const userControl = {
         this.posUsers.innerHTML = '';
         this.posCheckout.innerHTML = '';
         
+        app.checkRecordAmount()
+        
         app.db.users.each(i => {
             let negativeCredit = false;
             if (i.credit < 0) {

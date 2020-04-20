@@ -101,7 +101,7 @@
                         <div class="tab-pane-title">
                             <h3>Overzicht</h3>
                         </div>
-                        <div class="alert alert-warning d-none flex-row" role="alert" data-label="alert-noUsers" data-toggle="modal" data-target="#modalAddUser">
+                        <div class="alert alert-warning d-none flex-row row" role="alert" data-label="alert-noUsers" data-toggle="modal" data-target="#modalAddUser">
                             <div class="col-auto px-0 d-flex align-items-center">
                                 <div class="alert-icon">
                                     <i data-feather="frown"></i>
@@ -127,6 +127,17 @@
                                             <button type="button" onclick="$('#carouselPosSteps').carousel('prev')" class="mb-0 text-modern d-flex align-items-center"><i data-feather="arrow-left"></i> <span class="ml-2">kies een andere gebruiker</span></button>
                                         </div>
                                         <div class="flex-grid-wrapper p-4">
+                                            <div class="alert alert-warning d-none flex-row row" role="alert" data-label="alert-noItems" data-toggle="modal" data-target="#modalAddItem">
+                                                <div class="col-auto px-0 d-flex align-items-center">
+                                                    <div class="alert-icon">
+                                                        <i data-feather="frown"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <strong class="d-block">Oeps!</strong>
+                                                    <p class="mb-0">We vonden geen items, begin met hier items toe te voegen.</p>
+                                                </div>
+                                            </div>
                                             <div class="flex-grid" data-label="posItems">
 
                                             </div>

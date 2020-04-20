@@ -17,6 +17,7 @@ export const posCheckout = {
         
         this.checkoutDisplay = document.querySelector('#modalPosConfirm .modal-content .modal-body');
         this.amountSelector = document.querySelector('[data-label="posAmount"]');
+        this.cancelCheckout = document.querySelector('[data-label="posCancel"]');
     },
     
     addListeners() {
@@ -24,6 +25,10 @@ export const posCheckout = {
         
         document.querySelector('[data-label="posConfirm"]').addEventListener('click', () => {
             this.confirmCheckout();
+        })
+        
+        this.cancelCheckout.addEventListener('click', () => {
+            app.readyState();
         })
     },
     
@@ -86,9 +91,9 @@ export const posCheckout = {
             <div class="row">
                 <div class="col" data-label="posCalulateArea">
                     <h4 class="text-left mb-0">${data.name}</h4>
-                    <p class="mb-0 text-left"><span class="fontw-500">€${data.price} ${intrestText}</span></p>
+                    <p class="mb-0 text-left">€${data.price} <span class="fontw-500">${intrestText}</span></p>
                     <hr>
-                    <p class="text-right text-modern">totaal <span class="fontw-500">€${data.price +  (data.price*intrest)}</span></p>
+                    <p class="text-right text-modern">totaal <span class="fontw-500">€${(data.price + (data.price*intrest)).toFixed(2)}</span></p>
                 </div>
             </div>
         `;

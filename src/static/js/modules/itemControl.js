@@ -100,6 +100,8 @@ export const itemControl = {
         this.posItems.innerHTML = '';
         this.posCheckout.innerHTML = '';
         
+        app.checkRecordAmount()
+        
         app.db.items.each(i => {
             const item = document.createElement('div');
             item.classList.add('table-item', 'container-fluid');
