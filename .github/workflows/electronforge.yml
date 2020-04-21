@@ -18,7 +18,6 @@ jobs:
           node-version: 12
       - run: npm install
       - run: npm test
-      - run: npm i -g @electron-forge/cli
       - run: electron-forge package
         
       - name: Upload release
