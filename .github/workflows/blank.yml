@@ -20,5 +20,8 @@ jobs:
         with:
           node-version: 12
           
+      - name: Install dependencies
+        run: install
+        
       - name: Build applications
         run: npm run package
