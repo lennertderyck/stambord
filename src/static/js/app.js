@@ -48,6 +48,50 @@ export const app = {
         }
     },
     
+    addListeners() {
+        status.add('addListeners');
+        
+        userControl.posCheckout.addEventListener('change', (event) => {
+            this.checkoutUser = event.target.value;
+            $('#carouselPosSteps').carousel('next');
+        });
+        
+        itemControl.posCheckout.addEventListener('change', (event) => {
+            this.checkoutItem = event.target.value;
+            posCheckout.amountSelector.classList.add('d-none');
+            posCheckout.checkout();
+        });
+        
+        userControl.posUsers.addEventListener('click', (event) => {
+            this.controlPaneOptions(event);
+        })
+        
+        itemControl.posItems.addEventListener('click', (event) => {
+            this.controlPaneOptions(event);
+        })
+        
+        posCheckout.amountSelector.addEventListener('change', (event) => {
+            posCheckout.calculatePrice(event.target.value);
+        });
+    },
+    
+    controlPaneOptions(event) {
+        event.preventDefault();
+            
+        const parent = event.target.closest('div[role]');
+        const label = event.target.closest('label').getAttribute('for');
+        const checkBox = document.querySelector(`#${label}`);
+        
+        if (checkBox.checked == true) {
+            checkBox.checked = false;
+            // nav-users
+            parent.classList.remove('show-control-btns')
+        } else {
+            checkBox.checked = true;
+            parent.classList.add('show-control-btns')
+        }
+    },
+    
     checkRecordAmount() {
         status.add('checkRecordAmount');
         
@@ -62,10 +106,9 @@ export const app = {
                     status.log('users registered')
                     this.alerts.users.classList.add('d-none'); 
                 }
-                console.log(response);
             })
             .catch(error => {
-                console.log(error)
+                status.log(error)
             });
         app.db.items.count()
             .then(response => {
@@ -74,10 +117,9 @@ export const app = {
                 } else if (response > 0) {
                     this.alerts.items.classList.add('d-none'); 
                 }
-                console.log(response);
             })
             .catch(error => {
-                console.log(error)
+                status.log(error)
             });
     },
     
@@ -141,25 +183,6 @@ export const app = {
             .then(function (deleteCount) {
                 console.log( "Deleted " + deleteCount + " objects");
             });
-    },
-    
-    addListeners() {
-        status.add('addListeners');
-        
-        userControl.posCheckout.addEventListener('change', (event) => {
-            this.checkoutUser = event.target.value;
-            $('#carouselPosSteps').carousel('next');
-        });
-        
-        itemControl.posCheckout.addEventListener('change', (event) => {
-            this.checkoutItem = event.target.value;
-            posCheckout.amountSelector.classList.add('d-none');
-            posCheckout.checkout();
-        });
-        
-        posCheckout.amountSelector.addEventListener('change', (event) => {
-            posCheckout.calculatePrice(event.target.value);
-        });
     },
     
     logging() {

@@ -23,9 +23,9 @@ export const itemControl = {
     addListeners() {
         status.add('addListeners');
         
-        this.posItems.addEventListener('click', () => {
-            const targetBtn = event.target.closest('button').dataset.label;
-        })
+        // this.posItems.addEventListener('click', (event) => {
+        //     const targetBtn = event.target.closest('button').dataset.label;
+        // })
         
         this.addItemForm.addEventListener('submit', (event) => {
             event.preventDefault();

@@ -8,6 +8,16 @@
         position: relative;
         height: 100%;
         width: 100%;
+        
+        .item-select-control {
+            display: none;
+        }
+        
+        &.show-control-btns {
+            .item-select-control {
+                display: block;
+            }
+        }
 
         .tab-pane-title {
             padding: 1rem 1rem 1rem 1.5rem;
