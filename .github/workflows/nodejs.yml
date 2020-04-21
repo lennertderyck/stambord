@@ -24,11 +24,7 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: npm ci
     - run: npm run build --if-present
-    - run: npm test
-      env:
-        CI: true
     - name: Electron Forge Action
       uses: yinxulai/actions-electron-forge@0.05
       with:
