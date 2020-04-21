@@ -5,7 +5,7 @@
 ### [Software](#software) | [Roadmap](#roadmap) | [Help](#problemen-en-hulp) | [Demo](https://bar-bord.haegepoorters.be/src/) (wachtwoord: ```stamvader```)
 
 ---
-![Electron build](https://github.com/lennertderyck/stambord/workflows/Electron%20build/badge.svg)
+![Node.js CI](https://github.com/lennertderyck/stambord/workflows/Node.js%20CI/badge.svg)
 > Een nieuwe versie is onderweg ... [**Lees meer**](#de-volgende-versie-)
 
 ## Dependencies
