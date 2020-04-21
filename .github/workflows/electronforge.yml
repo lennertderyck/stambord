@@ -20,3 +20,10 @@ jobs:
       - run: npm test
       - run: npm i -g @electron-forge/cli
       - run: electron-forge package
+        
+      - name: Upload release
+        uses: yakuhzi/action-release@v1
+        with:
+          file: ./out
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
