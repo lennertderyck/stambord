@@ -1,0 +1,12 @@
+name: Greetings
+
+on: [push, pull_request, issues]
+
+jobs:
+  greeting:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/first-interaction@v1
+      with:
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        pr-message: 'Download de master-branch en voer de stappen uit die beschreven zijn in de README.md'' first pr'
