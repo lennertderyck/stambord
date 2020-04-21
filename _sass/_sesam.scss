@@ -1,0 +1,19 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* [data-sesam-target] {
+    &.sesam-hidden {
+        display: none;
+    }
+
+    &.sesam-show {
+        display: block;
+    }
+} */
+
+[data-sesam-trigger] {
+    cursor: pointer;
+}
