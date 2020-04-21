@@ -7,7 +7,7 @@
   "author": "Mr. Gumby <mr.gumby@example.com>",
   "copyright": "© 2017, Gumby inc.",
   "homepage": "http://example.com",
-  "main": "src/background.js", 
+  "main": "app/background.js",
   "build": {
     "appId": "com.example.electron-boilerplate",
     "files": [
@@ -40,7 +40,7 @@
     "chai": "^4.1.0",
     "css-loader": "^3.1.0",
     "electron": "^4.0.0",
-    "electron-builder": "^22.5.1",
+    "electron-builder": "^21.1.5",
     "electron-mocha": "^8.1.1",
     "friendly-errors-webpack-plugin": "^1.7.0",
     "mocha": "^6.2.0",
