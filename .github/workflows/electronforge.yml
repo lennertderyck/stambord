@@ -24,6 +24,7 @@ jobs:
       - name: Upload release
         uses: yakuhzi/action-release@v1
         with:
+          changelog: ./out/CHANGELOG.txt
           file: ./out
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
