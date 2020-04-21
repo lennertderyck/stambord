@@ -26,18 +26,18 @@ Wil je Bar Bord eigenhandig omzetten als Windows programma? Volg de stappen hier
 #### 1. Installatie
 - [Download stambord-master.zip](https://github.com/lennertderyck/stambord/archive/master.zip)
 - Unzip stambord-master.zip door hier dubbel op te klikken
+- Open Commandoprompt (Windows) of Terminal (Mac / Linux)
 - Controleer of Node.js geïnstalleerd is
-  - Open Commandoprompt, plak de volgende code ```node -v``` en druk Enter
+  - Plak de volgende code ```node -v``` en druk Enter
   - Als Node.js niet geïnstalleerd is download deze dan via https://nodejs.org/en/
   - Volg de stappen die op het scherm 
-- Installeer Node packages ```npm install```
-- Installeer Electron Forge ```npm i -g @electron-forge/cli```
 
 #### 2. Omzetting
-- Sleep de folder stambord-master naar het icoontje van command prompt
-- Plak het volgende in de commandprompt ```electron-forge make```
+- Sleep de folder stambord-master naar het icoontje van Commandprompt of Terminal
+- Installeer Node packages ```npm install```
+- Plak het volgende in de Commandprompt of Terminal ```npm run package```
 
-Er zal in de map die je gedownload hebt een nieuwe folder gemaakt worden genaamd 'Out', hier vind je de nieuwe applicatie in.
+Er zal in de map die je gedownload hebt een nieuwe folder gemaakt worden genaamd 'out', hier vind je de nieuwe applicatie in.
 
 ## Roadmap
 - Instellen of er items gekocht kunnen worden met een negatief tegoed.
