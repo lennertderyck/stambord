@@ -37,7 +37,7 @@ export const app = {
         userControl.renderUsers();
         itemControl.renderItems();
         datalog.renderData();
-        
+        this.hidePaneOptions();
         this.checkRecordAmount();
     },
     
@@ -121,6 +121,12 @@ export const app = {
             .catch(error => {
                 status.log(error)
             });
+    },
+    
+    hidePaneOptions() {
+        document.querySelectorAll('.show-control-btns').forEach(i => {
+            i.classList.remove('show-control-btns');
+        })
     },
     
     emptyDomLists() {

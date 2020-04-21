@@ -131,6 +131,8 @@ export const itemControl = {
             `;
             this.posCheckout.appendChild(posCheckoutUser);
         })
+        
+        app.hidePaneOptions();
     },
     
     delete(entry) {

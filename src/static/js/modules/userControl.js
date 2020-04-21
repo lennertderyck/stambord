@@ -117,6 +117,8 @@ export const userControl = {
             `;
             this.posCheckout.appendChild(posCheckoutItem);
         })
+        
+        app.hidePaneOptions();
     },
     
     delete(entry) {
@@ -136,7 +138,6 @@ export const userControl = {
         status.add('delete');
         
         const userData = await app.db.users.get(entry);
-        
         const newCredit = parseFloat(credit) + userData.credit
         app.db.users.update(entry, {credit: newCredit}).then(function (updated) {
             if (updated)
@@ -144,6 +145,7 @@ export const userControl = {
             else
               status.log ("Nothing was updated - there were no friend with primary key: 2");
         });
+        $('#modalTopUp').modal('hide');
         this.renderUsers();
     }
 }
