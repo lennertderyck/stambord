@@ -19,3 +19,4 @@ jobs:
       - run: npm install
       - run: npm test
       - run: npm i -g @electron-forge/cli
+      - run: electron-forge package
