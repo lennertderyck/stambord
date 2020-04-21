@@ -17,32 +17,29 @@ Stambord werd gemaakt met behulp van ...
 - [Taffy.js](http://taffydb.com/) – Json database ➡️ [Dexie](https://dexie.org/) – Database
 - [Filesaver.js](https://github.com/eligrey/FileSaver.js/) – Backupfunctie
 
-## Software
+## Software gebruiken
 | **[Demo](https://bar-bord.haegepoorters.be/src/)** (wachtwoord: ```stamvader```) | **[Download voor MacOS](https://github.com/lennertderyck/stambord/releases)** |
 
 Voorlopig is Stambord enkel beschikbaar voor MacOS, maar we zouden deze ook graag uitbrengen voor Windows.<br>
-Wil je Bar Bord eigenhandig omzetten als Windows programma? Volg de stappen hieronder:
+Wil je Bar Bord eenvoudig eigenhandig omzetten als Windows programma? Volg de stappen hieronder:
 
 #### 1. Installatie
 - [Download stambord-master.zip](https://github.com/lennertderyck/stambord/archive/master.zip)
 - Unzip stambord-master.zip door hier dubbel op te klikken
-- Open Commandoprompt (Windows) of Terminal (Mac / Linux)
+- Open Commandoprompt
 - Controleer of Node.js geïnstalleerd is
   - Plak de volgende code ```node -v``` en druk Enter
   - Als Node.js niet geïnstalleerd is download deze dan via https://nodejs.org/en/
   - Volg de stappen die op het scherm 
 
 #### 2. Omzetting
-- Sleep de folder stambord-master naar het icoontje van Commandprompt of Terminal
+- Sleep de folder stambord-master naar het icoontje van Commandprompt
 - Installeer Node packages ```npm install```
-- Plak het volgende in de Commandprompt of Terminal ```npm run package```
+- Plak het volgende in de Commandprompt```npm run package```
 
-Er zal in de map die je gedownload hebt een nieuwe folder gemaakt worden genaamd 'out', hier vind je de nieuwe applicatie in.
+Er zal in de map die je gedownload hebt een nieuwe folder gemaakt worden genaamd 'out', klik door in de verschillende mappen, je vind hier dan de applicatie.
 
-## Roadmap
-- Instellen of er items gekocht kunnen worden met een negatief tegoed.
-- Instellen hoeveel intrest er gevraagd wordt bij een negatief tegoed.
-- Eigen rekeningnummer opgeven
+> Heb je een Windows-versie gemaakt? [Laat me iets weten!](mailto:hello@lennertderyck.be?subject=Stambord Windows build
 
 ## De volgende versie ...
 
