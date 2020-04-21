@@ -12,8 +12,12 @@ let mainWindow;
 const createWindow = () => {
   // Create the browser window.
   mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
+    title: 'Stambord',
+    width: 1200,
+    height: 800,
+    fullscreenable: true,
+    alwaysOnTop: true,
+    titleBarStyle: 'customButtonsOnHover',
     webPreferences: {
       devTools: false
     },
