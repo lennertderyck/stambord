@@ -9,12 +9,20 @@ export const settings = {
         status.init();
         
         this.cache();
+        this.chart();
         
         if (getCookie('sudo') == 'true') {
             document.body.setAttribute('data-sudo-mode', 'true');
         }
+        if (readCookie('darkmode') == null) {
+            createCookie('darkmode', false);
+        }
         
-        this.chart();
+        if (getCookie('darkmode') == 'true') {
+            document.body.setAttribute('dark-mode', 'true');
+        } else {
+            document.body.setAttribute('dark-mode', 'false');
+        }
     },
     
     cache() {
@@ -45,6 +53,13 @@ export const settings = {
             switch (targetBtn) {
                 case 'noSudo':
                     this.signOut();
+                    break;
+                case 'darkMode':
+                    this.darkMode();
+                    break;
+                case 'dataReload':
+                    app.readyState();
+                    app.createToast('Barbord', 'Alle gegevens werden succesvol ingeladen')
                     break;
                 default:
                     status.log('you didn\'t hit an available button')
@@ -178,6 +193,18 @@ export const settings = {
         if (options.poslog == 'true') await app.dexieDeleteLogs();
         
         app.readyState();
+    },
+    
+    darkMode() {
+        status.add('darkMode');
+        
+        if (getCookie('darkmode') == 'true') {
+            createCookie('darkmode', false)
+            document.body.setAttribute('dark-mode', 'false');
+        } else {
+            createCookie('darkmode', true)
+            document.body.setAttribute('dark-mode', 'true');
+        }
     }
 }
 

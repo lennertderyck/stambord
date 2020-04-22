@@ -15,6 +15,11 @@
     --textColorMain: #212529;
     --asideBackground: #35689d;
     --tableBorders: #dee2e6;
+    --modalBody: white;
+    --toasts: white;
+    
+    --btnLight: #e2e6ea;
+    --btnLightColor: #212529;
     
     [dark-mode="true"] {
         --blue600: #25496E;
@@ -23,11 +28,16 @@
         --blue200: #0c0c0c;
         --info: #17a2b8;
         --danger300: #D26B68;
-        --danger600: rgb(126, 107, 106);
+        --danger600: #7b3734;
         
         --tabpaneBackground: #212121;
         --textColorMain: #bad1e7;
         --asideBackground: #1b344e;
         --tableBorders: #4b4d4e;
+        --modalBody: #212121;
+        --toasts: #0c0c0c;
+        
+        --btnLight: #545556;
+        --btnLightColor: white;
     }
 }

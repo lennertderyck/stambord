@@ -69,9 +69,10 @@ button, .btn {
     align-items: center;
     appearance: none;
     border: none;
-    background: #dadada;
+    background-color: var(--btnLight);
     padding: 5px 7px;
     border-radius: 9px;
+    color: var(--btnLightColor); 
     font-size: 0.9rem;
     font-weight: 500;
     white-space: nowrap;
@@ -104,8 +105,13 @@ button, .btn {
     }
 
     &.btn-danger {
-        background-color:  var(--danger600);
-        color: white;
+        background-color:  var(--danger600) !important;
+        color: white !important;
+        
+        &:hover, &:active, &:focus {
+            background-color:  var(--danger600);
+            color: white;
+        }
 
         svg.feather {color: var(--danger300);}
     }
@@ -122,7 +128,14 @@ button, .btn {
     }
     
     &.btn-light {
-        background-color: #e2e6ea;
+        background-color: var(--btnLight) !important;
+        color: var(--btnLightColor) !important; 
+        
+        &:hover, &:active, &:focus {
+            background-color: var(--btnLight);
+            color: var(--btnLightColor);        
+        }
+        
     }
     
     &.btn-warning {
