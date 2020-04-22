@@ -2,7 +2,7 @@
 
 <br>
 
-### [Software](#software) | [Roadmap](#roadmap) | [Help](#problemen-en-hulp) | [Demo](https://bar-bord.haegepoorters.be/src/) (wachtwoord: ```stamvader```)
+### [Software](#software) | [Roadmap](#roadmap) | [Help](#problemen-en-hulp) | [Demo](https://stambord.haegepoorters.be/src/) (wachtwoord: ```stamvader```)
 
 ---
 ![Node.js CI](https://github.com/lennertderyck/stambord/workflows/Node.js%20CI/badge.svg)
@@ -18,7 +18,7 @@ Stambord werd gemaakt met behulp van ...
 - [Filesaver.js](https://github.com/eligrey/FileSaver.js/) – Backupfunctie
 
 ## Software gebruiken
-| **[Demo](https://bar-bord.haegepoorters.be/src/)** (wachtwoord: ```stamvader```) | **[Download voor MacOS](https://github.com/lennertderyck/stambord/releases)** |
+| **[Demo](https://stambord.haegepoorters.be/src/)** (wachtwoord: ```stamvader```) | **[Download voor MacOS](https://github.com/lennertderyck/stambord/releases)** |
 
 Voorlopig is Stambord enkel beschikbaar voor MacOS, maar we zouden deze ook graag uitbrengen voor Windows.<br>
 Wil je Bar Bord eenvoudig eigenhandig omzetten als Windows programma? Volg de stappen hieronder:
