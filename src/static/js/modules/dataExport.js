@@ -176,6 +176,7 @@ export const dataExport = {
             
         }
         
+        app.readyState();
         dataExport.readyState();
     }
 }
