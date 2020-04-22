@@ -34,6 +34,8 @@ export const userControl = {
                 name: formData.get('name'), 
                 credit: formData.get('credit')
             });
+            
+            if (formData.get('add-multiple') != 'on') $('#modalAddUser').modal('hide');
         })
         
         this.topUpForm.addEventListener('submit', (event) => {
@@ -100,7 +102,7 @@ export const userControl = {
             const user = document.createElement('div');
             user.classList.add('table-item', 'container-fluid');
             user.innerHTML = `
-                <input type="radio" id="user_${i.id}" name="users" value="${i.id}"><label for="user_${i.id}" class="row" data-user-negative="${negativeCredit}">
+                <input type="radio" id="user_${i.id}" name="users" value="${i.id}"><label for="user_${i.id}" class="row px-2" data-user-negative="${negativeCredit}">
                     <div class="col"><span>${i.name}</span></div>
                     <div class="col">€${i.credit.toFixed(2)}</div>
                 </label>

@@ -139,8 +139,6 @@ export const posCheckout = {
         });
         $('#carouselPosSteps').carousel(0);
         
-        status.log(this.amount);
-        
         datalog.addLog({
             user: {
                 id: this.checkoutUserData.id,
@@ -151,7 +149,8 @@ export const posCheckout = {
             price: this.checkoutItemData.price + (this.checkoutItemData.price*this.intrest)
         })
         
-        this.amountSelector.classList.add('d-none')
+        this.amountSelector.classList.add('d-none');
+        app.createToast('Aankoop gelukt!', `Je huidig saldo bedraagt ${this.newCredit.toFixed(2)}`)
         app.readyState();
     }
 }

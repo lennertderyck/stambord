@@ -38,6 +38,8 @@ export const itemControl = {
                 type: formData.get('itemType'),
                 price: [parseFloat(formData.get('priceSingle')), parseFloat(formData.get('priceDouble')), parseFloat(formData.get('priceExtra'))],
             });
+            
+            if (formData.get('add-multiple') != 'on') $('#modalAddItem').modal('hide');
         })
         
         this.tabFunctions.addEventListener('click', (event) => {
@@ -106,7 +108,7 @@ export const itemControl = {
             const item = document.createElement('div');
             item.classList.add('table-item', 'container-fluid');
             item.innerHTML = `
-                <input type="radio" id="item_${i.id}" name="items" value="${i.id}"><label for="item_${i.id}" class="row" data-item-type="${i.type}">
+                <input type="radio" id="item_${i.id}" name="items" value="${i.id}"><label for="item_${i.id}" class="row px-2" data-item-type="${i.type}">
                     <div class="col">
                         <span>${i.name}</span>
                     </div>

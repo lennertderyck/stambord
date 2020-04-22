@@ -65,7 +65,7 @@ export const datalog = {
             const item = document.createElement('div');
             item.classList.add('table-item', 'container-fluid');
             item.innerHTML = `
-                <input type="radio" id="log_${i.date}" name="logs" value="${i.date}"><label for="log_${i.date}" class="row">
+                <input type="radio" id="log_${i.date}" name="logs" value="${i.date}"><label for="log_${i.date}" class="row px-2">
                     <div class="col">
                         <span class="d-block">${time.fromNow()}</span>
                         <small class="text-modern">${time.format("HH:MM")} – ${time.format("L")}</small>
