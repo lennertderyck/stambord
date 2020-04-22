@@ -101,18 +101,20 @@
                         <div class="tab-pane-title">
                             <h3>Overzicht</h3>
                         </div>
-                        <div class="alert alert-warning d-none flex-row row" role="alert" data-label="alert-noUsers" data-toggle="modal" data-target="#modalAddUser">
-                            <div class="col-auto px-0 d-flex align-items-center">
-                                <div class="alert-icon">
-                                    <i data-feather="frown"></i>
+                        <form id="posCheckout">
+                            <div class="alert alert-warning d-none mb-0" role="alert" data-label="alert-noUsers" data-toggle="modal" data-target="#modalAddUser">
+                                <div class="wrapper row mb-0">
+                                    <div class="col-auto px-0 d-flex align-items-center">
+                                        <div class="alert-icon">
+                                            <i data-feather="frown"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <strong class="d-block">Oeps!</strong>
+                                        <p class="mb-0">We vonden geen leiding, begin met hier iemand toe te voegen.</p>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col">
-                                <strong class="d-block">Oeps!</strong>
-                                <p class="mb-0">We vonden geen leiding, begin met hier iemand toe te voegen.</p>
-                            </div>
-                        </div>
-                        <form id="posCheckout">
                             <div id="carouselPosSteps" class="carousel slide" data-ride="carousel" data-interval="false">
                                 <div class="carousel-inner">
                                     <div class="carousel-item active">
@@ -343,8 +345,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row mb-5">
-                                <div id="chart_div"></div>
+                            <div class="row mb-5 d-none">
+                                <div id="chart_div" class=""></div>
                             </div>
                             <div class="row mb-5">
                                 <div class="col-12 col-lg mb-4 mb-lg-0">

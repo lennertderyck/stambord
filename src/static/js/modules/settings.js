@@ -75,6 +75,7 @@ export const settings = {
         this.dataRemoveForm.addEventListener('submit', async (event) => {
             event.preventDefault();
             status.log('data will ben removed')
+            app.createToast('Gegevens', 'Gegevens worden verwijderd')
             
             await this.dataRemove();
         })
