@@ -103,15 +103,16 @@
                         </div>
                         <form id="posCheckout">
                             <div class="alert alert-warning d-none mb-0" role="alert" data-label="alert-noUsers" data-toggle="modal" data-target="#modalAddUser">
-                                <div class="wrapper row mb-0">
-                                    <div class="col-auto px-0 d-flex align-items-center">
+                                <div class="wrapper row mb-0 px-3 py-2">
+                                    <div class="col-auto mr-3 px-0 d-flex align-items-center">
                                         <div class="alert-icon">
                                             <i data-feather="frown"></i>
                                         </div>
                                     </div>
                                     <div class="col">
                                         <strong class="d-block">Oeps!</strong>
-                                        <p class="mb-0">We vonden geen leiding, begin met hier iemand toe te voegen.</p>
+                                        <p class="mb-0">We vonden geen gebruikers, begin met hier iemand toe te voegen.</p>
+                                        <button type="button" class="btn-warning mt-2">gebruiker toevoegen</button>
                                     </div>
                                 </div>
                             </div>
@@ -131,21 +132,24 @@
                                         </div>
                                     </div>
                                     <div class="carousel-item">
-                                        <div class="mx-4 mt-4">
-                                            <button type="button" onclick="$('#carouselPosSteps').carousel('prev')" class="mb-0 text-modern d-flex align-items-center"><i data-feather="arrow-left"></i> <span class="ml-2">kies een andere gebruiker</span></button>
-                                        </div>
-                                        <div class="flex-grid-wrapper p-4">
-                                            <div class="alert alert-warning d-none flex-row row" role="alert" data-label="alert-noItems" data-toggle="modal" data-target="#modalAddItem">
-                                                <div class="col-auto px-0 d-flex align-items-center">
+                                        <div class="alert alert-warning d-none" role="alert" data-label="alert-noItems" data-toggle="modal" data-target="#modalAddItem">
+                                            <div class="wrapper row mb-0 px-3 py-2">
+                                                <div class="col-auto mr-3 px-0 d-flex align-items-center">
                                                     <div class="alert-icon">
                                                         <i data-feather="frown"></i>
                                                     </div>
                                                 </div>
                                                 <div class="col">
                                                     <strong class="d-block">Oeps!</strong>
-                                                    <p class="mb-0">We vonden geen items, begin met hier items toe te voegen.</p>
+                                                    <p class="mb-0">We vonden geen items, begin met hier er toe te voegen.</p>
+                                                    <button type="button" class="btn-warning mt-2">item toevoegen</button>
                                                 </div>
                                             </div>
+                                        </div>
+                                        <div class="mx-4 mt-4">
+                                            <button type="button" onclick="$('#carouselPosSteps').carousel('prev')" class="mb-0 text-modern d-flex align-items-center"><i data-feather="arrow-left"></i> <span class="ml-2">kies een andere gebruiker</span></button>
+                                        </div>
+                                        <div class="flex-grid-wrapper p-4">
                                             <div class="px-0 pb-4">
                                                 <div class="input-group floating-label">
                                                     <input id="posItemFilter" autocomplete="off" autofocus type="text" class="form-control" data-clear-field required>

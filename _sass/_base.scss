@@ -124,6 +124,16 @@ button, .btn {
     &.btn-light {
         background-color: #e2e6ea;
     }
+    
+    &.btn-warning {
+        background-color: var(--warning500) !important;
+        color: var(--warning600) !important;
+        
+        &:hover, &:active, &:focus {
+            background-color: var(--warning500);
+            color: var(--warning600);          
+        }
+    }
 }
 
 [data-label="logo"] {
