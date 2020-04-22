@@ -58,7 +58,10 @@ Voor nu zijn deze wijzigingen te vinden op de canary-branch. Eens alle huidige f
 
 <details>
   <summary>Disclaimer</summary>
-  <p></p>
+  <p>Wij, de ontwikkelaars achter deze applicatie, zijn op geen enkele manier verantwoordelijk voor eventuele problemen die zich voordoen door het het gebruik van deze applicatie.</p>
+  <p>Ondanks Stambord met zorg ontwikkeld en getest werd, kunnen er nog steeds bugs in de applicatie zitten. We raden gebruikers aan dat wanneer zij zo problemen ervaren ze onmiddelijk contact met ons opnemen zodat wij zo snel mogelijk hun van een fix kunnen voorzien.</p>
+  <p>Wij zijn dan ook niet verantwoordelijk voor verliezen of andere gevolgen door het gebruik van deze applicatie. Deze is dan ook alleen bedoeld voor gebruik door kleine groepen, zoals leiding/monitoren in een jeugdvereniging of een andere niet-professionele omgeving.</p>
+  <p>We hopen dat het gebruik van Stambord een positieve ervaring mag zijn.</p>
 </details>
 
 ---

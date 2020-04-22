@@ -364,24 +364,30 @@ table.table {
         background: #dadada;
         padding: 0px;
         border-radius: 9px;
+        overflow: hidden;
         z-index: 100;
         
         .btn, button {
             width: 100%;
             padding: 10px 11px;
             border-radius: 0px;
+            text-align: left;
             
-            &:first-child {
-                border-radius: 9px 9px 0px 0px;
+            svg {
+                margin-right: 14px;
             }
             
-            &:last-child {
-                border-radius: 0px 0px 9px 9px;
+            // &:first-child {
+            //     border-radius: 9px 9px 0px 0px;
+            // }
+            
+            // &:last-child {
+            //     border-radius: 0px 0px 9px 9px;
                 
-                &:first-child {
-                    border-radius: 9px;
-                }
-            }
+            //     &:first-child {
+            //         border-radius: 9px;
+            //     }
+            // }
         }
     }
     

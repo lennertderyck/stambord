@@ -145,18 +145,18 @@ svg.feather {
 
 [data-sudo-mode="false"] {
     .sudo-show {
-        display: none;
+        display: none !important;
     }
     .sudo-hide {
-        display: block;
+        display: inherit;
     }
 }
 
 [data-sudo-mode="true"] {
     .sudo-show {
-        display: block;
+        display: inherit;
     }
     .sudo-hide {
-        display: none;
+        display: none !important;
     }
 }

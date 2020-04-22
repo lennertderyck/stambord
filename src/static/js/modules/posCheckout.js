@@ -1,4 +1,4 @@
-import {test, fetchAPI, generateID, callerName} from './functions.js';
+import {callerName} from './functions.js';
 import {app} from '../app.js';
 import {datalog} from './datalog.js';
 

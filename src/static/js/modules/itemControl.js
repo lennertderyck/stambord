@@ -124,7 +124,7 @@ export const itemControl = {
             const posCheckoutUser = document.createElement('div');
             posCheckoutUser.classList.add('flex-grid-item');
             posCheckoutUser.innerHTML = `
-                <input type="radio" id="checkoutItem_${i.id}" name="checkoutItems" value="${i.id}"><label for="checkoutItem_${i.id}" class="pos-el" data-item-type="${i.type}">
+                <input type="radio" id="checkoutItem_${i.id}" name="checkoutItems" value="${i.id}" data-pos-filter="${i.name.toLowerCase()},${i.id},${this.itemTypes(i.type)}"><label for="checkoutItem_${i.id}" class="pos-el" data-item-type="${i.type}">
                     <h3>${i.name}</h3>
                     <small><span>enkel <strong>€${i.price[0]}</strong></span><span class="item-type-prices"> – dubbel <strong>€${i.price[1]}</strong></span><span class="item-type-prices"> – extra <strong>€${i.price[2]}</strong></span></small>
                 </label>

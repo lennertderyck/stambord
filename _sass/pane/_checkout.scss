@@ -1,5 +1,5 @@
 #posCheckout {
-    input {
+    input[type="radio"] {
         display: none;
         
         &:checked + label {

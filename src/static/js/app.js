@@ -5,6 +5,7 @@ import {datalog} from './modules/datalog.js';
 import {posCheckout} from './modules/posCheckout.js';
 import {userControl} from './modules/userControl.js';
 import {itemControl} from './modules/itemControl.js';
+import {posFilter} from './modules/posFilter.js';
 import {settings} from './modules/settings.js';
 
 sesamCollapse.initialize();
@@ -21,6 +22,7 @@ export const app = {
         this.toastIndex = 0;
         
         dataExport.initialize();
+
         settings.addListeners();
         this.readyState();
         
