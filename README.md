@@ -1,4 +1,4 @@
-![bar bord banner](https://raw.githubusercontent.com/lennertderyck/stam-bord/master/branding/BANNER_BARBORD_SMALL_Tekengebied%201%20kopie%202.png)
+![bar bord banner](https://raw.githubusercontent.com/lennertderyck/bar-board/master/branding/banner.png)
 
 <br>
 
@@ -55,6 +55,11 @@ Door gebruik te maken van enkele nieuwe functies van JavaScript (6) is het daaro
 Een bijkomend voordeel van deze veranderingen is het makkelijker kunnen implementeren van nieuwe features, de applicatie bevat minder bugs en is stabieler.
 
 Voor nu zijn deze wijzigingen te vinden op de canary-branch. Eens alle huidige functies opnieuw aanwezig zijn zullen de wijzigingen naar de master-branch gepushed worden.
+
+<details>
+  <summary>Disclaimer</summary>
+  <p></p>
+</details>
 
 ---
 
