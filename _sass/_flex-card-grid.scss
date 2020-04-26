@@ -14,6 +14,7 @@
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
+        align-items: stretch;
         justify-content: flex-start;
         margin-right: calc(var(--grid-row-items-p) - (var(--grid-row-items-p) * 2));
         margin-bottom: calc(var(--grid-row-items-p) - (var(--grid-row-items-p) * 2));
@@ -22,7 +23,7 @@
             flex-basis: calc(100% / var(--grid-row-items-n) - var(--grid-row-items-p));
             margin-bottom: var(--grid-row-items-p); 
             margin-right: var(--grid-row-items-p);
-            height: fit-content;
+            // height: fit-content;
             // background-color: inherit;
             // color: red;
         }
