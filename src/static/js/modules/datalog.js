@@ -10,12 +10,23 @@ export const datalog = {
         status.init();
         
         this.cache();
+        this.addListeners()
     },
     
     cache() {
         status.add('cache');
         
         this.posItems = document.querySelector('[data-label="logs"]');
+    },
+    
+    addListeners() {
+        // setInterval(() => {
+        //     datalog.renderData();
+        // }, 1000 * 30);
+        
+        $('#nav-log-tab').on('shown.bs.tab', (event) => {
+            datalog.renderData();
+        })
     },
     
     addLog(entry) {
@@ -57,7 +68,6 @@ export const datalog = {
         status.add('renderData');
         
         this.posItems.innerHTML = '';
-        status.log('logs cleaned out')
 
         app.db.logs.each(i => {
             const time = moment(i.date);

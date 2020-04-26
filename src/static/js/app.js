@@ -25,10 +25,6 @@ export const app = {
 
         settings.addListeners();
         this.readyState();
-        
-        setInterval(() => {
-            datalog.renderData();
-        }, 1000 * 30);
     },
     
     readyState() {
