@@ -23,23 +23,36 @@ export const posFilter = {
         status.add('addListeners');
         
         this.userFilter.addEventListener('keyup', (event) => {
-            this.filter(userControl.posCheckout, event.target.value.toLowerCase())
+            this.filter({
+                pane: userControl.posCheckout, 
+                keys: ['name', 'id'], 
+                entry: event.target.value.toLowerCase()
+            });
         })
         
         this.itemFilter.addEventListener('keyup', (event) => {
-            this.filter(itemControl.posCheckout, event.target.value.toLowerCase())
+            this.filter({
+                pane: itemControl.posCheckout, 
+                keys: ['name', 'id', 'type'], 
+                entry: event.target.value.toLowerCase()
+            });
         })
     },
     
-    filter(pane,entry) {
+    filter({pane, keys, entry}) {        
         status.add('filter');
-        const items = pane.querySelectorAll('.flex-grid-item input');
-        items.forEach(i => {
-            const filter = i.dataset.posFilter.toLowerCase().includes(entry);
-            if (filter == false) {
+        const posButtons = pane.querySelectorAll('.flex-grid-item input');
+        posButtons.forEach(i => { // each posButton
+            let filter = [];
+            
+            keys.forEach(x => { // check if entry contains ...
+                filter.push(i.dataset.posFilter.toLowerCase().includes(`${x}:${entry}`));
+            })
+            
+            if (filter.includes(true) == false) {
                 i.parentNode.classList.add('d-none');
             }
-            if (filter == true) {
+            if (filter.includes(true) == true) {
                 i.parentNode.classList.remove('d-none');
             }
         })

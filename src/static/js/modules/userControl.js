@@ -112,7 +112,7 @@ export const userControl = {
             const posCheckoutItem = document.createElement('div');
             posCheckoutItem.classList.add('flex-grid-item');
             posCheckoutItem.innerHTML = `
-                <input type="radio" id="checkoutItem_${i.id}" name="checkoutItems" value="${i.id}" data-pos-filter="${i.name},${i.id}"><label for="checkoutItem_${i.id}" class="pos-el">
+                <input type="radio" id="checkoutItem_${i.id}" name="checkoutItems" value="${i.id}" data-pos-filter="name:${i.name},id:${i.id}"><label for="checkoutItem_${i.id}" class="pos-el">
                     <h3>${i.name}</h3>
                     <small>€${i.credit.toFixed(2)}</small>
                 </label>
