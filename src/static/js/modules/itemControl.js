@@ -38,6 +38,9 @@ export const itemControl = {
                 price: [parseFloat(formData.get('priceSingle')), parseFloat(formData.get('priceDouble')), parseFloat(formData.get('priceExtra'))],
             });
             
+            // empty fields
+            app.clearFields(event.target);
+            
             if (formData.get('add-multiple') != 'on') $('#modalAddItem').modal('hide');
         })
         

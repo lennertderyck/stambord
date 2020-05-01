@@ -25,14 +25,17 @@ export const userControl = {
         status.add('addListeners');
         
         this.addUserForm.addEventListener('submit', (event) => {
-            event.preventDefault();
-            status.log('user is being added')
+            status.log('user is being added');
             
+            event.preventDefault();
             const formData = new FormData(this.addUserForm);
             this.add({
                 name: formData.get('name'), 
                 credit: formData.get('credit')
             });
+            
+            // empty fields
+            app.clearFields(event.target);
             
             if (formData.get('add-multiple') != 'on') $('#modalAddUser').modal('hide');
         })

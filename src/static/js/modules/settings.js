@@ -42,6 +42,9 @@ export const settings = {
             let formData = new FormData(this.signInForm);
             const password = formData.get('password')
             
+            // empty fields
+            app.clearFields(event.target);
+            
             this.checkPassword(password);
         })
         
@@ -71,6 +74,8 @@ export const settings = {
             const formData = new FormData(this.changePasswordForm);
             // formData.get('newPassword')
             
+            app.errorText('currentPassword', '');
+            
             if (readCookie('password') == null && formData.get('currentPassword') == 'stamvader') {
                 // als password niet ingesteld is
                 status.log(`passwoord (${formData.get('currentPassword')}) is juist, kan veranderen`);
@@ -83,6 +88,9 @@ export const settings = {
                 status.log('something went wrong')
                 app.errorText('currentPassword', 'Het huidige wachtwoord is niet correct, probeer opnieuw');
             }
+            
+            // empty fields
+            app.clearFields(event.target);
         })
         
         this.dataRemoveForm.addEventListener('submit', async (event) => {
@@ -118,7 +126,6 @@ export const settings = {
         document.body.setAttribute('data-sudo-mode', 'true');
         createCookie('sudo', true)
         
-        app.clearFields();
         app.errorText('sudoFalse', '');
         $('#modalGoSudo').modal('hide');
         app.createToast('sudo', 'Je bent nu aangemeld');

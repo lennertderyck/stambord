@@ -189,12 +189,24 @@ export const app = {
         status.add('logging');
     },
     
-    clearFields() {
+    clearFields(target) {
         status.add('clearFields');
         
-        const fields = document.querySelectorAll('[data-clear-field]');
-        
-        fields.forEach(i => {
+        if (target == undefined) {
+            const fields = document.querySelectorAll('[data-clear-field]');
+            
+            fields.forEach(i => {
+                i.value = '';
+            })
+        } else {
+            target.querySelectorAll('input[type="text"], input[type="number"]').forEach(i => {
+                i.value = '';
+            })
+        }
+    },
+    
+    clearFieldsOnSubmit(target) {
+        target.querySelectorAll('input[type="text"], input[type="number"]').forEach(i => {
             i.value = '';
         })
     },
