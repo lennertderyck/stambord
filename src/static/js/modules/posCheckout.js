@@ -1,6 +1,4 @@
-import {callerName} from './functions.js';
-import {app} from '../app.js';
-import {datalog} from './datalog.js';
+import {app, callerName, datalog} from './index.js';
 
 const status = new callerName('itemControl');
 

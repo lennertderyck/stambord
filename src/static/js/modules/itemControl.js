@@ -1,5 +1,4 @@
-import {test, fetchAPI, generateID, callerName} from './functions.js';
-import {app} from '../app.js';
+import {app, test, fetchAPI, generateID, callerName} from './index.js';
 
 const status = new callerName('itemControl');
 
@@ -32,7 +31,7 @@ export const itemControl = {
             status.log('user is being added')
             
             const formData = new FormData(this.addItemForm);
-            this.addItem({
+            this.add({
                 name: formData.get('name'),
                 profit: parseFloat(formData.get('price')),
                 type: formData.get('itemType'),
@@ -82,7 +81,7 @@ export const itemControl = {
         return input;
     },
     
-    addItem(entry) {
+    add(entry) {
         status.log('this item will be added ' + entry.name)
         if (entry.id == undefined) {entry.id = `item${generateID()}`}
         app.db.items.put({
@@ -93,10 +92,10 @@ export const itemControl = {
             price: entry.price
         });
         
-        this.renderItems();
+        this.render();
     },
     
-    renderItems() {
+    render() {
         status.add('renderItems');
         
         this.posItems.innerHTML = '';
@@ -147,7 +146,7 @@ export const itemControl = {
                 console.log( "Deleted " + item);
             });
         
-        this.renderItems();
+        this.render();
     }
 }
 

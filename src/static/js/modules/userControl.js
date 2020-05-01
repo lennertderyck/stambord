@@ -1,5 +1,4 @@
-import {test, fetchAPI, generateID, callerName} from './functions.js';
-import {app} from '../app.js';
+import {app, test, fetchAPI, generateID, callerName} from './index.js';
 
 const status = new callerName('userControl');
 
@@ -30,7 +29,7 @@ export const userControl = {
             status.log('user is being added')
             
             const formData = new FormData(this.addUserForm);
-            this.addUser({
+            this.add({
                 name: formData.get('name'), 
                 credit: formData.get('credit')
             });
@@ -69,11 +68,11 @@ export const userControl = {
         .then(response => response.json())
         .then (data => {
             status.log(data[0].users);
-            this.renderUsers(data[0].users);
+            this.render(data[0].users);
         });
     },
     
-    addUser(entry) {
+    add(entry) {
         status.add('addUser');
         if (entry.id == undefined) {entry.id = `user${generateID()}`}
         app.db.users.put({
@@ -82,10 +81,10 @@ export const userControl = {
             credit: parseFloat(entry.credit)
         });
         
-        this.renderUsers();
+        this.render();
     },
     
-    renderUsers() {
+    render() {
         status.add('renderUsers');
         
         this.posUsers.innerHTML = '';
@@ -133,7 +132,7 @@ export const userControl = {
                 status.log( "Deleted " + item);
             });
         
-        this.renderUsers();
+        this.render();
     },
     
     async topUp(entry, credit) {
@@ -148,7 +147,7 @@ export const userControl = {
               status.log ("Nothing was updated - there were no friend with primary key: 2");
         });
         $('#modalTopUp').modal('hide');
-        this.renderUsers();
+        this.render();
     }
 }
 

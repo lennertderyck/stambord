@@ -36,6 +36,6 @@ export class callerName {
     }
     
     log(logged) {
-        console.log('\t' + logged);
+        console.log('\t', logged);
     }
 }

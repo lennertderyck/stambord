@@ -1,6 +1,4 @@
-import {test, fetchAPI, generateID, callerName} from './functions.js';
-import {app} from '../app.js';
-import { dataExport } from './dataExport.js';
+import {app, callerName, dataExport} from './index.js';
 
 const status = new callerName('settings');
 

@@ -1,5 +1,4 @@
-import {test, fetchAPI, generateID, callerName} from './functions.js';
-import {app} from '../app.js';
+import {app, test, fetchAPI, generateID, callerName} from './index.js';
 
 const status = new callerName('datalog');
 

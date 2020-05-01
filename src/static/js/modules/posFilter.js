@@ -1,7 +1,4 @@
-import {callerName} from './functions.js';
-import {userControl} from './userControl.js';
-import { itemControl } from './itemControl.js';
-import {app} from '../app.js';
+import {app, callerName, userControl, itemControl} from './index.js';
 
 const status = new callerName('posFilter');
 

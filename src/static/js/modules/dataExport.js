@@ -1,8 +1,4 @@
-import {callerName} from './functions.js';
-import {app} from '../app.js';
-import {userControl} from './userControl.js';
-import {itemControl} from './itemControl.js';
-import {datalog} from './datalog.js';
+import {app, callerName, userControl, itemControl, datalog} from './index.js'
 
 const status = new callerName('dataExport');
 
@@ -135,7 +131,7 @@ export const dataExport = {
             app.deleteDexieData();
             
             await importedData.items.forEach(i => {
-                itemControl.addItem({
+                itemControl.add({
                     id: i.id,
                     name: i.name,
                     profit: i.profit,
@@ -145,7 +141,7 @@ export const dataExport = {
             });
             
             await importedData.users.forEach(i => {
-                userControl.addUser({
+                userControl.add({
                     id: i.id,
                     name: i.name,
                     credit: parseFloat(i.credit)

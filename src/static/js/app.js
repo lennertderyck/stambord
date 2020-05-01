@@ -1,12 +1,5 @@
 import {sesamCollapse, sesam} from 'https://unpkg.com/sesam-collapse@4.0.0';
-import {test, generateID, callerName} from './modules/functions.js';
-import {dataExport} from './modules/dataExport.js';
-import {datalog} from './modules/datalog.js';
-import {posCheckout} from './modules/posCheckout.js';
-import {userControl} from './modules/userControl.js';
-import {itemControl} from './modules/itemControl.js';
-import {posFilter} from './modules/posFilter.js';
-import {settings} from './modules/settings.js';
+import {callerName, dataExport, datalog, posCheckout, userControl, itemControl, posFilter, settings, uiControl} from './modules/index.js';
 
 sesamCollapse.initialize();
 
@@ -25,6 +18,8 @@ export const app = {
 
         settings.addListeners();
         this.readyState();
+        
+        // uiControl.initialize();
     },
     
     readyState() {
@@ -32,8 +27,8 @@ export const app = {
         
         $('.modal').modal('hide');
         $('#carouselPosSteps').carousel(0);
-        userControl.renderUsers();
-        itemControl.renderItems();
+        userControl.render();
+        itemControl.render();
         datalog.renderData();
         this.hidePaneOptions();
         this.checkRecordAmount();
