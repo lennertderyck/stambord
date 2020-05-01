@@ -19,12 +19,13 @@ export const app = {
         settings.addListeners();
         this.readyState();
         
-        // uiControl.initialize();
+        uiControl.initialize();
     },
     
     readyState() {
         status.add('readyState');
         
+        // uiControl.initialize();
         $('.modal').modal('hide');
         $('#carouselPosSteps').carousel(0);
         userControl.render();

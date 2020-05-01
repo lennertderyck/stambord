@@ -96,7 +96,6 @@ export const userControl = {
             let negativeCredit = false;
             if (i.credit < 0) {
                 negativeCredit = true;
-                status.log(`credit from ${i.name} is lower than 0`)
             }
             const user = document.createElement('div');
             user.classList.add('table-item', 'container-fluid');
