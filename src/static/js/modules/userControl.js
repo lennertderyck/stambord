@@ -47,6 +47,7 @@ export const userControl = {
             const selectedItem = document.querySelector('#nav-users [data-label="listedUsers"] input:checked').value;
             const formData = new FormData(this.topUpForm);
             this.topUp(selectedItem, formData.get('credit'));
+            app.clearFields(event.target)
         })
         
         this.tabFunctions.addEventListener('click', (event) => {

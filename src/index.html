@@ -498,7 +498,7 @@
     </div>
     <div class="modal" id="modalPosConfirm" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="modalPosConfirmLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
+            <form id="posCheckoutConfirm" class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="modalPosConfirmLabel">Aankoop bevestigen</h5>
                     <button type="button" class="close d-none" data-dismiss="modal" aria-label="Close">
@@ -521,9 +521,9 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" data-label="posCancel" class="btn" data-dismiss="modal"><i data-feather="x"></i>annuleren</button>
-                    <button type="button" data-label="posConfirm" class="btn-danger" data-dismiss="modal"><i data-feather="check"></i>kopen</button>
+                    <button type="submit" data-label="posConfirm" class="btn-danger"><i data-feather="check"></i>kopen</button>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
     <div class="modal" id="modalTopUp" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="modalTopUpLabel" aria-hidden="true">
@@ -538,7 +538,7 @@
                 <form id="topUp">
                     <div class="modal-body">
                         <div class="input-group floating-label">
-                            <input type="number" data-clear-field id="topUp-credit" name="credit" class="form-control" required>
+                            <input type="number" data-clear-field id="topUp-credit" step="0.01" name="credit" class="form-control" required>
                             <label for="topUp-credit">tegoed</label>
                         </div>
                     </div>
@@ -708,13 +708,13 @@
                 </div>  
                 <div class="modal-body">
                     <p>We merken dat je scherm niet breedt genoeg is om stambord goed weer te geven.</p>
-                    <p class="mb-0">Probeer Stambord te gebruiken op een tablet in landscape, laptop of desktop computer.</p>
+                    <p class="mb-0">Probeer Stambord te gebruiken op een tablet in landscape-mode, laptop of desktop computer.</p>
                 </div>
                 <div class="modal-footer">
                     <div class="text-modern fontw-500 mr-3">
                         negeren:
                     </div>
-                    <button type="button" class="btn" data-label="dismissNow" data-dismiss="modal"><i data-feather="clock"></i>nu</button>
+                    <button type="button" class="btn" data-label="dismissNow" data-dismiss="modal"><i data-feather="clock"></i>voor nu</button>
                     <button type="button" class="btn" data-label="dismissAlways" data-dismiss="modal"><i data-feather="x"></i>altijd</button>
                 </div>
             </div>

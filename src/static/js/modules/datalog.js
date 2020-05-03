@@ -83,7 +83,7 @@ export const datalog = {
                         <span class="d-block">${i.user.name}</span>
                     </div>
                     <div class="col">
-                        <span>${i.item}</span>
+                        <span>${i.item.name} x ${i.item.quantity}</span>
                         <small class="text-modern">${this.itemAmount(i.amount)}</small>
                     </div>
                     <div class="col">

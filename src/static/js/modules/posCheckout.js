@@ -8,6 +8,7 @@ export const posCheckout = {
         
         this.cache();
         this.addListeners();
+        this.quantity = 1;
     },
     
     cache() {
@@ -16,18 +17,41 @@ export const posCheckout = {
         this.checkoutDisplay = document.querySelector('#modalPosConfirm .modal-content .modal-body');
         this.amountSelector = document.querySelector('[data-label="posAmount"]');
         this.cancelCheckout = document.querySelector('[data-label="posCancel"]');
+        this.posCheckoutConfirmForm = document.querySelector('#posCheckoutConfirm');
     },
     
     addListeners() {
         status.add('addListeners')
         
-        document.querySelector('[data-label="posConfirm"]').addEventListener('click', () => {
-            this.confirmCheckout();
-        })
+        // document.querySelector('[data-label="posConfirm"]').addEventListener('click', () => {
+        //     this.confirmCheckout();
+        // })
         
         this.cancelCheckout.addEventListener('click', () => {
             app.readyState();
+            this.quantity = 1;
             this.amountSelector.classList.add('d-none');
+        })
+        
+        this.posCheckoutConfirmForm.addEventListener('submit', (event) => {
+            status.log('an item was bought')
+            event.preventDefault();
+            
+            // const formData = new FormData(this.posCheckoutConfirmForm);
+            this.confirmCheckout();
+        })
+        
+        this.posCheckoutConfirmForm.addEventListener('change', (event) => {
+            status.log('something changed');
+            // event.preventDefault();
+            
+            const formData = new FormData(this.posCheckoutConfirmForm);
+            this.quantity = formData.get('posCheckoutQuantity');
+            this.checkCredit()
+            this.calculateNewCredit();
+            this.renderCheckoutDisplay();
+            // this.gatherData();
+            // this.confirmCheckout();
         })
     },
     
@@ -51,14 +75,22 @@ export const posCheckout = {
             this.showAmountSelector();
         } else {
             this.checkoutItemData.price = this.checkoutItemData.price[0]
-            if (this.checkoutUserData.credit < this.checkoutItemData.price) {
-                this.negativeCredit = true;
-            }
-            status.log('negativeCredit ' + this.negativeCredit)
+            this.checkCredit();
             this.amount = 0;
             this.calculateNewCredit()
             this.renderCheckoutDisplay(this.checkoutItemData);
         }
+    },
+    
+    checkCredit() {
+        if (this.checkoutUserData.credit < this.checkoutItemData.price * this.quantity) {
+            this.negativeCredit = true;
+            this.intrest = 0.20;
+        } else {
+            this.negativeCredit = false;
+            this.intrest = 0;
+        }
+        status.log('negativeCredit ' + this.negativeCredit);
     },
     
     showAmountSelector() {
@@ -91,44 +123,70 @@ export const posCheckout = {
             <div class="row">
                 <div class="col" data-label="posCalulateArea">
                     <h4 class="text-left mb-0">${data.name}</h4>
-                    <p class="mb-0 text-left">€${data.price} <span class="fontw-500">${intrestText}</span></p>
+                    <p class="mb-0 text-left">€${data.price} x ${this.quantity} <span class="fontw-500">${intrestText}</span></p>
+                </div>
+                <div class="col">
+                    <div class="input-group floating-label focused">
+                        <input type="number" id="posCheckoutQuantity" autocomplete="off" name="posCheckoutQuantity" class="form-control" value="${this.quantity}" min="1" required>
+                        <label for="posCheckoutQuantity">aantal</label>
+                        <div data-label="posCheckoutChangeQuantity" class="d-none">
+                            <button type="button" class="btn-icon" data-action="plus"><i data-feather="plus"></i></button>
+                            <button type="button" class="btn-icon" data-action="min"><i data-feather="minus"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
                     <hr>
-                    <p class="text-right text-modern">totaal <span class="fontw-500">€${(data.price + (data.price*this.intrest)).toFixed(2)}</span></p>
+                    <p class="text-right text-modern mb-0">totaal <span class="fontw-500">€${((data.price*this.quantity) + ((data.price*this.quantity)*this.intrest)).toFixed(2)}</span></p>
                 </div>
             </div>
         `;
+        feather.replace();
         $('#modalPosConfirm').modal('show');
+        
+        this.posCheckoutQuantity = document.querySelector('#posCheckoutConfirm #posCheckoutQuantity');
+        this.posCheckoutQuantity.focus();
+        
+        this.activateQuantityChanger();
     },
     
     calculatePrice(amount) {
         status.add('calculatePrice');
         
         this.amount = parseFloat(amount);
-        
-        status.log(' + this.checkoutItemData.price[this.amount]')
         this.checkoutItemData.price = this.checkoutItemData.price[this.amount];
         
-        if (this.checkoutUserData.credit < this.checkoutItemData.price) {
-            this.negativeCredit = true;
-        }
+        this.checkCredit();
         
         this.calculateNewCredit()
-        this.renderCheckoutDisplay();
+        this.renderCheckoutDisplay();       
+    },
+    
+    activateQuantityChanger() {
+        status.add('activateQuantityChanger');
+        
+        this.posCheckoutChangeQuantity = document.querySelector('#posCheckoutConfirm [data-label="posCheckoutChangeQuantity"]');
+        this.posCheckoutChangeQuantity.addEventListener('click', (event) => {
+            console.log(event.target.closest('button[data-action]'));
+        })
     },
     
     calculateNewCredit() {
         status.add('calculateNewCredit');
         
-        if (this.negativeCredit == false) {
-            this.intrest = 0;
-        }
+        this.checkCredit()
         
-        this.newCredit = this.checkoutUserData.credit - (this.checkoutItemData.price + (this.checkoutItemData.price * this.intrest));
+        status.log('quantity ' + this.quantity)
+        this.newCredit = this.checkoutUserData.credit - ((this.checkoutItemData.price * this.quantity) + ((this.checkoutItemData.price * this.quantity) * this.intrest));
+        status.log(this.newCredit);
     },
     
     confirmCheckout() {
         status.add('confirmCheckout');
         
+        status.log('quantity ' + this.quantity)
         app.db.users.update(app.checkoutUser, {credit: this.newCredit}).then(function (updated) {
             if (updated)
               console.log ("Friend number 2 was renamed to Number 2");
@@ -142,11 +200,15 @@ export const posCheckout = {
                 id: this.checkoutUserData.id,
                 name: this.checkoutUserData.name
             },
-            item: this.checkoutItemData.name,
+            item: {
+                name: this.checkoutItemData.name,
+                quantity: this.quantity
+            },
             amount: this.amount,
-            price: this.checkoutItemData.price + (this.checkoutItemData.price*this.intrest)
+            price: (this.checkoutItemData.price + (this.checkoutItemData.price*this.intrest))*this.quantity
         })
         
+        this.quantity = 1;
         this.amountSelector.classList.add('d-none');
         app.createToast('Aankoop gelukt!', `Je huidig saldo bedraagt ${this.newCredit.toFixed(2)}`)
         app.readyState();

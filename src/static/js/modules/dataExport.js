@@ -75,7 +75,10 @@ export const dataExport = {
             this.exportedData.logs.push({
                 amount: i.amount,
                 date: i.date,
-                item: i.item,
+                item: {
+                    name: i.item.name, 
+                    quantity: i.item.quantity
+                },
                 price: i.price,
                 user: {
                     id: i.user.id,
@@ -155,7 +158,10 @@ export const dataExport = {
                         id: i.user.id,
                         name: i.user.name
                     },
-                    item: i.item,
+                    item: {
+                        name: i.item.name, 
+                        quantity: i.item.quantity
+                    },
                     amount: i.amount,
                     price: i.price
                 })

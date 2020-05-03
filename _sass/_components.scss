@@ -127,14 +127,6 @@ label {
             background-color: var(--tabpaneBackground);
             color: #808080;
         }
-        
-        &:focus, &:focus-within {
-            border-color: var(--inputFieldsFocused);
-            
-            & + label {
-                color: var(--inputFieldsFocused);
-            }
-        }
     }
 
     label {
@@ -150,7 +142,7 @@ label {
         cursor: text;
     }
 
-    &:focus-within {
+    &:focus-within, .focused {
         input {
             z-index: 0;
         }
@@ -159,6 +151,14 @@ label {
             transform: translate(0px, -18px) scale(0.8);
             background-color: var(--tabpaneBackground);
             color: #80bdff;
+        }
+        
+        input.form-control, input.form-control:not(:last-child) {
+            border-color: var(--inputFieldsFocused);
+            
+            & + label {
+                color: var(--inputFieldsFocused);
+            }
         }
     }
 }
