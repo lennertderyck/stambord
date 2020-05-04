@@ -106,7 +106,8 @@ label {
             transform: scale(1.8);
         }
 
-        &:valid + label, &:focus-within + label {
+        // &:invalid + label, &:focus-within + label, &:not([pattern]):valid + label {
+        &:focus-within + label {
             transform: translate(0px, -18px) scale(0.8);
             background-color: var(--tabpaneBackground);
             color: #808080;
@@ -144,6 +145,12 @@ label {
                 color: var(--inputFieldsFocused);
             }
         }
+    }
+    
+    &.input-group-filled label{
+        transform: translate(0px, -18px) scale(0.8);
+        background-color: var(--tabpaneBackground);
+        color: #808080;
     }
 }
 

@@ -116,30 +116,32 @@ export const posCheckout = {
         
         const data = this.checkoutItemData;
         this.checkoutDisplay.innerHTML = `
-            <div class="alert alert-danger pt-0 pb-4 px-0 mb-4" role="alert" data-label="alertCredit">
+            <div class="alert alert-danger pt-0 pb-4 px-0 mx-4 mt-4 mb-0" role="alert" data-label="alertCredit">
                 <strong class="d-block">Opgelet!</strong>
                 <p class="mb-0">Je hebt niet voldoende tegoed om dit te kopen. Hierdoor zal je intrest betalen.
                 </p>
             </div>
-            <div class="row d-flex align-items-center">
-                <div class="col" data-label="posCalulateArea">
-                    <h4 class="text-left mb-0">${data.name}</h4>
-                    <p class="mb-0 text-left">€${data.price} x ${this.quantity} <span class="fontw-500">${intrestText}</span></p>
-                </div>
-                <div class="col">
-                    <div class="input-group floating-label focused">
-                        <input type="number" id="posCheckoutQuantity" autocomplete="off" name="posCheckoutQuantity" class="form-control" value="${this.quantity}" min="1" required>
-                        <label for="posCheckoutQuantity">aantal</label>
-                        <div data-label="posCheckoutChangeQuantity" class="d-none">
-                            <button type="button" class="btn-icon" data-action="plus"><i data-feather="plus"></i></button>
-                            <button type="button" class="btn-icon" data-action="min"><i data-feather="minus"></i></button>
+            <div data-label="checkoutListing" class="container-fluid py-4 px-4 mb-0 bg-color-white">
+                <div class="row mb-0 d-flex align-items-center">
+                    <div class="col" data-label="posCalulateArea">
+                        <h4 class="text-left mb-0">${data.name}</h4>
+                        <p class="mb-0 text-left">€${data.price} x ${this.quantity} <span class="fontw-500">${intrestText}</span></p>
+                    </div>
+                    <div class="col">
+                        <div class="input-group floating-label focused">
+                            <input type="number" id="posCheckoutQuantity" autocomplete="off" name="posCheckoutQuantity" class="form-control" value="${this.quantity}" min="1" required>
+                            <label for="posCheckoutQuantity">aantal</label>
+                            <div data-label="posCheckoutChangeQuantity" class="d-none">
+                                <button type="button" class="btn-icon" data-action="plus"><i data-feather="plus"></i></button>
+                                <button type="button" class="btn-icon" data-action="min"><i data-feather="minus"></i></button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <hr class="mt-0 mx-4">
+            <div class="row mx-4 mb-4">
                 <div class="col">
-                    <hr>
                     <p class="text-right text-modern mb-0">totaal <span class="fontw-500">€${((data.price*this.quantity) + ((data.price*this.quantity)*this.intrest)).toFixed(2)}</span></p>
                 </div>
             </div>

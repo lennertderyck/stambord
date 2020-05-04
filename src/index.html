@@ -121,7 +121,7 @@
                                     <div class="carousel-item active">
                                         <div class="px-4 pt-4">
                                             <div class="input-group floating-label">
-                                                <input id="posUserFilter" autocomplete="off" autofocus type="text" class="form-control" data-clear-field required>
+                                                <input id="posUserFilter" autocomplete="off" autofocus type="text" class="form-control" data-clear-field>
                                                 <label for="posUserFilter">zoek gebruikers</label>
                                             </div>
                                         </div>
@@ -152,7 +152,7 @@
                                         <div class="flex-grid-wrapper p-4">
                                             <div class="px-0 pb-4">
                                                 <div class="input-group floating-label">
-                                                    <input id="posItemFilter" autocomplete="off" autofocus type="text" class="form-control" data-clear-field required>
+                                                    <input id="posItemFilter" autocomplete="off" autofocus type="text" class="form-control" data-clear-field>
                                                     <label for="posItemFilter">zoek items</label>
                                                 </div>
                                             </div>
@@ -453,11 +453,11 @@
                     <div class="modal-body">
                         <div class="d-flex mb-3">
                             <div class="input-group floating-label mr-3">
-                                <input type="text" data-clear-field id="AddItem-name" name="name" class="form-control" required>
+                                <input type="text" id="AddItem-name" name="name" class="form-control" required>
                                 <label for="AddItem-name">naam item</label>
                             </div>
                             <div class="input-group floating-label">
-                                <input type="text" data-clear-field id="AddItem-profit" name="profit" class="form-control" value="0.10" required>
+                                <input type="text" id="AddItem-profit" name="profit" class="form-control" value="0" required>
                                 <label for="AddItem-profit">winst</label>
                             </div>
                         </div>
@@ -470,15 +470,15 @@
                         </div>
                         <div class="d-flex">
                             <div class="input-group mb-3 floating-label mr-3">
-                                <input type="text" data-clear-field id="AddItem-priceSingle" name="priceSingle" class="form-control" value="0" required>
+                                <input type="text" id="AddItem-priceSingle" name="priceSingle" class="form-control" value="0" required>
                                 <label for="AddItem-priceSingle">prijs</label>
                             </div>
                             <div class="input-group mb-3 floating-label mr-3">
-                                <input type="text" data-clear-field id="AddItem-priceDouble" name="priceDouble" class="form-control" value="0" required>
+                                <input type="number" id="AddItem-priceDouble" name="priceDouble" class="form-control">
                                 <label for="AddItem-priceDouble">prijs dubbel</label>
                             </div>
                             <div class="input-group mb-3 floating-label">
-                                <input type="text" data-clear-field id="AddItem-priceExtra" name="priceExtra" class="form-control" value="0" required>
+                                <input type="number" id="AddItem-priceExtra" name="priceExtra" class="form-control">
                                 <label for="AddItem-priceExtra">prijs extra</label>
                             </div>
                         </div>
@@ -505,19 +505,7 @@
                         <span aria-hidden="true"><i data-feather="x"></i></span>
                     </button>
                 </div>                
-                <div class="modal-body">
-                    <!-- <div class="alert alert-danger pt-0 pb-4 px-0 mb-4" role="alert" data-label="alertCredit">
-                        <strong class="d-block">Opgelet!</strong>
-                        <p class="mb-0">Je hebt niet voldoende tegoed om dit te kopen. Hierdoor zal je intrest betalen.</p>
-                    </div>
-                    <div class="row">
-                        <div class="col" data-label="posCalulateArea">
-                            <h4 class="text-left mb-0">Fanta</h4>
-                            <p class="mb-0 text-left"><span class="fontw-500">0,80</span>€ + 20% intrest</p>
-                            <hr>
-                            <p class="text-right text-modern">totaal <span class="fontw-500">€0,96</span></p>
-                        </div>
-                    </div> -->
+                <div class="modal-body p-0">
                 </div>
                 <div class="modal-footer">
                     <button type="button" data-label="posCancel" class="btn-light" data-dismiss="modal"><i data-feather="x"></i>annuleren</button>

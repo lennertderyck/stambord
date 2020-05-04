@@ -67,6 +67,10 @@
             border: 13px solid white;
             border-radius: 16px
         }
+        
+        hr {
+            border-width: 2px;
+        }
     }
 }
 
@@ -117,8 +121,14 @@
                 }
             }
             
+            [data-label="checkoutListing"] {
+                color: #212529;
+            }
+            
+        }
+        
+        .btn-light {
+            color: #212529 !important;
         }
     }
-    
-
 }
