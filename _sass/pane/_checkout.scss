@@ -17,9 +17,108 @@
         margin-bottom: 0px;
         background-color: #b1d3f261;
         
+        .badge {
+            // padding: 6px 4px 5px 6px;
+            padding: 5px 5px 6px 5px;
+            border-radius: 0px;
+            border-bottom: 2px solid #a5b9cc;
+            // color: #434B53;
+            color: #a5b9cc;
+        }
+        
         h3 {
             text-transform: none;
             letter-spacing: 0px;
         }
     }
+}
+
+.modal-content {
+    &.modal-danger {
+        background-color: var(--danger300);
+
+        .btn {
+            background-color: white;
+        }
+
+        .btn-danger {
+            background-color: var(--danger600);
+        }
+        
+        .btn-light {
+            background-color: white !important;
+        }
+
+        .alert[data-label="alertCredit"] {
+            display: block;
+        }
+        
+        hr {
+            border-color: var(--danger400);
+        }
+    }
+}
+
+// modal
+#modalPosConfirm {
+    .modal-body {
+        .input-group.floating-label { 
+            background-color: white;
+            border: 13px solid white;
+            border-radius: 16px
+        }
+    }
+}
+
+[dark-mode="true"] {
+    #modalPosConfirm {
+        .modal-content {
+            background-color: #634245;
+            color: white;
+            
+            .alert.alert-danger {
+                background-color: #634245;
+            }
+            
+            .alert.alert-danger * {
+                color: var(--danger300);
+            }
+        }
+        
+        .modal-body {
+            .input-group.floating-label { 
+                background-color: white;
+                border: 13px solid white;
+                border-radius: 16px;
+                
+                input.form-control, input.form-control:not(:last-child) {
+                    background-color: white;
+                    color: #212529;
+            
+                    &:valid + label, &:focus-within + label {
+                        transform: translate(0px, -18px) scale(0.8);
+                        background-color: white;
+                        color: #808080;
+                    }
+                }
+                
+                &:focus-within, .focused {            
+                    label {
+                        color: #80bdff;
+                    }
+                    
+                    input.form-control, input.form-control:not(:last-child) {
+                        border-color: #35689d;
+                        
+                        & + label {
+                            color: #35689d;
+                        }
+                    }
+                }
+            }
+            
+        }
+    }
+    
+
 }

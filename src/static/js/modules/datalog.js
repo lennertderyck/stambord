@@ -20,11 +20,11 @@ export const datalog = {
     
     addListeners() {
         // setInterval(() => {
-        //     datalog.renderData();
+        //     datalog.render();
         // }, 1000 * 30);
         
         $('#nav-log-tab').on('shown.bs.tab', (event) => {
-            datalog.renderData();
+            datalog.render();
         })
     },
     
@@ -63,8 +63,8 @@ export const datalog = {
         return input;
     },
     
-    renderData() {
-        status.add('renderData');
+    render() {
+        status.add('render');
         
         this.posItems.innerHTML = '';
 

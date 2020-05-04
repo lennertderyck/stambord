@@ -128,9 +128,11 @@ export const itemControl = {
             const posCheckoutUser = document.createElement('div');
             posCheckoutUser.classList.add('flex-grid-item');
             posCheckoutUser.innerHTML = `
-                <input type="radio" id="checkoutItem_${i.id}" name="checkoutItems" value="${i.id}" data-pos-filter="name:${i.name.toLowerCase()},id:${i.id},type:${this.itemTypes(i.type)}"><label for="checkoutItem_${i.id}" class="pos-el" data-item-type="${i.type}">
-                    <h3>${i.name}</h3>
-                    <small><span>enkel <strong>€${i.price[0]}</strong></span><span class="item-type-prices"> – dubbel <strong>€${i.price[1]}</strong></span><span class="item-type-prices"> – extra <strong>€${i.price[2]}</strong></span></small>
+                <input type="radio" id="checkoutItem_${i.id}" name="checkoutItems" value="${i.id}" data-pos-filter="name:${i.name.toLowerCase()},id:${i.id},${i.type == 1 ? 'type:bier,type:fris' : `type:${this.itemTypes(i.type)}` }"><label for="checkoutItem_${i.id}" class="pos-el" data-item-type="${i.type}">   
+                    <small class="mb-1">${this.itemTypes(i.type)}</small>
+                    <h3 class="mb-1">${i.name}</h3>
+                    <!-- <small><span>enkel <strong>€${i.price[0]}</strong></span><span class="item-type-prices"> – dubbel <strong>€${i.price[1]}</strong></span><span class="item-type-prices"> – extra <strong>€${i.price[2]}</strong></span></small> -->
+                    <small><span><strong>€${i.price[0]}</strong></span><span class="item-type-prices"> — <strong>€${i.price[1]}</strong></span><span class="item-type-prices"> — <strong>€${i.price[2]}</strong></span></small>
                 </label>
             `;
             this.posCheckout.appendChild(posCheckoutUser);

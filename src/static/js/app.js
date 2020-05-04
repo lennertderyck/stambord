@@ -30,7 +30,7 @@ export const app = {
         $('#carouselPosSteps').carousel(0);
         userControl.render();
         itemControl.render();
-        datalog.renderData();
+        datalog.render();
         this.hidePaneOptions();
         this.checkRecordAmount();
     },

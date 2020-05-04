@@ -31,6 +31,7 @@ export const posCheckout = {
             app.readyState();
             this.quantity = 1;
             this.amountSelector.classList.add('d-none');
+            this.amountSelector.querySelector('input:checked').checked = false;
         })
         
         this.posCheckoutConfirmForm.addEventListener('submit', (event) => {
@@ -120,7 +121,7 @@ export const posCheckout = {
                 <p class="mb-0">Je hebt niet voldoende tegoed om dit te kopen. Hierdoor zal je intrest betalen.
                 </p>
             </div>
-            <div class="row">
+            <div class="row d-flex align-items-center">
                 <div class="col" data-label="posCalulateArea">
                     <h4 class="text-left mb-0">${data.name}</h4>
                     <p class="mb-0 text-left">€${data.price} x ${this.quantity} <span class="fontw-500">${intrestText}</span></p>

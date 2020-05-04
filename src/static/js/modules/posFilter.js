@@ -42,8 +42,13 @@ export const posFilter = {
         posButtons.forEach(i => { // each posButton
             let filter = [];
             
-            keys.forEach(x => { // check if entry contains ...
-                filter.push(i.dataset.posFilter.toLowerCase().includes(`${x}:${entry}`));
+            // keys.forEach(x => { // check if entry contains ...
+            //     // filter.push(i.dataset.posFilter.toLowerCase().includes(`${x}:${entry}`));
+            //     filter.push(i.dataset.posFilter.toLowerCase().includes(entry.replace(x, '')));
+            // })
+            
+            i.dataset.posFilter.toLowerCase().split(',').forEach(x => {
+                filter.push(x.split(':')[1].includes(entry));
             })
             
             if (filter.includes(true) == false) {
