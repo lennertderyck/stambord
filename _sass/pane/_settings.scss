@@ -93,3 +93,75 @@
         width: 140px;
     }
 }
+
+// dashboard
+[data-label="dashBoardData"] {
+    .card {
+        border: none;
+        background-color: #b1d3f261;
+        border-radius: 9px;
+    }
+                  
+    .card-icon {
+        --d: 50px;
+        position: absolute;
+        top: calc(var(--d)/2*-1);
+        left: calc(50% - (var(--d)/2));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: var(--d);
+        height: var(--d);
+        // width: fit-content;
+        // height: fit-content;
+        padding: 10px;
+        border-radius: 120px;
+        background-color: var(--blue300);
+        z-index: 1;
+        
+        svg {
+            transform: scale(1.1);
+        }
+        
+        & + .card-group .card {
+            padding-top: 1rem;            
+        }
+    }
+    
+    .card-group-wrapper {
+        background-color: #b1d3f261;
+        border-radius: 9px;
+        
+        .card {
+            background-color: transparent;
+        }
+    }
+    
+    .card-group {
+        position: relative;
+        
+        .card {
+            // padding-top: + 1.25rem;
+            padding-bottom: 1.25rem;
+            
+            &-body {
+                margin-top: 1.25rem;
+                padding: 0px 1.25rem;
+                border-left: 2px solid var(--inputFieldsFocused);
+            }
+            
+            &-icon {
+                + .card-body {
+                    margin-top: 1rem + 1.25rem;
+                    text-align: center;
+                }
+            }
+            
+            &:first-child {
+                .card-body {
+                    border-left: none; 
+                }
+            }
+        }
+    }
+}

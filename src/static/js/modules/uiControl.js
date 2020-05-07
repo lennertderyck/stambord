@@ -15,6 +15,8 @@ export const uiControl = {
         }
         
         this.collapseMenuTargets = document.querySelectorAll('[data-sesam-target].collapse-menu');
+        
+        this.createCollapseIndex = 0;
     },
     
     addListeners() {
@@ -26,10 +28,9 @@ export const uiControl = {
         
         document.body.addEventListener('focusout', (event) => {
             const floatingLabel = event.target.closest('.input-group.floating-label')
-            status.log(floatingLabel);
             
-            if (floatingLabel.querySelector('input').value != '') floatingLabel.classList.add('input-group-filled')
-            else floatingLabel.classList.remove('input-group-filled');
+            if (floatingLabel != null && floatingLabel.querySelector('input').value != '') floatingLabel.classList.add('input-group-filled')
+            else if (floatingLabel != null && floatingLabel.classList.remove('input-group-filled'));
         })
         
         document.querySelector('#modalScreenWidth .modal-footer').addEventListener('click', (event) => {
@@ -71,5 +72,28 @@ export const uiControl = {
             if (el.querySelector('input').value != '') el.classList.add('input-group-filled')
             else el.classList.remove('input-group-filled');
         });
+    },
+    
+    createCollapse({title, show, content, parent}) {
+        title.content == undefined ? title.content = 'title content' : title.content = title.content;
+        title.el == undefined ? title.el = 'h4' : title.el = title.el;
+        show == undefined || show == false ? show = '' : show = 'show';
+        content == undefined ? content = 'inner content' : content = content;
+        parent == undefined ? parent = '' : parent = `data-parent="${parent}"`;
+        
+        console.log(content)
+        const renderedHTML = `
+            <div data-target="#generatedCollapse${this.createCollapseIndex}" data-toggle="collapse" aria-expanded="false" aria-controls="generatedCollapse${this.createCollapseIndex}" ${parent}>
+                <${title.el}>${title.content}</${title.el}>
+            </div>
+            <div id="generatedCollapse${this.createCollapseIndex}" class="collapse">
+                ${content}
+            </div>
+        `;
+        
+        this.createCollapseIndex ++;
+        return renderedHTML;
     }
 }
+
+uiControl.initialize();

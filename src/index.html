@@ -291,6 +291,7 @@
                                     <div class="d-flex">
                                         <button data-label="noSudo" class="sudo-show btn-blue"><i data-feather="key"></i> Afmelden</button>
                                         <button data-label="darkMode" class="sudo-show btn-blue ml-3"><i data-feather="sun"></i> Dark mode <span class="fontw-300 d-inline-block ml-2">beta</span></button>
+                                        <button class="sudo-show btn-blue ml-3" data-toggle="modal" data-target="#modalFaq"><i data-feather="life-buoy"></i> Help</button>
                                         
                                         <div class="collapse-menu ml-3" data-sesam-target="collapseMenuSettings">
                                             <button class="btn-icon" data-sesam-trigger="collapseMenuSettings"><i data-feather="more-vertical"></i></button>
@@ -353,11 +354,142 @@
                             <div class="row mb-5 d-none">
                                 <div id="chart_div" class=""></div>
                             </div>
+
+                            <div class="row mb-5 sudo-show">
+                                <div class="col-12">
+                                    <h5 class="text-modern mb-5">Rapport <span class="fontw-300">– beta</span></h5>
+                                    <h5 class="text-modern d-none">Overzicht</h5>
+                                    <p class="text-modern mb-5 d-none">Rapport</p>
+                                    <div data-label="dashBoardData">
+                                        <div class="card-group mb-5">
+                                            <div class="card">
+                                                <div class="card-icon">
+                                                    <i data-feather="user"></i>
+                                                </div>
+                                                <div class="card-body">
+                                                    <h5 class="card-title mb-0">Gebruikers</h5>
+                                                    <p class="card-text">37 gebruikers toegevoegd</p>
+                                                </div>
+                                            </div>
+                                            <div class="card">
+                                                <div class="card-icon">
+                                                    <i data-feather="shopping-cart"></i>
+                                                </div>
+                                                <div class="card-body">
+                                                    <h5 class="card-title mb-0">Items</h5>
+                                                    <p class="card-text">25 items te koop</p>
+                                                </div>
+                                            </div>
+                                            <div class="card">
+                                                <div class="card-icon">
+                                                    <i data-feather="credit-card"></i>
+                                                </div>
+                                                <div class="card-body">
+                                                    <h5 class="card-title mb-0">Saldo</h5>
+                                                    <p class="card-text">€90 krediet beschikbaar</p>
+                                                </div>
+                                            </div>
+                                            <div class="card">
+                                                <div class="card-icon">
+                                                    <i data-feather="dollar-sign"></i>
+                                                </div>
+                                                <div class="card-body">
+                                                    <h5 class="card-title mb-0">Totale winst</h5>
+                                                    <p class="card-text mb-0">€1 verdient</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12 col-lg-6">
+                                                <div class="position-relative card-group-wrapper">
+                                                    <div class="card-icon">
+                                                        <i data-feather="alert-octagon"></i>
+                                                    </div>
+                                                    <div class="card-group">
+                                                        <div class="card" data-target="#collapseListedNegativeUsers" data-toggle="collapse" aria-expanded="false" aria-controls="collapseListedNegativeUsers">
+                                                            <div class="card-body">
+                                                                <div class="d-flex align-items-center justify-content-between">
+                                                                    <div>
+                                                                        <h5 class="card-title mb-0">Negatief saldo</h5>
+                                                                        <p class="card-text">4 gebruikers in het rood</p>
+                                                                    </div>
+                                                                    <div>
+                                                                        <i data-feather="chevron-down"></i>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="card">
+                                                            <div class="card-body text-center">
+                                                                <h5 class="card-title mb-0">Achterstand</h5>
+                                                                <p class="card-text">achterstand bedraagt €16,79</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div id="collapseListedNegativeUsers" class="px-4 pb-4 collapse">
+                                                        <ul class="mt-3 mb-0">
+                                                            <li class="card">
+                                                                <div class="row">
+                                                                    <div class="col-3">Stef</div>
+                                                                    <div class="col-3">€12,65</div>
+                                                                </div>
+                                                                <hr>
+                                                            </li>
+                                                            <li class="card">
+                                                                <div class="row">
+                                                                    <div class="col-3">Jade</div>
+                                                                    <div class="col-3">€6,87</div>
+                                                                </div>
+                                                                <hr>
+                                                            </li>
+                                                            <li class="card">
+                                                                <div class="row">
+                                                                    <div class="col-3">Alvin</div>
+                                                                    <div class="col-3">€1,12</div>
+                                                                </div>
+                                                                <hr>
+                                                            </li>
+                                                            <li class="card">
+                                                                <div class="row">
+                                                                    <div class="col-3">Anna</div>
+                                                                    <div class="col-3">€1,03</div>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-lg-6">
+                                                <div class="card-group">
+                                                    <div class="card">
+                                                        <div class="card-icon">
+                                                            <i data-feather="arrow-down"></i>
+                                                        </div>
+                                                        <div class="card-body">
+                                                            <h5 class="card-title mb-0">Inkomsten vandaag</h5>
+                                                            <p class="card-text mb-0">€100 winst vandaag</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card">
+                                                        <div class="card-icon">
+                                                            <i data-feather="arrow-up"></i>
+                                                        </div>
+                                                        <div class="card-body">
+                                                            <h5 class="card-title mb-0">Uitgaven vandaag</h5>
+                                                            <p class="card-text mb-0">€10 uitgegeven vandaag</p>
+                                                        </div>
+                                                    </div>
+                                                </div> 
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="row mb-5">
                                 <div class="col-12 col-lg mb-4 mb-lg-0">
-                                	<h5 class="text-modern">Gegevens</h5>
-                                	<p class="text-modern">Backup</p>
-                                	<div class="d-flex mb-4">
+                                    <h5 class="text-modern">Gegevens</h5>
+                                    <p class="text-modern">Backup</p>
+                                    <div class="d-flex mb-4">
                                         <button class="btn-blue mr-3" data-label="exportBackup"><i data-feather="download-cloud"></i>exporteren</button>
                                         <div class="sudo-show">
                                             <button class="btn-blue" data-toggle="modal" data-target="#modalDataImport"><i data-feather="upload-cloud"></i>importeren</button>
@@ -383,14 +515,6 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col">
-                                    <div class="sudo-show">
-                                        <h5></h5>
-                                        
                                     </div>
                                 </div>
                             </div>
@@ -699,6 +823,27 @@
                     <p class="mb-0">Probeer Stambord te gebruiken op een tablet in landscape-mode, laptop of desktop computer.</p>
                 </div>
                 <div class="modal-footer">
+                    <div class="text-modern fontw-500 mr-3">
+                        negeren:
+                    </div>
+                    <button type="button" class="btn" data-label="dismissNow" data-dismiss="modal"><i data-feather="clock"></i>voor nu</button>
+                    <button type="button" class="btn" data-label="dismissAlways" data-dismiss="modal"><i data-feather="x"></i>altijd</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="modalFaq" tabindex="-1" role="dialog" aria-labelledby="modalFaqLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalFaqLabel">Help</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><i data-feather="x"></i></span>
+                    </button>
+                </div>  
+                <div class="modal-body" id="faqItems">
+                </div>
+                <div class="modal-footer d-none">
                     <div class="text-modern fontw-500 mr-3">
                         negeren:
                     </div>

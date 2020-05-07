@@ -33,6 +33,7 @@ export const app = {
         datalog.render();
         this.hidePaneOptions();
         this.checkRecordAmount();
+        settings.loadSupportContent();
     },
     
     cache() {
@@ -89,15 +90,11 @@ export const app = {
     checkRecordAmount() {
         status.add('checkRecordAmount');
         
-        // console.log(app.db.users)
-        
         app.db.users.count()
             .then(response => {
                 if (response == 0) {
-                    status.log('no users')
                     this.alerts.users.classList.remove('d-none');
                 } else if (response > 0) {
-                    status.log('users registered')
                     this.alerts.users.classList.add('d-none'); 
                 }
             })
@@ -199,7 +196,7 @@ export const app = {
                 i.value = '';
             })
         } else {
-            target.querySelectorAll('input[type="text"], input[type="number"]').forEach(i => {
+            target.querySelectorAll('input[type="text"], input[type="number"], input[type="password"]').forEach(i => {
                 i.value = '';
             })
         }
@@ -213,8 +210,6 @@ export const app = {
     
     createToast(title, message) {
         status.add('createToast');
-        
-        console.log(this.toastIndex);
     
         let now, moment;
         function addZero(i) {
@@ -235,7 +230,7 @@ export const app = {
         let toast = document.createElement('div');
         this.toastIndex ++;
     
-        toast.classList.add('toast', 'animated', 'fadeInRight', 'faster');
+        toast.classList.add('toast', 'animated', 'fadeInUp', 'faster');
         toast.setAttribute('data-toast', `toastIndex${this.toastIndex}`);
         toast.setAttribute('data-delay', `3500`);
         toast.setAttribute('role', `alert`);
@@ -253,7 +248,7 @@ export const app = {
             </button>
         `
     
-        toast.addEventListener('animationend', function() {toast.classList.add('animated', 'fadeOutRight', 'delay-3s')})
+        toast.addEventListener('animationend', function() {toast.classList.add('animated', 'fadeOutDown', 'delay-3s')})
     
         document.querySelector('#toastContainer').appendChild(toast);
         feather.replace();

@@ -236,12 +236,27 @@ table.table {
 
 // Toasts
 #toastContainer {
-    --distance: 30px;
+    --offsetTop: 100px;
+    // --distance: 30px;
     position: fixed;
-    top: var(--distance);
-    right: var(--distance);
+    // top: var(--distance);
+    // right: var(--distance);
     z-index: 100000;
-
+    
+    top: unset;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-position: -230% -240%;
+    // padding-top: 100px;
+    // background: radial-gradient(circle at 50% 380%, #333, #33333373 50%, #3330 75%);
+    // background: radial-gradient(circle at 50% 280%, #333, #33333373 50%, #3330 75%);
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.753) , rgba(0, 0, 0, 0));
+    background: linear-gradient(to top, #b1d3f27d, transparent);
+    
     .toast {
         align-items: center;
         justify-content: space-between;
@@ -252,6 +267,10 @@ table.table {
         backdrop-filter: none;
         background-color: var(--toasts);
         border: none;
+        
+        &:first-child {
+            margin-top: 100px;
+        }
 
         .toast-title {
             font-weight: 500;

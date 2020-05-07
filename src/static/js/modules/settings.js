@@ -1,4 +1,4 @@
-import {app, callerName, dataExport} from './index.js';
+import {app, callerName, dataExport, uiControl} from './index.js';
 
 const status = new callerName('settings');
 
@@ -30,6 +30,7 @@ export const settings = {
         this.changePasswordForm = document.querySelector('#adminChangePassword');
         this.tabFunctions = document.querySelector('#nav-settings [data-label="tabFunctions"]');
         this.dataRemoveForm = document.querySelector('#dataRemoveForm');
+        this.modalFaq = document.querySelector('#modalFaq .modal-body');
     },
     
     addListeners() {
@@ -42,10 +43,10 @@ export const settings = {
             let formData = new FormData(this.signInForm);
             const password = formData.get('password')
             
+            this.checkPassword(password);
+            
             // empty fields
             app.clearFields(event.target);
-            
-            this.checkPassword(password);
         })
         
         this.tabFunctions.addEventListener('click', (event) => {
@@ -136,6 +137,7 @@ export const settings = {
         
         createCookie('sudo', false, 0);
         document.body.setAttribute('data-sudo-mode', 'false');
+        app.createToast('sudo', 'Je bent nu afgemeld');
     },
     
     changePassword(entry) {
@@ -210,6 +212,27 @@ export const settings = {
             createCookie('darkmode', true)
             document.body.setAttribute('dark-mode', 'true');
         }
+    },
+    
+    loadSupportContent() {
+        this.modalFaq.innerHTML += uiControl.createCollapse({
+            title: {
+                content: 'Is Stambord gratis?'
+            },
+            show: true,
+            parent: '#faqItems',
+            content: '<p>Ja! Stambord is volledig gratis en dat zal het altijd blijven. Stambord is ontwikkeld door twee enthousiaste scoutsleiders uit het Gentse. Omdat we zelf opzoek waren naar een handige en slimme oplossing hebben we Stambord gemaakt.<p>'
+        })
+        this.modalFaq.innerHTML += uiControl.createCollapse({
+            title: {
+                content: 'Is Stambord veilig?'
+            },
+            parent: '#faqItems',
+            content: `
+                <p>Onze applicatie is bedoeld voor gebruik in een niet-professionele omgeving. Daar waar een fout niet het einde van de wereld is.</p>
+                <p>Gegevens worden lokaal opgeslagen en waar nodig wordt de applicatie afgeschermd met een wachtwoord. Het is echter wel aangeraden niet de webversie te gebruiken maar Stambord te downloaden en installeren zoals je dat bij een andere app dat doet. Zo blijven alle essentiële gegevens goed beschermd tegen fraude.</p>
+            `
+        })
     }
 }
 
