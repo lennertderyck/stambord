@@ -30,6 +30,38 @@
             text-transform: none;
             letter-spacing: 0px;
         }
+        
+        [data-label="itemTypes"] {
+            display: flex;
+            
+            .item-type-prices {
+                align-items: center;
+                
+                strong {
+                    display: block;
+                }
+                
+                &:not(:first-child) {
+                    margin-left: 1rem;
+                }
+            }
+            
+            svg.amount-icon {
+                height: 15px;
+                margin-right: .50rem;
+                
+                .cls-1 {
+                    stroke: var(--textColorMain);
+                }
+                
+                .cls-2 {
+                    fill: var(--textColorMain);
+                }
+            }
+        }
+        
+        
+        
     }
 }
 
@@ -129,6 +161,24 @@
         
         .btn-light {
             color: #212529 !important;
+        }
+    }
+}
+
+// filter type buttons
+
+[data-label="posCheckoutFilterItemType"] {
+    > span {
+        color: #9e9e9e;
+        stroke: #9e9e9e;
+    }
+    
+    button {
+        background-color: #b1d3f261;
+        
+        
+        svg {
+            display: none;
         }
     }
 }

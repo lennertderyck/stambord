@@ -82,7 +82,7 @@ export const itemControl = {
                 break;
                 
             case 6:
-                input = 'Bier';
+                input = 'Bier & wijn';
                 break;
         }
         return input;
@@ -134,9 +134,22 @@ export const itemControl = {
             posCheckoutUser.innerHTML = `
                 <input type="radio" id="checkoutItem_${i.id}" name="checkoutItems" value="${i.id}" data-pos-filter="name:${i.name.toLowerCase()},id:${i.id},type:${this.itemTypes(i.type)}"><label for="checkoutItem_${i.id}" class="pos-el" data-item-type="${i.type}">   
                     <small class="mb-1">${this.itemTypes(i.type)}</small>
-                    <h3 class="mb-1">${i.name}</h3>
+                    <h3 class="mb-2">${i.name}</h3>
                     <!-- <small><span>enkel <strong>€${i.price[0]}</strong></span><span class="item-type-prices"> – dubbel <strong>€${i.price[1]}</strong></span><span class="item-type-prices"> – extra <strong>€${i.price[2]}</strong></span></small> -->
-                    <small><span><strong>€${i.price[0]}</strong></span><span class="item-type-prices"> — <strong>€${i.price[1]}</strong></span><span class="item-type-prices"> — <strong>€${i.price[2]}</strong></span></small>
+                    <small data-label="itemTypes">
+                        <span class="item-type-prices">
+                            <svg class="amount-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 21.46 24.29"><defs><style>.cls-1{fill:none;stroke:#222221;stroke-linejoin:round;stroke-width:1.5px;}.cls-2{fill:#222221;}</style></defs><title>icon_enkel</title><g id="Laag_2" data-name="Laag 2"><g id="Laag_1-2" data-name="Laag 1"><polygon class="cls-1" points="17.12 23.54 4.34 23.54 0.75 0.75 20.71 0.75 17.12 23.54"/><polygon class="cls-2" points="3.75 19.79 17.73 19.67 17.12 23.54 4.34 23.54 3.75 19.79"/></g></g></svg>
+                            <strong>€${i.price[0]}</strong>
+                        </span>
+                        <span class="item-type-prices">
+                            <svg class="amount-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 21.46 24.29"><defs><style>.cls-1{fill:none;stroke:#222221;stroke-linejoin:round;stroke-width:1.5px;}.cls-2{fill:#222221;}</style></defs><title>icon_dubbel</title><g id="Laag_2" data-name="Laag 2"><g id="Laag_1-2" data-name="Laag 1"><polygon class="cls-1" points="17.12 23.54 4.34 23.54 0.75 0.75 20.71 0.75 17.12 23.54"/><polygon class="cls-2" points="3.12 15.8 18.34 15.8 17.12 23.54 4.34 23.54 3.12 15.8"/></g></g></svg>
+                            <strong>€${i.price[1]}</strong>
+                        </span>
+                        <span class="item-type-prices">
+                            <svg class="amount-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 21.46 24.29"><defs><style>.cls-1{fill:none;stroke:#222221;stroke-linejoin:round;stroke-width:1.5px;}.cls-2{fill:#222221;}</style></defs><title>icon_half</title><g id="Laag_2" data-name="Laag 2"><g id="Laag_1-2" data-name="Laag 1"><polygon class="cls-1" points="17.12 23.54 4.34 23.54 0.75 0.75 20.71 0.75 17.12 23.54"/><polygon class="cls-2" points="2.29 10.52 19.17 10.52 17.12 23.54 4.34 23.54 2.29 10.52"/></g></g></svg>
+                            <strong>€${i.price[2]}</strong>
+                        </span>
+                    </small>
                 </label>
             `;
             this.posCheckout.appendChild(posCheckoutUser);

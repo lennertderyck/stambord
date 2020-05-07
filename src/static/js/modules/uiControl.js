@@ -1,4 +1,4 @@
-import { callerName } from './index.js';
+import {callerName, posFilter, itemControl} from './index.js';
 import {sesamCollapse, sesam} from 'https://unpkg.com/sesam-collapse@4.0.0';
 
 const status = new callerName('dataExport');
@@ -24,6 +24,10 @@ export const uiControl = {
         
         document.body.addEventListener('click', (event) => {
             this.sesamCloseClickedOutside(event.target.closest('[data-sesam-target].collapse-menu'));
+            
+            if (event.target.closest('[data-label="posCheckoutFilterItemType"]') != null) {
+                this.posItemsShowType(event.target.closest('[data-label="posCheckoutFilterItemType"] button'))
+            }
         })
         
         document.body.addEventListener('focusout', (event) => {
@@ -93,7 +97,17 @@ export const uiControl = {
         
         this.createCollapseIndex ++;
         return renderedHTML;
+    },
+    
+    posItemsShowType(button) {
+        status.add('posItemsShowType');
+        
+        posFilter.filter({
+            pane: itemControl.posCheckout, 
+            keys: ['name', 'id', 'type'], 
+            entry: button.dataset.value.toLowerCase()
+        });
     }
 }
 
-uiControl.initialize();
+// uiControl.initialize();

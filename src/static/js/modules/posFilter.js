@@ -36,8 +36,9 @@ export const posFilter = {
         })
     },
     
-    filter({pane, keys, entry}) {        
+    filter({pane, keys, entry, preKey}) {      
         status.add('filter');
+        
         const posButtons = pane.querySelectorAll('.flex-grid-item input');
         posButtons.forEach(i => { // each posButton
             let filter = [];

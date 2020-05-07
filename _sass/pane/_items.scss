@@ -1,5 +1,17 @@
-[data-item-type="1"], [data-item-type="5"] {
+.item-type-prices {
+    display: flex;
+}
+
+[data-item-type="1"], [data-item-type="5"], [data-item-type="6"] {
     .item-type-prices {
-        display: none;
+        display: flex;
+        
+        &:first-child svg.amount-icon {
+            display: none;
+        }
+        
+        &:not(:first-child) {
+            display: none;
+        }
     }
 }
