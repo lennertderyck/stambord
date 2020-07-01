@@ -112,6 +112,12 @@ label {
             background-color: var(--tabpaneBackground);
             color: #808080;
         }
+        
+        &:not(:placeholder-shown) + label {
+            transform: translate(0px, -18px) scale(0.8);
+            background-color: var(--tabpaneBackground);
+            color: #808080;
+        }
     }
 
     label {

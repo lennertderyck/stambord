@@ -30,12 +30,12 @@ export const uiControl = {
             }
         })
         
-        document.body.addEventListener('focusout', (event) => {
-            const floatingLabel = event.target.closest('.input-group.floating-label')
+        // document.body.addEventListener('focusout', (event) => {
+        //     const floatingLabel = event.target.closest('.input-group.floating-label')
             
-            if (floatingLabel != null && floatingLabel.querySelector('input').value != '') floatingLabel.classList.add('input-group-filled')
-            else if (floatingLabel != null && floatingLabel.classList.remove('input-group-filled'));
-        })
+            // if (floatingLabel != null && floatingLabel.querySelector('input').value != '') floatingLabel.classList.add('input-group-filled')
+            // else if (floatingLabel != null && floatingLabel.classList.remove('input-group-filled'));
+        // })
         
         document.querySelector('#modalScreenWidth .modal-footer').addEventListener('click', (event) => {
             this.dismissScreenWidthModal(event.target.closest('button').dataset.label)
@@ -73,8 +73,10 @@ export const uiControl = {
         const fields = document.querySelectorAll('.input-group.floating-label');
         
         fields.forEach(el => {
-            if (el.querySelector('input').value != '') el.classList.add('input-group-filled')
-            else el.classList.remove('input-group-filled');
+            // if (el.querySelector('input').value != '') el.classList.add('input-group-filled')
+            // else el.classList.remove('input-group-filled');
+            
+            if (el.querySelector('input').getAttribute('placeholder') == null) el.querySelector('input').setAttribute('placeholder', 'placeholder');
         });
     },
     
