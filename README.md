@@ -56,8 +56,12 @@ Wil je Bar Bord eenvoudig eigenhandig omzetten als Windows programma? Volg de st
 
 Er zal in de map die je gedownload hebt een nieuwe folder gemaakt worden dat volgens het volgende patroon genaamd is: "stambord-darwin|win32-x64". Afhankelijk van je besturingsysteem zal er "darwin" (voor Mac) of "win32" staan (voor Windows).
 
-> Heb je een Windows-versie gemaakt? [Laat me iets weten!](mailto:hello@lennertderyck.be?subject=Stambord Windows build
+<blockquote>
+  <p>Heb je een Windows-versie gemaakt? <a href="mailto:hello@lennertderyck.be?subject=Stambord Windows build">Laat me iets weten!</a></p>
+</blockquote>
 
+> 
+ 
 ## De volgende versie ...
 
 Om de code beheersbaar te houden hebben we de volledige applicatie herschreven.
@@ -85,5 +89,7 @@ Voor nu zijn deze wijzigingen te vinden op de canary-branch. Eens alle huidige f
 
 ### Problemen en hulp
 | **[Bug raporteren](https://github.com/lennertderyck/stambord/issues/new?assignees=&labels=bug&template=bug_report.md&title=)** | **[Suggestie insturen](https://github.com/lennertderyck/stambord/issues/new?assignees=&labels=enhancement&template=feature_request.md&title=)** |
+
+Dit project wordt semi-onderhouden, in de zin dat er aan gewerkt wordt wanneer school, werk en de scouts dit toelaten. Bij vragen of fouten in Stambord zijn we uiteraard bereid om ondersteuning te bieden waar mogelijk.
 
 Maak voor problemen een nieuw bug report aan of mail voor hulp naar [mij](mailto:hello@lennertderyck.be?subject=Stambord).
