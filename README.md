@@ -17,8 +17,25 @@ Stambord werd gemaakt met behulp van ...
 - [Taffy.js](http://taffydb.com/) – Json database ➡️ [Dexie](https://dexie.org/) – Database
 - [Filesaver.js](https://github.com/eligrey/FileSaver.js/) – Backupfunctie
 
+## Vereisten
+
+**Hardware**
+Een desktop-computer of laptop, voorlopig is er nog geen applicatie voor iPad of Android.
+
+**Platformen**
+- Windows 7 of hoger
+- macOS 10.10 (Yosemite) of hoger
+- Ubuntu 12.04 of hoger, Fedora 21, Debian 8 (andere platformen zijn niet gegarandeerd, maar je kan het zeker uitproberen.)
+
+**Voetnoot**
+Stambord wordt gemaakt met Electron, een framework om desktop applicaties te kunnen ontwikkelen met webtechnologieën. Electron maakt hier gebruik van Chromium van Google voor, het systeem waar ook Google Chrome op gebaseerd is.
+
+Een goede vuistregel is dus; Als Chrome op je computer werkt, dan zal Stambord waarschijnlijk ook werken.
+
 ## Software gebruiken
 | **[Demo](https://stambord.haegepoorters.be/src/)** (wachtwoord: ```stamvader```) | **[Download voor MacOS](https://github.com/lennertderyck/stambord/releases)** |
+
+> We zijn overgeschakeld van Electron-Forge naar Electron-packager
 
 Voorlopig is Stambord enkel beschikbaar voor MacOS, maar we zouden deze ook graag uitbrengen voor Windows.<br>
 Wil je Bar Bord eenvoudig eigenhandig omzetten als Windows programma? Volg de stappen hieronder:
@@ -30,14 +47,14 @@ Wil je Bar Bord eenvoudig eigenhandig omzetten als Windows programma? Volg de st
 - Controleer of Node.js geïnstalleerd is
   - Plak de volgende code ```node -v``` en druk Enter
   - Als Node.js niet geïnstalleerd is download deze dan via https://nodejs.org/en/
-  - Volg de stappen die op het scherm 
+  - Volg de stappen voor de installatie
 
 #### 2. Omzetting
 - Sleep de folder stambord-master naar het icoontje van Commandprompt
 - Installeer Node packages ```npm install```
 - Plak het volgende in de Commandprompt```npm run package```
 
-Er zal in de map die je gedownload hebt een nieuwe folder gemaakt worden genaamd 'out', klik door in de verschillende mappen, je vind hier dan de applicatie.
+Er zal in de map die je gedownload hebt een nieuwe folder gemaakt worden dat volgens het volgende patroon genaamd is: "stambord-darwin|win32-x64". Afhankelijk van je besturingsysteem zal er "darwin" (voor Mac) of "win32" staan (voor Windows).
 
 > Heb je een Windows-versie gemaakt? [Laat me iets weten!](mailto:hello@lennertderyck.be?subject=Stambord Windows build
 
