@@ -87,4 +87,5 @@ typings/
 
 # Electron-Forge
 out/
+stambord-darwin-x64/
 stambord-win32-x64/
