@@ -1,5 +1,5 @@
 import {callerName, posFilter, itemControl} from './index.js';
-import {sesamCollapse, sesam} from 'https://unpkg.com/sesam-collapse@4.0.0';
+import {sesamCollapse, sesam} from '../plugins/sesam.min.js';
 
 const status = new callerName('dataExport');
 

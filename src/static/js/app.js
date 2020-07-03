@@ -1,4 +1,4 @@
-import {sesamCollapse, sesam} from 'https://unpkg.com/sesam-collapse@4.0.0';
+import {sesamCollapse, sesam} from './plugins/sesam.min.js';
 import {callerName, dataExport, datalog, posCheckout, userControl, itemControl, posFilter, settings, uiControl} from './modules/index.js';
 
 sesamCollapse.initialize();
