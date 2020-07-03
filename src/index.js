@@ -16,7 +16,7 @@ const createWindow = () => {
     alwaysOnTop: true,
     titleBarStyle: 'customButtonsOnHover',
     webPreferences: {
-      devTools: false
+      devTools: true
     },
   });
   

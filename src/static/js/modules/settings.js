@@ -37,6 +37,7 @@ export const settings = {
         status.add('addListeners');
         
         this.signInForm.addEventListener('submit', (event) => {
+            console.log('logged in');
             event.preventDefault();
             status.log('sombody tried to login')
             
