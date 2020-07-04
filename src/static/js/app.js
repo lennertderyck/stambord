@@ -193,11 +193,13 @@ export const app = {
             const fields = document.querySelectorAll('[data-clear-field]');
             
             fields.forEach(i => {
-                i.value = '';
+                const defaultValue = i.getAttribute('value') || ' ';
+                i.value = defaultValue;
             })
         } else {
             target.querySelectorAll('input[type="text"], input[type="number"], input[type="password"]').forEach(i => {
-                i.value = '';
+                const defaultValue = i.getAttribute('value') || ' ';
+                i.value = defaultValue;
             })
         }
     },

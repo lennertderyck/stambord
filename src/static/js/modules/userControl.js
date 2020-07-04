@@ -18,7 +18,6 @@ export const userControl = {
         this.topUpForm = document.querySelector('#topUp');
         this.posCheckout = document.querySelector('[data-label="posUsers"]');
         this.tabFunctions = document.querySelector('#nav-users [data-label="tabFunctions"]');
-        
     },
     
     addListeners() {

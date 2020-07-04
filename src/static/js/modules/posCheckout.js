@@ -196,7 +196,7 @@ export const posCheckout = {
             else
               console.log ("Nothing was updated - there were no friend with primary key: 2");
         });
-        $('#carouselPosSteps').carousel(0);
+        $('#carouselPosSteps').carousel)(0);
         
         datalog.addLog({
             user: {
@@ -213,6 +213,7 @@ export const posCheckout = {
         
         this.quantity = 1;
         this.amountSelector.classList.add('d-none');
+        this.amountSelector.querySelector('input:checked').checked = false;
         app.createToast('Aankoop gelukt!', `Je huidig saldo bedraagt ${this.newCredit.toFixed(2)}`)
         app.readyState();
     }

@@ -76,7 +76,7 @@ export const uiControl = {
             // if (el.querySelector('input').value != '') el.classList.add('input-group-filled')
             // else el.classList.remove('input-group-filled');
             
-            if (el.querySelector('input').getAttribute('placeholder') == null) el.querySelector('input').setAttribute('placeholder', 'placeholder');
+            if (el.querySelector('input').getAttribute('placeholder') == null) el.querySelector('input').setAttribute('placeholder', ' ');
         });
     },
     
@@ -87,7 +87,6 @@ export const uiControl = {
         content == undefined ? content = 'inner content' : content = content;
         parent == undefined ? parent = '' : parent = `data-parent="${parent}"`;
         
-        console.log(content)
         const renderedHTML = `
             <div data-target="#generatedCollapse${this.createCollapseIndex}" data-toggle="collapse" aria-expanded="false" aria-controls="generatedCollapse${this.createCollapseIndex}" ${parent}>
                 <${title.el}>${title.content}</${title.el}>
