@@ -5,7 +5,6 @@
 ### [Software](#software) | [Roadmap](#roadmap) | [Help](#problemen-en-hulp) | [Demo](https://stambord.haegepoorters.be/src/) (wachtwoord: ```stamvader```)
 
 ---
-![Node.js CI](https://github.com/lennertderyck/stambord/workflows/Node.js%20CI/badge.svg)
 > Een nieuwe versie is onderweg ... [**Lees meer**](#de-volgende-versie-)
 
 ## Dependencies
@@ -19,7 +18,7 @@ Stambord werd gemaakt met behulp van ...
 
 ## Vereisten
 
-**Hardware**
+**Hardware**<br>
 Een desktop-computer of laptop, voorlopig is er nog geen applicatie voor iPad of Android.
 
 **Platformen**
@@ -27,17 +26,41 @@ Een desktop-computer of laptop, voorlopig is er nog geen applicatie voor iPad of
 - macOS 10.10 (Yosemite) of hoger
 - Ubuntu 12.04 of hoger, Fedora 21, Debian 8 (andere platformen zijn niet gegarandeerd, maar je kan het zeker uitproberen.)
 
-**Voetnoot**
+**Voetnoot**<br>
 Stambord wordt gemaakt met Electron, een framework om desktop applicaties te kunnen ontwikkelen met webtechnologieën. Electron maakt hier gebruik van Chromium van Google voor, het systeem waar ook Google Chrome op gebaseerd is.
 
 Een goede vuistregel is dus; Als Chrome op je computer werkt, dan zal Stambord waarschijnlijk ook werken.
 
-## Software gebruiken
+## Download en installatie
 | **[Demo](https://stambord.haegepoorters.be/src/)** (wachtwoord: ```stamvader```) | **[Download voor Windows en MacOS](https://github.com/lennertderyck/stambord/releases)** |
 
-> We zijn overgeschakeld van Electron-Forge naar Electron-packager
+#### Windows
+- Unzip de folder
+- Zoek naar *Stambord.exe* en open het
+- Krijg je een beveilingsmelding? Klik op 'Meer informatie' en dan op 'Toch uitvoeren'
+- Na een paar seconden wachten is de app klaar voor gebruik
+- Verplaats *Stambord.exe* naar waar je wilt
 
+#### Mac
+- Unzip de folder
+- Zoek naar *Stambord* en open het
+- Je krijgt waarschijnlijk een beveilingsmelding. Volg hier voor de volgende stappen
+- Sluit de melding
+- Ga naar Systeemvoorkeuren > Beveiliging en privacy > tabblad Algemeen
+- Hier zal je een melding zien over deze app en een knop "Open toch"
+- Na het aanklikken van deze knop wordt de applicatie normaal geopend en zal je deze stappen niet meer moeten doorlopen
+- Verplaats *Stambord* naar je Apps folder
+
+> De reden achter deze beveiligingsmeldingen is het feit dat ik niet gecertificeerd ben door Apple of Microsoft omdat je hier jaarlijks voor moet betalen.
+
+**Voetnoot**<br>
+Alle gegevens worden lokaal opgeslagen. Omdat er op vele scoutsen geen internet beschikbaar is hebben we er voor gezorgd dat alles op de computer zelf wordt opgeslagen.
+Maak dus regelmatig een backup via de ingebouwde functies (te vinden onder Instellingen).
+
+## DIY
 Stambord is beschikbaar voor Windows en MacOS, maar indien je de app toch zelf wil packagen is dit ook mogelijk.
+
+> We zijn overgeschakeld van Electron-Forge naar Electron-packager
 
 #### 1. Installatie
 - [Download stambord-master.zip](https://github.com/lennertderyck/stambord/archive/master.zip)
@@ -55,11 +78,7 @@ Stambord is beschikbaar voor Windows en MacOS, maar indien je de app toch zelf w
 
 Er zal in de map die je gedownload hebt een nieuwe folder gemaakt worden dat volgens het volgende patroon genaamd is: "stambord-darwin|win32-x64". Afhankelijk van je besturingsysteem zal er "darwin" (voor Mac) of "win32" staan (voor Windows).
 
-<blockquote>
-  <p>Heb je een Windows-versie gemaakt? <a href="mailto:hello@lennertderyck.be?subject=Stambord Windows build">Laat me iets weten!</a></p>
-</blockquote>
-
-> 
+>  Heb je een Windows-versie gemaakt? <a href="mailto:hello@lennertderyck.be?subject=Stambord Windows build">Laat me iets weten!</a>
  
 ## De volgende versie ...
 
