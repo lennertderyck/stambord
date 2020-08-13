@@ -33,12 +33,11 @@ Stambord wordt gemaakt met Electron, een framework om desktop applicaties te kun
 Een goede vuistregel is dus; Als Chrome op je computer werkt, dan zal Stambord waarschijnlijk ook werken.
 
 ## Software gebruiken
-| **[Demo](https://stambord.haegepoorters.be/src/)** (wachtwoord: ```stamvader```) | **[Download voor MacOS](https://github.com/lennertderyck/stambord/releases)** |
+| **[Demo](https://stambord.haegepoorters.be/src/)** (wachtwoord: ```stamvader```) | **[Download voor Windows en MacOS](https://github.com/lennertderyck/stambord/releases)** |
 
 > We zijn overgeschakeld van Electron-Forge naar Electron-packager
 
-Voorlopig is Stambord enkel beschikbaar voor MacOS, maar we zouden deze ook graag uitbrengen voor Windows.<br>
-Wil je Bar Bord eenvoudig eigenhandig omzetten als Windows programma? Volg de stappen hieronder:
+Stambord is beschikbaar voor Windows en MacOS, maar indien je de app toch zelf wil packagen is dit ook mogelijk.
 
 #### 1. Installatie
 - [Download stambord-master.zip](https://github.com/lennertderyck/stambord/archive/master.zip)
