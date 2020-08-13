@@ -2,7 +2,7 @@
 
 <br>
 
-### [Software](#software) | [Roadmap](#roadmap) | [Help](#problemen-en-hulp) | [Demo](https://stambord.haegepoorters.be/src/) (wachtwoord: ```stamvader```)
+### [Software](#software) | [Roadmap](#roadmap) | [Help](#problemen-en-hulp) | **[Download](https://github.com/lennertderyck/stambord/releases)* | [Demo](https://stambord.haegepoorters.be/src/) (wachtwoord: ```stamvader```)
 
 ---
 > Een nieuwe versie is onderweg ... [**Lees meer**](#de-volgende-versie-)
