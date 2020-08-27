@@ -196,7 +196,7 @@ export const posCheckout = {
             else
               console.log ("Nothing was updated - there were no friend with primary key: 2");
         });
-        $('#carouselPosSteps').carousel)(0);
+        $('#carouselPosSteps').carousel(0);
         
         datalog.addLog({
             user: {

@@ -13,10 +13,11 @@ const createWindow = () => {
     width: 1200,
     height: 800,
     fullscreenable: true,
-    alwaysOnTop: true,
+    alwaysOnTop: false,
     titleBarStyle: 'customButtonsOnHover',
     webPreferences: {
-      devTools: true
+      devTools: true,
+      nodeIntegration: true
     },
   });
   
