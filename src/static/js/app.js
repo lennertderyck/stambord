@@ -255,6 +255,14 @@ export const app = {
         document.querySelector('#toastContainer').appendChild(toast);
         feather.replace();
         $(`[data-toast="toastIndex${this.toastIndex}"]`).toast('show');
+		
+		//removal of toast div
+		let secondTime = false;
+		toast.onanimationend = function () {
+			if (secondTime){
+				document.querySelector('#toastContainer').removeChild(toast)
+			} else { secondTime = true;}
+		};
     },
     
     errorText(element, content) {
